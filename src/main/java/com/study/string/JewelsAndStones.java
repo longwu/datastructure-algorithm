@@ -93,7 +93,7 @@ public class JewelsAndStones {
     private static int numJewelsInStones2(String J, String S) {
         if (J.length() == 0 || S.length() == 0) return 0;
 
-        Set<Character> set = new HashSet<Character>(SIZE);
+        Set<Character> set = new HashSet<Character>(J.length());
 
         //J中char不重复,所以可以使用hashset来存储
         for (int i = 0; i < J.length(); i++) {
