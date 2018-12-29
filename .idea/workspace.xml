@@ -4,8 +4,7 @@
     <option name="GROUP_BY_SEVERITY" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bc64621a-294f-4715-a8b3-75278fb46aa4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="bc64621a-294f-4715-a8b3-75278fb46aa4" name="Default Changelist" comment="优化宝石与石头查找算法">
       <change beforePath="$PROJECT_DIR$/src/main/java/com/study/string/JewelsAndStones.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/study/string/JewelsAndStones.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -115,15 +114,15 @@
         <counts>
           <entry key="dummy" value="57" />
           <entry key="gitignore" value="2" />
-          <entry key="java" value="15257" />
-          <entry key="txt" value="25" />
+          <entry key="java" value="15259" />
+          <entry key="txt" value="34" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Git file" value="2" />
-          <entry key="JAVA" value="15257" />
-          <entry key="PLAIN_TEXT" value="82" />
+          <entry key="JAVA" value="15259" />
+          <entry key="PLAIN_TEXT" value="91" />
         </counts>
       </usages-collector>
     </session>
@@ -160,10 +159,9 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/study/string/JewelsAndStones.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="95" column="62" selection-start-line="95" selection-start-column="62" selection-end-line="95" selection-end-column="62" />
+            <state relative-caret-position="36">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
               <folding>
-                <element signature="imports" expanded="true" />
                 <element signature="e#2077#2088#0" expanded="true" />
               </folding>
             </state>
@@ -471,7 +469,7 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="178" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546076118676" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546076612028" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Python/code/algorthim-interview-40" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -673,7 +671,7 @@
       <workItem from="1546053455205" duration="1069000" />
       <workItem from="1546054807786" duration="391000" />
       <workItem from="1546055233216" duration="439000" />
-      <workItem from="1546055712627" duration="14480000" />
+      <workItem from="1546055712627" duration="15100000" />
     </task>
     <task id="LOCAL-00001" summary="修改readme">
       <created>1546064898678</created>
@@ -696,11 +694,18 @@
       <option name="project" value="LOCAL" />
       <updated>1546075961496</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="优化宝石与石头查找算法">
+      <created>1546076061589</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1546076061589</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="92071000" />
+    <option name="totallyTimeSpent" value="92691000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -748,7 +753,8 @@
     <MESSAGE value="修改readme" />
     <MESSAGE value="增加注释" />
     <MESSAGE value="新增宝石与石头查找算法" />
-    <option name="LAST_COMMIT_MESSAGE" value="新增宝石与石头查找算法" />
+    <MESSAGE value="优化宝石与石头查找算法" />
+    <option name="LAST_COMMIT_MESSAGE" value="优化宝石与石头查找算法" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -887,13 +893,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/study/string/JewelsAndStones.java</url>
-          <line>73</line>
+          <line>71</line>
           <properties />
           <option name="timeStamp" value="37" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/study/string/JewelsAndStones.java</url>
-          <line>51</line>
+          <line>49</line>
           <properties />
           <option name="timeStamp" value="40" />
         </line-breakpoint>
@@ -1149,10 +1155,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/study/string/JewelsAndStones.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="95" column="62" selection-start-line="95" selection-start-column="62" selection-end-line="95" selection-end-column="62" />
+        <state relative-caret-position="36">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="e#2077#2088#0" expanded="true" />
           </folding>
         </state>
