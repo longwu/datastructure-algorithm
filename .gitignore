@@ -51,3 +51,4 @@ src/test/
 target/generated-sources/
 /.idea/
 /code.iml
+.idea/workspace.xml
