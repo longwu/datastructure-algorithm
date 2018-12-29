@@ -4,9 +4,10 @@
     <option name="GROUP_BY_SEVERITY" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bc64621a-294f-4715-a8b3-75278fb46aa4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/study/string/UniqueEmailAddresses.java" afterDir="false" />
+    <list default="true" id="bc64621a-294f-4715-a8b3-75278fb46aa4" name="Default Changelist" comment="新增独特的电子邮件地址算法">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/study/string/ToLowerCase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/study/string/UniqueEmailAddresses.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/study/string/UniqueEmailAddresses.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -99,15 +100,15 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="gitignore" value="3" />
-          <entry key="java" value="46" />
+          <entry key="gitignore" value="4" />
+          <entry key="java" value="50" />
           <entry key="md" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Git file" value="3" />
-          <entry key="JAVA" value="46" />
+          <entry key="Git file" value="4" />
+          <entry key="JAVA" value="50" />
           <entry key="Markdown" value="3" />
         </counts>
       </usages-collector>
@@ -115,15 +116,15 @@
         <counts>
           <entry key="dummy" value="57" />
           <entry key="gitignore" value="2" />
-          <entry key="java" value="15903" />
-          <entry key="txt" value="46" />
+          <entry key="java" value="15964" />
+          <entry key="txt" value="50" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Git file" value="2" />
-          <entry key="JAVA" value="15903" />
-          <entry key="PLAIN_TEXT" value="103" />
+          <entry key="JAVA" value="15964" />
+          <entry key="PLAIN_TEXT" value="107" />
         </counts>
       </usages-collector>
     </session>
@@ -131,10 +132,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/util/List.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/study/string/ToLowerCase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="543" column="6" selection-start-line="543" selection-start-column="6" selection-end-line="543" selection-end-column="6" />
+            <state relative-caret-position="144">
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
             </state>
           </provider>
         </entry>
@@ -142,11 +143,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/study/string/JewelsAndStones.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="6" column="6" lean-forward="true" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-              <folding>
-                <element signature="e#2077#2088#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="252">
+              <caret line="14" column="8" lean-forward="true" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -154,102 +152,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/study/string/UniqueEmailAddresses.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="41" column="33" lean-forward="true" selection-start-line="41" selection-start-column="33" selection-end-line="41" selection-end-column="33" />
+            <state relative-caret-position="54">
+              <caret line="3" column="21" lean-forward="true" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1115#1123#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/util/Set.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="224" column="12" selection-start-line="224" selection-start-column="12" selection-end-line="224" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/util/HashSet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
-              <caret line="219" column="20" lean-forward="true" selection-start-line="219" selection-start-column="20" selection-end-line="219" selection-end-column="20" />
-              <folding>
-                <element signature="e#5324#5325#0" expanded="true" />
-                <element signature="e#5376#5377#0" expanded="true" />
-                <element signature="e#8064#8065#0" expanded="true" />
-                <element signature="e#8112#8113#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/util/HashMap.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="281">
-              <caret line="611" column="19" selection-start-line="611" selection-start-column="19" selection-end-line="611" selection-end-column="19" />
-              <folding>
-                <element signature="e#23628#23629#0" expanded="true" />
-                <element signature="e#23682#23683#0" expanded="true" />
-                <element signature="e#24329#24330#0" expanded="true" />
-                <element signature="e#24394#24395#0" expanded="true" />
-                <element signature="e#71488#71489#0" expanded="true" />
-                <element signature="e#71570#71571#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/util/Map.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="164" column="13" lean-forward="true" selection-start-line="164" selection-start-column="12" selection-end-line="164" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/util/AbstractList.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="116" column="22" selection-start-line="116" selection-start-column="22" selection-end-line="116" selection-end-column="22" />
-              <folding>
-                <element signature="e#4449#4450#0" expanded="true" />
-                <element signature="e#4506#4507#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/util/ArrayList.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
-              <caret line="303" column="20" selection-start-line="303" selection-start-column="20" selection-end-line="303" selection-end-column="20" />
-              <folding>
-                <element signature="e#11079#11080#0" expanded="true" />
-                <element signature="e#11117#11118#0" expanded="true" />
-                <element signature="e#15586#15587#0" expanded="true" />
-                <element signature="e#15631#15632#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/lang/String.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="1560" column="17" lean-forward="true" selection-start-line="1560" selection-start-column="17" selection-end-line="1560" selection-end-column="17" />
-              <folding>
-                <element signature="e#58481#58482#0" expanded="true" />
-                <element signature="e#58518#58519#0" expanded="true" />
+                <element signature="e#1236#1244#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -309,10 +216,11 @@
         <option value="$PROJECT_DIR$/src/main/java/com/study/array/ArrayOperation.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/study/number/TwoSum.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/study/number/ReverseInteger.java" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/main/java/com/study/sort/BubbleSort.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/study/string/JewelsAndStones.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/main/java/com/study/string/ToLowerCase.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/study/string/UniqueEmailAddresses.java" />
       </list>
     </option>
@@ -347,7 +255,9 @@
     <option name="width" value="1940" />
     <option name="height" value="1050" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <flattenPackages ProjectPane="false" />
@@ -479,7 +389,7 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="178" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546078144373" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546078697521" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Python/code/algorthim-interview-40" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -681,7 +591,7 @@
       <workItem from="1546053455205" duration="1069000" />
       <workItem from="1546054807786" duration="391000" />
       <workItem from="1546055233216" duration="439000" />
-      <workItem from="1546055712627" duration="16625000" />
+      <workItem from="1546055712627" duration="17186000" />
     </task>
     <task id="LOCAL-00001" summary="修改readme">
       <created>1546064898678</created>
@@ -718,17 +628,24 @@
       <option name="project" value="LOCAL" />
       <updated>1546076638373</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="新增独特的电子邮件地址算法">
+      <created>1546078182067</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1546078182067</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94216000" />
+    <option name="totallyTimeSpent" value="94777000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23288591" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23288591" />
       <window_info id="Image Layers" order="1" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -736,7 +653,7 @@
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32991204" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.24780059" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.24780059" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.34604105" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -772,7 +689,8 @@
     <MESSAGE value="新增宝石与石头查找算法" />
     <MESSAGE value="优化宝石与石头查找算法" />
     <MESSAGE value="宝石与石头查找算法:移除无用的import" />
-    <option name="LAST_COMMIT_MESSAGE" value="宝石与石头查找算法:移除无用的import" />
+    <MESSAGE value="新增独特的电子邮件地址算法" />
+    <option name="LAST_COMMIT_MESSAGE" value="新增独特的电子邮件地址算法" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -923,7 +841,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/study/string/UniqueEmailAddresses.java</url>
-          <line>48</line>
+          <line>38</line>
           <properties />
           <option name="timeStamp" value="51" />
         </line-breakpoint>
@@ -1026,13 +944,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="936">
-          <caret line="52" column="9" lean-forward="true" selection-start-line="52" selection-start-column="9" selection-end-line="52" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code.iml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
@@ -1110,13 +1021,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/util/List.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="543" column="6" selection-start-line="543" selection-start-column="6" selection-end-line="543" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/util/AbstractList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
@@ -1143,23 +1047,6 @@
             <element signature="e#58481#58482#0" expanded="true" />
             <element signature="e#58518#58519#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/study/string/JewelsAndStones.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="6" lean-forward="true" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-          <folding>
-            <element signature="e#2077#2088#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/util/Set.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="224" column="12" selection-start-line="224" selection-start-column="12" selection-end-line="224" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -1191,13 +1078,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="39" column="5" lean-forward="true" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/util/List.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="543" column="6" selection-start-line="543" selection-start-column="6" selection-end-line="543" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/src.zip!/java/util/Set.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="229" column="52" lean-forward="true" selection-start-line="229" selection-start-column="52" selection-end-line="229" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/study/string/ToLowerCase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/study/string/JewelsAndStones.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="14" column="8" lean-forward="true" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/study/string/UniqueEmailAddresses.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="41" column="33" lean-forward="true" selection-start-line="41" selection-start-column="33" selection-end-line="41" selection-end-column="33" />
+        <state relative-caret-position="54">
+          <caret line="3" column="21" lean-forward="true" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1115#1123#0" expanded="true" />
+            <element signature="e#1236#1244#0" expanded="true" />
           </folding>
         </state>
       </provider>
