@@ -4,6 +4,8 @@ import com.study.tools.Utils;
 
 /**
  * 冒泡排序,从小到大排列
+ *
+ * 时间复杂度 O(n2)
  */
 public class BubbleSort {
 
@@ -43,7 +45,7 @@ public class BubbleSort {
     }
 
     /**
-     * 冒泡排序,从到到小排列
+     * 冒泡排序,从大到小排列
      *
      * @param arr
      */
