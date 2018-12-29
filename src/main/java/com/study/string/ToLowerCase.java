@@ -42,16 +42,14 @@ public class ToLowerCase {
      */
     private static String toLowerCase(String str) {
         char[] chars = str.toCharArray();
-
         for (int i = 0; i < chars.length; i++) {
             //如果是大小字母
             //if (chars[i] >= 'A' && chars[i] <= 'Z') {
-            if (chars[i] >= 64 && chars[i] <= 91) {
+            if (chars[i] >= 65 && chars[i] <= 90) {
                 //转换成对应的小写字母
                 chars[i] += 32;
             }
         }
-
         return new String(chars);
     }
 }
