@@ -10,6 +10,16 @@ public class ToUpperCase {
         System.out.println(toUpperCase(str));
     }
 
+    /**
+     * 将字符串转换成char数组
+     *
+     * 遍历数组, 将每个小写字母转换成大写
+     *
+     * 利用ascii大小写字母对应的差值进行转换
+     *
+     * @param str
+     * @return
+     */
     private static String toUpperCase(String str){
         char[] chars = str.toCharArray();
         for (int i = 0; i < chars.length; i ++){
