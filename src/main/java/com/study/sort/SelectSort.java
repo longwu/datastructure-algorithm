@@ -1,4 +1,4 @@
-package com.study.selectsort;
+package com.study.sort;
 
 import com.study.tools.Utils;
 
@@ -12,7 +12,7 @@ import com.study.tools.Utils;
  *
  * 时间复杂度 O(n2)
  */
-public class Client {
+public class SelectSort {
 
     public static void main(String[] args) {
 

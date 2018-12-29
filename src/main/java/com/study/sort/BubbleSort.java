@@ -1,11 +1,11 @@
-package com.study.bubblesort;
+package com.study.sort;
 
 import com.study.tools.Utils;
 
 /**
  * 冒泡排序,从小到大排列
  */
-public class Client {
+public class BubbleSort {
 
     public static void main(String[] args) {
 
