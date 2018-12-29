@@ -1,7 +1,5 @@
 package com.study.string;
 
-import com.sun.glass.ui.Size;
-
 import java.util.*;
 
 /**
