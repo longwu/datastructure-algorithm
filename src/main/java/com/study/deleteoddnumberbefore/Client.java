@@ -1,4 +1,4 @@
-package org.me.study.deleteoddnumberbefore;
+package com.study.deleteoddnumberbefore;
 
 /**
  * 有一个 n 个正整数的数组 a[0, n-1]作为输入，同时生成一个

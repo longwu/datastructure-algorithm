@@ -1,4 +1,4 @@
-package org.me.study.tools;
+package com.study.tools;
 
 public final class Utils {
     public static void print(int[] arr){

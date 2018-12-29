@@ -1,6 +1,6 @@
-package org.me.study.bubblesort;
+package com.study.bubblesort;
 
-import org.me.study.tools.Utils;
+import com.study.tools.Utils;
 
 /**
  * 冒泡排序,从小到大排列

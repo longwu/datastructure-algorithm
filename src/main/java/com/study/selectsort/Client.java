@@ -1,6 +1,6 @@
-package org.me.study.selectsort;
+package com.study.selectsort;
 
-import org.me.study.tools.Utils;
+import com.study.tools.Utils;
 
 /**
  * 选择排序,
