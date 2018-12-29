@@ -10,8 +10,7 @@ public class ArrayOperation {
     public static void main(String[] args) {
 
         int[] arr = {2, 3, 5, 8};
-        //int[] newArr = work(arr);
-        int[] newArr = work2(arr);
+        int[] newArr = work(arr);
 
         for (int i = 0; i < newArr.length; i++) {
             if (newArr[i] != 0)
