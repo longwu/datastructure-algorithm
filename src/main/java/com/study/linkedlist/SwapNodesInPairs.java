@@ -1,5 +1,7 @@
 package com.study.linkedlist;
 
+import com.study.utils.Printer;
+
 /**
  * 两两交换链表中的节点
  * <p>
@@ -31,14 +33,16 @@ public class SwapNodesInPairs {
         node4.next = node5;
         node5.next = node6;
 
-        print(node1);
+        Printer.printLinkedList(node1);
 
-        //print(swapPairs(node1));
-        print(swapPairs2(node1));
+        //Printer.printLinkedList(swapPairs(node1));
+        Printer.printLinkedList(swapPairs2(node1));
     }
 
     /**
      * 通过循环遍历链表, 每次取未交换的前2个节点进行交换,交换完后将指针指向后2个节点,一遍下一轮循环处理
+     *
+     * 这里需要3个指针，其中两个是pair对中相邻的两个节点指针a和b，另一个是pair对之前的一个节点指针
      *
      * @param head
      * @return
@@ -88,17 +92,5 @@ public class SwapNodesInPairs {
         // tmp = 6->5->null, tmp = 4->3->6->5->null, tmp = 2->1->4->3->6->5->null
         //print(tmp);
         return tmp;
-    }
-
-    private static void print(ListNode head) {
-        while (head != null) {
-            if (head.next == null) {
-                System.out.printf("%d->NULL", head.val);
-            } else {
-                System.out.printf("%d->", head.val);
-            }
-            head = head.next;
-        }
-        System.out.println();
     }
 }

@@ -1,5 +1,7 @@
 package com.study.linkedlist;
 
+import com.study.utils.Printer;
+
 import java.util.Stack;
 
 /**
@@ -28,16 +30,16 @@ public class Reverse {
         node3.next = node4;
         node4.next = node5;
 
-        print(node1);
+        Printer.printLinkedList(node1);
         System.out.println();
-        print(reverseList(node1));
-        //print(reverseList2(node1));
-        //print(reverseList3(node1));
+        Printer.printLinkedList(reverseList(node1));
+        //Printer.printLinkedList(reverseList2(node1));
+        //Printer.printLinkedList(reverseList3(node1));
     }
 
     /**
      * 使用循环反转单链表
-     *
+     * <p>
      * 从前往后遍历整个链表, 将每个节点按顺序取出, 依次放在已取出节点的最前面,最终得到一个反转后的列表
      *
      * @param head
@@ -46,21 +48,18 @@ public class Reverse {
     private static ListNode reverseList(ListNode head) {
         // cur的上一个节点
         ListNode prev = null;
-        // 将cur指向head节点
+        // 将当前节点指针指向head节点
         ListNode cur = head;
         while (null != cur) {
-            // 将cur节点的下一个节点暂存起来
+            // 将当前节点指针的下一个节点暂存起来
             ListNode next = cur.next;
-            // 将cur节点的下一个节点指向cur的上一个节点prev
-            // 比如2->3 = 1->null 变成 2->1->null
+            // 反转指针,将指针从后一个节点转为指向前一个节点
+            // 比如2->3 变成 2->1
             cur.next = prev;
-            // 将prev指向cur
-            // 比如1->null 变成 2->1->null
+            // 将上一个节点指针指向当前节点
             prev = cur;
-            // 将cur节点指针指向刚保存的下一个节点
+            // 将当前节点指针指向刚保存的下一个节点
             cur = next;
-//            print(prev);
-//            System.out.println();
         }
         return prev;
     }
@@ -129,16 +128,5 @@ public class Reverse {
             head = head.next;
         }
         return prev.next;
-    }
-
-    private static void print(ListNode head) {
-        while (head != null) {
-            if (head.next == null) {
-                System.out.printf("%d->NULL", head.val);
-            } else {
-                System.out.printf("%d->", head.val);
-            }
-            head = head.next;
-        }
     }
 }
