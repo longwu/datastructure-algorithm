@@ -1,1 +1,1 @@
-java 算法练习
+算法练习(java 和 python)
