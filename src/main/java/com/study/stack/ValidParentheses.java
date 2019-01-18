@@ -48,6 +48,9 @@ public class ValidParentheses {
     }
 
     /**
+     *
+     * 利用栈后进先出的特性
+     *
      * 使用了一个hashmap来存储正确的括号,然后将每次往栈中放之前将栈顶端里面的元素和即将放的元素与map中的某个keyvalue想比较,
      *
      * 如果相等,则移除栈内顶端的元素
