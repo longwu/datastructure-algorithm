@@ -20,25 +20,25 @@ public class ReverseTree {
         //----------------方法一-------------------
         // 将一个作为根节点
 
-        TreeNode root = datas.get(0);
-        root.left = datas.get(1);
-        root.right = datas.get(2);
-        root.left.left = datas.get(3);
-        root.left.right = datas.get(4);
-        root.right.left = datas.get(5);
-        root.right.right = datas.get(6);
-        root.left.left.left = datas.get(7);
+//        TreeNode root = datas.get(0);
+//        root.left = datas.get(1);
+//        root.right = datas.get(2);
+//        root.left.left = datas.get(3);
+//        root.left.right = datas.get(4);
+//        root.right.left = datas.get(5);
+//        root.right.right = datas.get(6);
+//        root.left.left.left = datas.get(7);
         //----------------方法一-------------------
 
         //----------------方法二-------------------
-        //tree.root = datas.get(0);
+        TreeNode root = datas.get(0);
         // 创建其他节点  每个节点的左子节点都是这个节点的2倍+1, 右子节点都是这个节点的2倍+2
-//        for (int i = 0; i < arr.length / 2; i++) {
-//            datas.get(i).left = datas.get(i * 2 + 1);
-//            if (i * 2 + 2 < datas.size()) {
-//                datas.get(i).right = datas.get(i * 2 + 2);
-//            }
-//        }
+        for (int i = 0; i < arr.length / 2; i++) {
+            datas.get(i).left = datas.get(i * 2 + 1);
+            if (i * 2 + 2 < datas.size()) {
+                datas.get(i).right = datas.get(i * 2 + 2);
+            }
+        }
         //----------------方法二-------------------
 
 
@@ -123,6 +123,7 @@ public class ReverseTree {
 
     /**
      * 使用迭代法进行中序遍历
+     *
      * @param node
      */
     private static void inOrderReverse2(TreeNode node) {
@@ -132,26 +133,19 @@ public class ReverseTree {
             return;
         }
 
-        if (node.left != null) {
-            stack.push(node);
-            stack.push(node.left);
-        }
+        while (node != null || !stack.isEmpty()) {
 
-        while (!stack.isEmpty()) {
-            // 先处理左节点
-            TreeNode tempNode = stack.pop();
-            System.out.println(tempNode.val);
-
-            //根据栈的后进先出原理, 将left节点放在right后面入栈
-            if (tempNode.right != null) {
-                stack.push(tempNode.right);
+            // 先将根节点所有左节点入栈
+            while (node != null) {
+                stack.push(node);
+                node = node.left; //左
             }
 
-            if (tempNode.left != null) {
-                stack.push(tempNode.left);
+            if (!stack.isEmpty()) {
+                node = stack.pop(); //根
+                System.out.println(node.val);
+                node = node.right; //右
             }
-
-            stack.push(node);
         }
     }
 
