@@ -135,7 +135,7 @@ public class ReverseTree {
 
         while (node != null || !stack.isEmpty()) {
 
-            // 先将根节点所有左节点入栈
+            // 先将当前节点以及所有左节点入栈
             while (node != null) {
                 stack.push(node);
                 node = node.left; //左
