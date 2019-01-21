@@ -64,8 +64,10 @@ public class InorderTraversal {
 
     private static void traversal(TreeNode root, List<Integer> list) {
         if (root != null) {
+            //递归左(右)子树
             traversal(root.left, list);
             list.add(root.val);
+            //递归右(左)子树
             traversal(root.right, list);
         }
     }
@@ -80,13 +82,13 @@ public class InorderTraversal {
     private static List<Integer> inorderTraversal2(TreeNode root) {
         List<Integer> list = new ArrayList<Integer>();
         if (root != null) {
-            // 先不断递归左边节点, 知道当前节点的左边子节点为空
+            // 递归左(右)子树
             if (root.left != null) {
                 list.addAll(inorderTraversal2(root.left));
             }
-            // 就把该节点的值 加入到list中
+            // 把某个根节点的值 加入到list中
             list.add(root.val);
-            // 如果当前节点有右子节点, 就把右子节点加到集合中
+            // 递归右(左)子树
             if (root.right != null) {
                 list.addAll(inorderTraversal2(root.right));
             }
