@@ -106,7 +106,7 @@ node5.next = node6
 
 print_node(node)
 
-print ""
+print ("")
 
 s = Solution()
 

@@ -68,6 +68,8 @@ public class LinkedListCycle {
      * <p>
      * 时间复杂度O(n), 但需要额外创建一个hashset集合
      *
+     * hashset读的时间复杂度为O(1), 比很多数据结构都快
+     *
      * @param head
      * @return
      */

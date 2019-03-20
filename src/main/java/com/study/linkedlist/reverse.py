@@ -88,7 +88,7 @@ node2.next = node3
 
 print_node(node)
 
-print ""
+print ("")
 
 s = Solution()
 #reversedNode = s.reverseList(node)
