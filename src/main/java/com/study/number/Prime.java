@@ -7,7 +7,8 @@ package com.study.number;
  */
 public class Prime {
     public static void main(String[] args) {
-        int a = 11;
+        int a = 2;
+        //int a = 11;
 
         //System.out.println(a + (isPrime(a) ? "是" : "不是") + "质数");
 
@@ -30,9 +31,9 @@ public class Prime {
 
 
     public static boolean isPrime2(int n) {
-        // 3以内只有2,3是质数
-        if (n <= 3) {
-            return n > 1;
+        // 1不是质数
+        if (n <= 1) {
+            return false;
         }
 
         // 将n除以比自己小的数(不包括1),如果不能整除,则为质数
@@ -51,8 +52,9 @@ public class Prime {
      * @return
      */
     public static boolean isPrime3(int n) {
-        if (n <= 3) {
-            return n > 1;
+        // 1不是质数
+        if (n <= 1) {
+           return false;
         }
 
         // 将n开根号
