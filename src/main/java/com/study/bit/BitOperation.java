@@ -1,5 +1,4 @@
-package com.study.number;
-
+package com.study.bit;
 
 /**
  * 什么是位运算, 程序中的所有数在计算机内存中都是以二进制的形式储存的,位运算说穿了,就是直接对整数在内存中的二进制位进行操作.
@@ -15,13 +14,78 @@ package com.study.number;
  * <p>
  * <p>
  * https://time.geekbang.org/course/detail/130-67645
+ * <p>
+ * 干货！史上最强位运算面试题大总结！
+ * https://www.colabug.com/598140.html
  */
 public class BitOperation {
 
     public static void main(String[] args) {
         // 110 AND 1011 -> 0010(b) --> 2(d)
 //        System.out.println(6 & 11); // 6的二进制是110, 11的二进制是1011, 那么6 and 11的结果就是2
-//
+
+        // 左移操作A<<B
+        // 将A的二进制表示的每一位向左移B位，左边超出的位截掉，右边不足的位补0
+        int A = 12; //二进制为 1100
+        int B = 2;
+        int C = 1;
+        // 将1100 往左移动两位  变成 110000
+        System.out.println(A << B); // 48
+        System.out.println(decimalToBinary(A << B)); //110000
+
+        // 将1100 往左移动1位  变成 11000
+        System.out.println(A << C); // 24
+        System.out.println(decimalToBinary(A << C)); // 11000
+
+        // 右移操作 A>>B
+        // 算术右移：将A的二进制表示的每一位向右移B位，右边超出的位截掉，左边不足的位补符号位的数。
+        // 1100 往右移动两位  变成  11
+        System.out.println(A >> B); //3
+        System.out.println(decimalToBinary(A >> B)); // 11
+
+        // 1100 往右移动一位 变成 110
+        System.out.println(A >> C); // 6
+        System.out.println(decimalToBinary(A >> C)); // 110
+
+        // 逻辑右移 A>>>B
+        // 逻辑右移：将A的二进制表示的每一位向右移B位，右边超出的位截掉，左边不足的位补0。
+        // 1100 往右移动两位 变成 0011
+        System.out.println(A >>> B); //3
+        System.out.println(decimalToBinary(A >>> B)); // 0011
+
+        // 1100 往右移动一位 变成 0110
+        System.out.println(A >>> C); // 6
+        System.out.println(decimalToBinary(A >>> C)); // 0110
+
+        // 按位与操作 A & B
+        // 将A和B的二进制表示的每一位进行与操作，只有两个对应的二进制位都为1时，结果位才为1，否则为0.
+        A = 10; // 001010
+        B = 44; // 101100
+        // A & B = 001000 //只有全部为1才是1,否则为0
+        System.out.println(A & B); // 8
+        System.out.println(decimalToBinary(A & B)); // 001000
+
+        // 按位或操作 A | B
+        // 将A和B的二进制表示的每一位进行或操作，只要两个对应的二进制位有一个为1，结果位就为1，否则为0.
+        // A | B = 101110
+        System.out.println(A | B); // 46
+        System.out.println(decimalToBinary(A & B)); // 101110
+
+        // 按位非操作~A
+        // 将A的二进制最后一位+1 然后取反
+        //  A = 10;      // 001010
+        // ~A = -(10+1); //-001011
+        System.out.println(~A); // -(10+1) = -11
+        System.out.println(decimalToBinary(~A)); // -1011
+
+        // 按位异或操作A^B
+        // 将A和B的二进制表示的每一位进行异或操作，如果对应的二进制位不同，结果位为1，否则为0.
+        // A = 001010;
+        // B = 101100;
+        // A^B=100110;
+        System.out.println(A ^ B); // 38
+        System.out.println(decimalToBinary3(A ^ B)); // 100110
+
 //        System.out.println(isOdd(10));
 //        System.out.println(isOdd(11));
 //
@@ -38,14 +102,14 @@ public class BitOperation {
 
 
         // https://www.cnblogs.com/vsign/p/7290594.html
-        System.out.println(decimalToBinary(11));
-        System.out.println(decimalToBinary2(11));
-        System.out.println(decimalToBinary3(11));
-
-
-        System.out.println(decimalToBinary(1111111111)); //error 输出的二进制超出int最大长度
-        System.out.println(decimalToBinary2(1111111111)); //error 输出的二进制超出int最大长度
-        System.out.println(decimalToBinary3(1111111111));//ok
+//        System.out.println(decimalToBinary(11));
+//        System.out.println(decimalToBinary2(11));
+//        System.out.println(decimalToBinary3(11));
+//
+//
+//        System.out.println(decimalToBinary(1111111111)); //error 输出的二进制超出int最大长度
+//        System.out.println(decimalToBinary2(1111111111)); //error 输出的二进制超出int最大长度
+//        System.out.println(decimalToBinary3(1111111111));//ok
     }
 
     /**
@@ -114,7 +178,7 @@ public class BitOperation {
 
     /**
      * 十进制转二进制
-     *
+     * <p>
      * 由于int最大值有限, 转换成2进制后 会存在超出最大长度的问题
      *
      * @param n
@@ -134,8 +198,9 @@ public class BitOperation {
 
     /**
      * 十进制转二进制, 调用Integer内置的方法toBinaryString()进行转换
-     *
+     * <p>
      * 由于int最大值有限, 转换成2进制后 会存在超出最大长度的问题
+     *
      * @param n
      * @return
      */
@@ -150,6 +215,8 @@ public class BitOperation {
      * <p>
      * int型最大只能表示2^31-1 的正数，所以，存储的二进制数位数有限；
      * 我们都知道，int在java中的存储范围是32位，则可以使用字符串的拼接（+）来实现
+     * <p>
+     * 注意: 负数转成字符串会有问题
      *
      * @param n
      * @return
