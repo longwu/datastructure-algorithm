@@ -21,6 +21,10 @@ public class NumberOfOneBits {
 
         System.out.println(count2(10)); // 1010   2
         System.out.println(count2(11)); // 1011   3
+
+
+        System.out.println(count3(10)); // 1010   2
+        System.out.println(count3(11)); // 1011   3
     }
 
     private static int count(int num) {
@@ -30,6 +34,13 @@ public class NumberOfOneBits {
         for (int i = 0; i < 32; i++) {
             //判断移位后的最后一位是否为1
             //if (num % 2  == 1) {  //使用取模的方法判断最后一位是否为1
+            /**
+             * 比如 num = 5
+             * 5:   101
+             * 1:     1
+             * 5&1: 001 //全部为1才是1,否则为0
+             * 一个数和1进行 &与 操作的时候,只有二进制最后1位是1的时候结果的最后一位才能得到1
+             */
             if ((num & 1) == 1) { //使用位运算判断最后一次是否为1
                 result++;
             }
@@ -57,7 +68,7 @@ public class NumberOfOneBits {
     }
 
     /**
-     * 统计一个（int）数二进制数1的个数
+     * 最快速
      *
      * @param tag
      * @return
@@ -65,23 +76,19 @@ public class NumberOfOneBits {
     public static int count3(int tag) {
         int count = 0;
         while (tag != 0) {
-            if ((tag & 1) == 1) {//是1
-                count++;
-            }
-            tag >>>= 1;//无符号右移一位
-        }
-        return count;
-    }
-
-    /**
-     * 最快速
-     *
-     * @param tag
-     * @return
-     */
-    public static int count4(int tag) {
-        int count = 0;
-        while (tag != 0) {
+            /**
+             *
+             *  10   1010
+             *  9    1001
+             *  5&4: 1000  = 8
+             *
+             *  8 & (8-1) = 8 & 7
+             *
+             *  8    1000
+             *  7    0111
+             *  8&7: 0000  = 0
+             *
+             */
             tag = (tag & (tag - 1));
             count++;
         }
