@@ -34,7 +34,7 @@ import java.util.List;
  * <p>
  * https://time.geekbang.org/course/detail/130-42708
  */
-public class LowestCommonAncestorOfABinaryTree {
+public class LowestCommonAncestor {
 
     public static void main(String[] args) {
         int[] arr = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
