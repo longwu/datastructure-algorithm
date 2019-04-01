@@ -1,5 +1,7 @@
 package com.study.binarytree;
 
+import com.study.utils.TreeUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -26,19 +28,8 @@ import java.util.Stack;
 public class PostorderTraversal {
     public static void main(String[] args) {
         int[] arr = {0, 1, 2, 3, 4, 5, 6, 7};
-        List<TreeNode> datas = new ArrayList<TreeNode>();
-        for (int data : arr) {
-            datas.add(new TreeNode(data));
-        }
-        //创建一个二叉树
-        TreeNode root = datas.get(0);
-        //创建其他节点  每个节点的左子节点都是这个节点的2倍+1, 右子节点都是这个节点的2倍+2
-        for (int i = 0; i < arr.length / 2; i++) {
-            datas.get(i).left = datas.get(i * 2 + 1);
-            if (i * 2 + 2 < datas.size()) {
-                datas.get(i).right = datas.get(i * 2 + 2);
-            }
-        }
+        List<TreeNode> treeNodes = TreeUtils.buildTree(arr);
+        TreeNode root = treeNodes.get(0);
 
         //List<Integer> list = postorderTraversal(root);
         //List<Integer> list = postorderTraversal2(root);

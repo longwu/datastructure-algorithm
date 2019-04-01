@@ -1,5 +1,7 @@
 package com.study.binarytree.binarysearchtree;
 
+import com.study.utils.TreeUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,23 +40,14 @@ import java.util.List;
 public class ValidateBinarySearchTree {
     public static void main(String[] args) {
         int[] arr = {5, 3, 7, 1, 4, 6, 8};
-        //int[] arr = {5, 3, 7, 1, 9, 6, 8};
-        List<SearchTreeNode> datas = new ArrayList<SearchTreeNode>();
-        for (int data : arr) {
-            datas.add(new SearchTreeNode(data));
-        }
-        //创建一个二叉树
-        SearchTreeNode root = datas.get(0);
-        //创建其他节点  每个节点的左子节点都是这个节点的2倍+1, 右子节点都是这个节点的2倍+2
-        for (int i = 0; i < arr.length / 2; i++) {
-            datas.get(i).left = datas.get(i * 2 + 1);
-            if (i * 2 + 2 < datas.size()) {
-                datas.get(i).right = datas.get(i * 2 + 2);
-            }
-        }
+
+        List<SearchTreeNode> treeNodes = TreeUtils.buildSearchTree(arr);
 
         List<SearchTreeNode> nodes = new ArrayList<SearchTreeNode>();
+
+        SearchTreeNode root = treeNodes.get(0);
         inorder(root, nodes); // 验证树是否正确,从小到大输出
+
         for (SearchTreeNode node : nodes) {
             System.out.print(node.val + " ");
         }

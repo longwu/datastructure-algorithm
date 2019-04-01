@@ -1,5 +1,7 @@
 package com.study.binarytree;
 
+import com.study.utils.TreeUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,28 +17,8 @@ import java.util.List;
 public class NodesInALevel {
     public static void main(String[] args) {
         int[] arr = {0, 1, 2, 3, 4, 5, 6, 7};
-        List<TreeNode> datas = new ArrayList<TreeNode>();
-        for (int data : arr) {
-            datas.add(new TreeNode(data));
-        }
-//
-//        TreeNode root = datas.get(0);
-//        //创建其他节点  每个节点的左子节点都是这个节点的2倍+1, 右子节点都是这个节点的2倍+2
-//        for (int i = 0; i < arr.length / 2; i++) {
-//            datas.get(i).left = datas.get(i * 2 + 1);
-//            if (i * 2 + 2 < datas.size()) {
-//                datas.get(i).right = datas.get(i * 2 + 2);
-//            }
-//        }
-
-        TreeNode root = datas.get(0);
-        root.left = datas.get(1);
-        root.right = datas.get(2);
-        root.left.left = datas.get(3);
-        root.left.right = datas.get(4);
-//        root.right.left = datas.get(5);
-//        root.right.right = datas.get(6);
-        root.left.left.left = datas.get(7);
+        List<TreeNode> treeNodes = TreeUtils.buildTree(arr);
+        TreeNode root = treeNodes.get(0);
 
         int k = 2;
         System.out.printf("第%d层节点数:%d\r\n", k, k_nodes(root, k));
@@ -97,7 +79,6 @@ public class NodesInALevel {
 
     /**
      * 返回第k层的节点集合
-     *
      */
     private static List<TreeNode> k_nodes2(TreeNode root, int k) {
         List<TreeNode> list = new ArrayList<TreeNode>();

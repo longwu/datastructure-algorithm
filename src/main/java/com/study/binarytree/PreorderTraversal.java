@@ -1,5 +1,7 @@
 package com.study.binarytree;
 
+import com.study.utils.TreeUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -27,19 +29,8 @@ import java.util.Stack;
 public class PreorderTraversal {
     public static void main(String[] args) {
         int[] arr = {0, 1, 2, 3, 4, 5, 6, 7};
-        List<TreeNode> datas = new ArrayList<TreeNode>();
-        for (int data : arr) {
-            datas.add(new TreeNode(data));
-        }
-        //创建一个二叉树
-        TreeNode root = datas.get(0);
-        root.left = datas.get(1);
-        root.right = datas.get(2);
-        root.left.left = datas.get(3);
-        root.left.right = datas.get(4);
-        root.right.left = datas.get(5);
-        root.right.right = datas.get(6);
-        root.left.left.left = datas.get(7);
+        List<TreeNode> treeNodes = TreeUtils.buildTree(arr);
+        TreeNode root = treeNodes.get(0);
 
         //List<Integer> list = preorderTraversal(root);
         List<Integer> list = preorderTraversal2(root);
