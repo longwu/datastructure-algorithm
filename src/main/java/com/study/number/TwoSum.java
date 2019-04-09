@@ -26,18 +26,18 @@ public class TwoSum {
     public static void main(String[] args) {
 
         int target = 9;
-        //int[] nums = {2, 7, 11, 15};
+        int[] nums = {2, 7, 11, 15};
 
-        int[] nums = new int[SIZE];
-        for (int i = 0; i < SIZE; i++) {
-            if (i == SIZE - 1) {
-                nums[i] = 7;
-            } else if (i == SIZE - 2) {
-                nums[i] = 2;
-            } else {
-                nums[i] = 1;
-            }
-        }
+//        int[] nums = new int[SIZE];
+//        for (int i = 0; i < SIZE; i++) {
+//            if (i == SIZE - 1) {
+//                nums[i] = 7;
+//            } else if (i == SIZE - 2) {
+//                nums[i] = 2;
+//            } else {
+//                nums[i] = 1;
+//            }
+//        }
 
         long start = System.currentTimeMillis();
 
@@ -73,8 +73,10 @@ public class TwoSum {
     private static int[] twoSum3(int[] nums, int target) {
         Map<Integer, Integer> map = new HashMap<Integer, Integer>(SIZE);
         for (int i = 0; i < nums.length; i++) {
-            int complement = target - nums[i];
-            if (map.containsKey(complement) && map.get(complement) != i) {
+            int complement = target - nums[i]; //将目标元素减去当前元素求得差值元素
+            // 查看hashmap里面是否存在这个差值元素,
+            //if (map.containsKey(complement) && map.get(complement) != i) { //并且这个差值元素不能是nums[i]本身, 实际来说map是不会存在nums[i]的, 因为往map里面添加nums[i]是在最后面
+            if (map.containsKey(complement)){  //所以只判断是否包含该元素和上面代码是一样的
                 return new int[]{i, map.get(complement)};
             }
             map.put(nums[i], i);
@@ -100,8 +102,8 @@ public class TwoSum {
             map.put(nums[i], i);
         }
         for (int i = 0; i < nums.length; i++) {
-            int complement = target - nums[i];
-            if (map.containsKey(complement) && map.get(complement) != i) {
+            int complement = target - nums[i]; //将目标元素减去当前元素求得差值元素
+            if (map.containsKey(complement) && map.get(complement) != i) {//由于nums[i]已经存在map里面,所以这里需要判断一下差值元素不能是由于nums[i]本身
                 return new int[]{i, map.get(complement)};
             }
         }
