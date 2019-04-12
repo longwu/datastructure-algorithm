@@ -25,24 +25,25 @@ public class SingleNumber {
     public static void main(String[] args) {
         int[] nums = {1, 2, 2, 3, 1, 4, 3};
 
-        System.out.println(3^3); //相同的数异或为0
-        System.out.println(0^3); //0和一个数异或得到数本身
+        System.out.println(3 ^ 3); //相同的数异或为0
+        System.out.println(0 ^ 3); //0和一个数异或得到数本身
 
         System.out.println(singleNumber((nums)));
     }
 
     /**
      * 根据二进制异或的原理, 每两个相同元素异或之后会等于0, 为此异或所有元素之后单个元素的值就出来了
-     *
+     * <p>
      * 交换律：a ^ b ^ c <=> a ^ c ^ b
-     *
+     * <p>
      * 任何数于0异或为任何数 0 ^ n => n
-     *
+     * <p>
      * 相同的数异或为0: n ^ n => 0
-     *
+     * <p>
      * var a = [2,3,2,4,4]
-     *
+     * <p>
      * 2 ^ 3 ^ 2 ^ 4 ^ 4等价于 2 ^ 2 ^ 4 ^ 4 ^ 3 => 0 ^ 0 ^3 => 3
+     *
      * @param nums
      * @return
      */
