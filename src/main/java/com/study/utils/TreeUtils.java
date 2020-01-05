@@ -20,7 +20,6 @@ public final class TreeUtils {
             treeNodes.add(new TreeNode(data));
         }
         //创建一个二叉树
-        TreeNode root = treeNodes.get(0);
         //创建其他节点  每个节点的左子节点都是这个节点的2倍+1, 右子节点都是这个节点的2倍+2
         for (int i = 0; i < nodes.length / 2; i++) {
             treeNodes.get(i).left = treeNodes.get(i * 2 + 1);
@@ -28,7 +27,6 @@ public final class TreeUtils {
                 treeNodes.get(i).right = treeNodes.get(i * 2 + 2);
             }
         }
-
         return treeNodes;
     }
 

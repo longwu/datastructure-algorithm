@@ -3,12 +3,11 @@ package com.study.binarytree;
 import com.study.utils.TreeUtils;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
 /**
- * 94. 二叉树的中序遍历
+ * 94. 二叉树的中序遍历  深度优先遍历dfs
  * <p>
  * 给定一个二叉树，返回它的中序 遍历。
  * <p>
@@ -56,10 +55,10 @@ public class InorderTraversal {
 
     private static void traversal(TreeNode root, List<Integer> list) {
         if (root != null) {
-            //递归左(右)子树
+            //递归左子树
             traversal(root.left, list);
             list.add(root.val);
-            //递归右(左)子树
+            //递归右子树
             traversal(root.right, list);
         }
     }

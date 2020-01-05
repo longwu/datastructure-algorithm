@@ -25,9 +25,9 @@ public class ReverseInteger {
 
     public static void main(String[] args) {
 
-        //int x = 1234567890;
+        int x = 1234567890;
         //int x = -1234567890;
-        int x = 0;
+        //int x = 0;
 
         System.out.println(reverse(x));
 

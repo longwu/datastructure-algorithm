@@ -32,9 +32,11 @@ public class Reverse {
 
         Printer.printLinkedList(node1);
         System.out.println();
-        Printer.printLinkedList(reverseList(node1));
+        //Printer.printLinkedList(reverseList(node1));
         //Printer.printLinkedList(reverseList2(node1));
         //Printer.printLinkedList(reverseList3(node1));
+        //Printer.printLinkedList(reverseList4(node1));
+        Printer.printLinkedList(reverstListByStack(node1));
     }
 
     /**
@@ -61,6 +63,25 @@ public class Reverse {
             // 将当前节点指针指向刚保存的下一个节点
             cur = next;
         }
+        return prev;
+    }
+
+
+    private static ListNode reverseList4(ListNode head){
+        ListNode prev = null;
+
+        ListNode cur = head;
+
+        while(cur != null){
+            ListNode next = cur.next;
+
+            cur.next = prev;
+
+            prev = cur;
+
+            cur = next;
+        }
+
         return prev;
     }
 
@@ -102,6 +123,7 @@ public class Reverse {
 
     /**
      * 借用stack后进先出的原理,对链表进行反转
+     * 进的顺序为1 2 3 4 5, 出的顺序为 5 4 3 2 1
      *
      * @param head
      * @return
@@ -128,5 +150,30 @@ public class Reverse {
             head = head.next;
         }
         return prev.next;
+    }
+
+
+    /**
+     * 利用栈的先进后出原理, 实现链表的反转
+     * @param head
+     * @return
+     */
+    private static ListNode reverstListByStack(ListNode head){
+        // 先将链表每个节点压入栈中, 放入顺序为 1 2 3 4 5
+        Stack<ListNode> stack = new Stack<ListNode>();
+        while(head !=null){
+            stack.push(new ListNode(head.val));// 将节点压栈的时候需要放入没有后继的节点
+            head = head.next;
+        }
+
+        // 把栈顶部的元素一个个弹出, 弹出顺序为5 4 3 2 1
+        ListNode newNode = new ListNode(0);
+        ListNode newHead = newNode;
+        while (stack.size() > 0) {
+            newHead.next = stack.pop();
+            newHead = newHead.next;
+        }
+
+        return newNode.next;
     }
 }

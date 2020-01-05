@@ -30,6 +30,9 @@ public class SelectSort {
     /**
      * 选择排序, 从每次遍历未排序的元素中找出值最小的元素索引
      *
+     * 每一次循环能找出一个当前最小的索引,然后将最小索引上的元素放在当前遍历的索引上
+     *
+     * 跟冒泡排序类似,只是它不会做元素的两两替换,而是找最大或最小索引,找到后再替换
      */
     private static void selectSort(int[] a) {
         //由于最后一个元素无需再遍历了,只要前面的所有元素都是按顺序从小到大排列,那么最后一个就是最大值, 所以只要判断i < a.length-1即可
@@ -42,7 +45,7 @@ public class SelectSort {
                     min = j;
                 }
             }
-            //将最小的索引为m的元素放到前面k位置上
+            //将前面未排序的元素与后面最小元素做替换
             if (i != min) {
                 int temp = a[i];
                 a[i] = a[min];
@@ -60,7 +63,7 @@ public class SelectSort {
             int max = i;
             //将后面的元素与前面元素做比较,如果后面的大,则把max索引改为最大的元素索引
             for (int j = i + 1; j < a.length; j++) {
-                if (a[max] < a[j]) {
+                if (a[j] > a[max]) {
                     max = j;
                 }
             }

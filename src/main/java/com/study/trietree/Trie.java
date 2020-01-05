@@ -45,7 +45,7 @@ public class Trie {
             return;
         }
         TrieNode node = root;
-        char[] letters = str.toCharArray();//将目标单词转换为字符数组
+        char[] letters = str.toCharArray();//将目标单词转换为char数组
         for (int i = 0, len = str.length(); i < len; i++) {
             //计算每个char的位置
             int pos = letters[i] - 'a';

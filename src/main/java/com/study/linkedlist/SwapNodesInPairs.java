@@ -36,13 +36,14 @@ public class SwapNodesInPairs {
         Printer.printLinkedList(node1);
 
         //Printer.printLinkedList(swapPairs(node1));
-        Printer.printLinkedList(swapPairs2(node1));
+        //Printer.printLinkedList(swapPairs2(node1));
+        Printer.printLinkedList(swapPairs3(node1));
     }
 
     /**
      * 通过循环遍历链表, 每次取未交换的前2个节点进行交换,交换完后将指针指向后2个节点,一遍下一轮循环处理
      *
-     * 这里需要3个指针，其中两个是pair对中相邻的两个节点指针a和b，另一个是pair对之前的一个节点指针
+     * 这里需要3个指针，其中两个是pair对中相邻的两个节点指针a和b，另一个是pair对之前的一个节点指针prev
      *
      * @param head
      * @return
@@ -66,6 +67,35 @@ public class SwapNodesInPairs {
         }
 
         return result.next;
+    }
+
+
+    /**
+     * 需要3个指针, 替换节点对的前继指针和 节点对的两个指针
+     * @param head
+     * @return
+     */
+    private static ListNode swapPairs3(ListNode head){
+        ListNode headPrev = new ListNode(0);
+        headPrev.next = head; //在头节点前面在放一个前置节点, 用于后面的迭代使用
+        ListNode prev = headPrev;
+
+        // 每次循环都判断接下来的 一对节点不为空, 然后对他们进行对调
+        while(prev.next !=null && prev.next.next !=null){
+            ListNode oldFirst = prev.next;
+            ListNode oldSecond = prev.next.next;
+
+            //将当前循环的第一和第二节点进行对换
+            ListNode third = oldSecond.next;
+            prev.next = oldSecond;
+            oldSecond.next = oldFirst;
+            oldFirst.next = third;
+
+            // 将下一次循环的两节点前继指针指向新的第2节点
+            //prev = first;
+            prev = prev.next.next;
+        }
+        return headPrev.next;
     }
 
     /**

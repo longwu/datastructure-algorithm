@@ -17,9 +17,9 @@ public class DoubleLinkedNode {
         Node node1 = new Node(1);
         Node node2 = new Node(2);
         Node node3 = new Node(3);
-        Node node4 = new Node(5);
-        Node node5 = new Node(6);
-        Node node6 = new Node(7);
+        Node node4 = new Node(4);
+        Node node5 = new Node(5);
+        Node node6 = new Node(6);
 
         node1.next = node2;
         node2.prev = node1;
@@ -32,36 +32,36 @@ public class DoubleLinkedNode {
         node5.next = node6;
         node6.prev = node5;
 
-        printLinkedList(node1);
-
-        Node head1 = insertNode(node1, 0);
-
-        printLinkedList(head1);
-        System.out.println();
-
-        Node head2 = insertNode(head1, 8);
-
-        printLinkedList(head2);
-        System.out.println();
-        Node head3 = insertNode(head2, 4);
-
-        printLinkedList(head3);
+//        printLinkedList(node1);
+//
+//        Node head1 = insertNode(node1, 0);
+//
+//        printLinkedList(head1);
+//        System.out.println();
+//
+//        Node head2 = insertNode(head1, 8);
+//
+//        printLinkedList(head2);
+//        System.out.println();
+//        Node head3 = insertNode(head2, 4);
+//
+//        printLinkedList(head3);
 
         System.out.println("---------------------");
-        Node head4 = deleteNode(head3, 9);
+        Node head4 = deleteNode(node1, 3);
         printLinkedList(head4);
 
-        System.out.println();
-        head4 = deleteNode(head4, 0);
-        printLinkedList(head4);
-
-        System.out.println();
-        head4 = deleteNode(head4, 5);
-        printLinkedList(head4);
-
-        System.out.println();
-        head4 = deleteNode(head4, 8);
-        printLinkedList(head4);
+//        System.out.println();
+//        head4 = deleteNode(head4, 0);
+//        printLinkedList(head4);
+//
+//        System.out.println();
+//        head4 = deleteNode(head4, 5);
+//        printLinkedList(head4);
+//
+//        System.out.println();
+//        head4 = deleteNode(head4, 8);
+//        printLinkedList(head4);
     }
 
 
@@ -80,13 +80,15 @@ public class DoubleLinkedNode {
         while (head != null) {
             // 如果插入的节点比链表里的每个节点都小
             if (newNode.value < head.value) {
+                // 头节点
                 // 如果head是头节点， 将新节点插在头节点的前面
                 if (head.prev == null) {
                     newNode.next = head;
                     head.prev = newNode;
                     return newNode;
                 } else {
-                    //如果当前head不是头节点，插入新节点的时候需要修改上一个节点的next,当前节点的pre和下一个节点的pre,当前节点的next 4个指针
+                    // 中间节点
+                    //如果当前head不是头节点，插入新节点的时候需要修改上一个节点的next,当前节点的pre和next, 以及下一个节点的pre, 4个指针
                     //修改当前节点的上一个节点, 将上一个节点存一个临时变量
                     Node prevNode = head.prev;
                     //将上一个节点的临时变量的后继指针指向新节点, 将新节点的前驱指针指向上一个节点的临时变量
@@ -98,6 +100,7 @@ public class DoubleLinkedNode {
                     return originalHead;
                 }
             }
+            // 末尾节点
             //如果新插入的节点比链表最后一个还要大
             if (head.next == null) {
                 //修改当前节点的后继和新节点的前驱
@@ -150,7 +153,7 @@ public class DoubleLinkedNode {
                         Node prev = head.prev;
                         Node next = head.next;
                         //将当前节点的前驱和后继改为null
-                        head.prev = head.next = null; //这行代码也可以不写
+                        //head.prev = head.next = null; //这行代码也可以不写
                         //将上一个节点的next指向下一个节点
                         prev.next = next;
                         //将下一个节点的prev指向上一个节点
@@ -199,7 +202,8 @@ public class DoubleLinkedNode {
 
 class Node {
     public int value;
-    public Node prev, next;
+    public Node prev;
+    public Node next;
 
     public Node(int value) {
         this.value = value;

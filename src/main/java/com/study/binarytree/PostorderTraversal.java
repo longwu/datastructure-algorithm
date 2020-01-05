@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Stack;
 
 /**
- * 145. 二叉树的后序遍历
+ * 145. 二叉树的后序遍历  深度优先遍历dfs
  * <p>
  * 给定一个二叉树，返回它的 后序 遍历。
  * <p>
