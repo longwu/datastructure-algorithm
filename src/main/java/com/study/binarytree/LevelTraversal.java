@@ -122,4 +122,36 @@ public class LevelTraversal {
         }
         return nodes;
     }
+
+    /**
+     * 使用递归的方式实现广度优先, 这里在递归的过程中用到了层级控制,如果集合当前层没有节点,就新建; 如果有节点, 就加到当前层里面
+     *
+     * @param root
+     * @return
+     */
+    private static List<List<TreeNode>> searchByRecursion(TreeNode root) {
+        List<List<TreeNode>> nodeList = new ArrayList<>();
+        if (root == null)
+            return nodeList;
+        // 递归获取所有子节点
+        search(root, 0, nodeList);
+        return nodeList;
+    }
+
+    private static void search(TreeNode root, int level, List<List<TreeNode>> nodeList) {
+        if (root == null) {
+            return;
+        }
+        // 集合的当前层没有节点, 就新建
+        if (level >= nodeList.size()) {
+            List<TreeNode> subList = new ArrayList<>();
+            subList.add(root);
+            nodeList.add(subList);
+        } else {
+            // 集合的当前层有节点, 就直接添加
+            nodeList.get(level).add(root);
+        }
+        search(root.left, level + 1, nodeList);
+        search(root.right, level + 1, nodeList);
+    }
 }
