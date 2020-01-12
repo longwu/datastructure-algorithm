@@ -92,8 +92,8 @@ public class BestTimeToBuyAndSellStockII {
      */
     public static int maxProfit2(int[] prices) {
         int i = 0;
-        int valley = prices[0];
-        int peak = prices[0];
+        int valley;
+        int peak;
         int maxprofit = 0;
         // 遍历每个股票
         while (i < prices.length - 1) {
