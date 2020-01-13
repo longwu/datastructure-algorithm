@@ -3,7 +3,9 @@ package com.study.binarytree;
 import com.study.utils.TreeUtils;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 /**
  * 求第k层有多少个节点, 根节点为第0层
@@ -21,11 +23,12 @@ public class NodesInALevel {
         TreeNode root = treeNodes.get(0);
 
         int k = 2;
-        System.out.printf("第%d层节点数:%d\r\n", k, k_nodes(root, k));
-        System.out.println("分别为:");
-        List<TreeNode> nodes = k_nodes2(root, k);
+//        System.out.printf("第%d层节点数:%d\r\n", k, k_nodes(root, k));
+//        System.out.println("分别为:");
+        //List<TreeNode> nodes = k_nodes2(root, k);
+        List<TreeNode> nodes = k_nodes3(root, k);
         for (TreeNode node : nodes) {
-            System.out.println(node.val);
+            System.out.print(node.val + " ");
         }
     }
 
@@ -84,24 +87,79 @@ public class NodesInALevel {
         List<TreeNode> list = new ArrayList<TreeNode>();
         if (k < 0) return list;
 
-        nodes(root, k, list);
+        //nodes(root, k, list);
+        nodes2(root, k, list);
         return list;
     }
 
     private static void nodes(TreeNode root, int k, List<TreeNode> list) {
         if (root == null) {
+            System.out.println("节点为空,递归往内中止");
             return;
         }
 
         if (k == 0) {
             // 将第k层节点加入到集合中
             list.add(root);
+            System.out.println("往集合中添加节点" + root.val);
         }
+
+        System.out.println(String.format("递归往内, 当前节点为%d, k=%d", root.val, k));
 
         // 递归左(右)子树, 找出k=0节点
         nodes(root.left, k - 1, list);
+        System.out.println(String.format("递归左子树往外, 当前节点为%d, k=%d", root.val, k));
 
         // 递归右(左)子树, 找出k=0节点
         nodes(root.right, k - 1, list);
+        System.out.println(String.format("递归右子树往外, 当前节点为%d, k=%d", root.val, k));
+    }
+
+    private static void nodes2(TreeNode root, int k, List<TreeNode> list) {
+        if (root == null)
+            return;
+
+        if (k == 0) {
+            list.add(root);
+        }
+
+        // 无所谓左右递归顺序
+        nodes2(root.right, k - 1, list);
+        nodes2(root.left, k - 1, list);
+    }
+
+    /**
+     * 使用层级遍历的方式获取第k层节点数
+     *
+     * @param root
+     * @param k
+     * @return
+     */
+    private static List<TreeNode> k_nodes3(TreeNode root, int k) {
+        List<TreeNode> nodes = new ArrayList<>();
+
+        if (root == null)
+            return nodes;
+
+        Queue<TreeNode> queue = new LinkedList();
+        queue.offer(root);
+
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                // 获取第k层节点
+                if (k == 0) {
+                    nodes.add(node);
+                }
+                if (node.left != null)
+                    queue.offer(node.left);
+                if (node.right != null)
+                    queue.offer(node.right);
+            }
+            if (k == 0) break;
+            k--;
+        }
+        return nodes;
     }
 }
