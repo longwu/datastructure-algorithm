@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Stack;
 
 /**
- * 94. 二叉树的中序遍历  深度优先遍历dfs
+ * 94. 二叉树的中序遍历
  * <p>
  * 给定一个二叉树，返回它的中序 遍历。
  * <p>
@@ -28,16 +28,16 @@ import java.util.Stack;
 public class InorderTraversal {
 
     public static void main(String[] args) {
-        int[] arr = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+        int[] arr = {0, 1, 2, 3, 4, 5, 6, 7};
 
-        List<TreeNode> treeNodes  = TreeUtils.buildTree(arr);
+        List<TreeNode> treeNodes = TreeUtils.buildTree(arr);
         TreeNode root = treeNodes.get(0);
 
         //List<Integer> list = inorderTraversal(root);
         //List<Integer> list = inorderTraversal2(root);
         List<Integer> list = inorderTraversal3(root);
         for (Integer num : list) {
-            System.out.println(num);
+            System.out.print(num + " ");
         }
     }
 
@@ -95,20 +95,28 @@ public class InorderTraversal {
      */
     private static List<Integer> inorderTraversal3(TreeNode root) {
         List<Integer> list = new ArrayList<Integer>();
+
+        if (root == null)
+            return list;
+
         Stack<TreeNode> stack = new Stack<TreeNode>();
 
         while (root != null || !stack.isEmpty()) {
-            // 左
+            // 对于每个节点都将其所有左节点入栈
+            // 如果当前节点不为空,递归其左节点
             while (root != null) {
-                stack.push(root);
+                stack.push(root);//将左节点入栈
+                System.out.println(String.format("节点%d被放入栈中",root.val));
                 root = root.left;
             }
 
             if (!stack.isEmpty()) {
-                // 根 (当左子节点为空的时候,该节点变为根)
+                // 将栈中的节点的第一个弹出
+                // 存在左节点的,优先将最深层左节点弹出
                 root = stack.pop();
+                System.out.println(String.format("节点%d从栈中弹出",root.val));
                 list.add(root.val);
-                // 右
+                // 切到右子树,给下一轮找左子树使用
                 root = root.right;
             }
         }
