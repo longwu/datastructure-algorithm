@@ -33,15 +33,17 @@ public class PreorderTraversal {
         TreeNode root = treeNodes.get(0);
 
         //List<Integer> list = preorderTraversal(root);
-        List<Integer> list = preorderTraversal2(root);
+        //List<Integer> list = preorderTraversalByLoop(root);
+        // List<Integer> list = preorderTraversalByLoop2(root);
+        List<Integer> list = preorderTraversalByLoopWithList(root);
         for (Integer num : list) {
-            System.out.println(num);
+            System.out.print(num + " ");
         }
     }
 
 
     /**
-     * 通过递归的方式遍历整个二叉树
+     * 通过递归的方式遍历整个二叉树 时间复杂度O(n)
      * <p>
      * 前序遍历: 根 - 左 - 右
      *
@@ -65,11 +67,17 @@ public class PreorderTraversal {
 
     /**
      * 使用迭代的方式 遍历二叉树
+     * <p>
+     * 用到栈后入先出的原理, 将左子树放在右子树后面入栈, 确保左子树先弹出,优先处理左子树,之后再处理右子树
+     * <p>
+     * 关于为什么循环中没专门放入根节点, 因为除了最顶层的根节点, 其他层级的根节点都是左右子树
+     * <p>
+     * 时间复杂度O(n), 空间复杂度O(n)
      *
      * @param root
      * @return
      */
-    public static List<Integer> preorderTraversal2(TreeNode root) {
+    public static List<Integer> preorderTraversalByLoop(TreeNode root) {
         List<Integer> list = new ArrayList<Integer>();
         Stack<TreeNode> stack = new Stack<TreeNode>();
 
@@ -78,20 +86,89 @@ public class PreorderTraversal {
         }
 
         stack.push(root);
+        System.out.println(String.format("节点%d入栈", root.val));
 
         while (!stack.isEmpty()) {
+            // 每次优先弹出左节点,
+            // 由于每次左子树都是最后放进去,而每次循环都只pop一次, 存在左子树优先pop左子树,没有再pop右节点
             TreeNode node = stack.pop();
+            System.out.println(String.format("节点%d弹出", node.val));
             list.add(node.val);
 
             // 根据栈后进先出的原理, 把left节点放在right后面放入栈中
             if (node.right != null) {
                 stack.push(node.right);
+                System.out.println(String.format("右节点%d入栈", node.right.val));
             }
 
             if (node.left != null) {
                 stack.push(node.left);
+                System.out.println(String.format("左节点%d入栈", node.left.val));
             }
         }
         return list;
+    }
+
+    public static List<Integer> preorderTraversalByLoop2(TreeNode root) {
+        List<Integer> nodes = new ArrayList<>();
+
+        if (root == null)
+            return nodes;
+
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root); //将节点放到栈顶
+
+        while (!stack.isEmpty()) {
+
+            // 弹出栈顶的节点
+            TreeNode node = stack.pop();
+            nodes.add(node.val);
+
+            if (node.right != null) {
+                stack.push(node.right);
+            }
+
+            // 根据后进先出的原理,将左子树节点放在后面入栈
+            if (node.left != null) {
+                stack.push(node.left);
+            }
+        }
+        return nodes;
+    }
+
+    /**
+     * 使用循环 + 集合 实现前序遍历
+     * 每次都将节点放到集合顶部, 并且从集合顶部取出节点
+     *
+     * @param root
+     * @return
+     */
+    public static List<Integer> preorderTraversalByLoopWithList(TreeNode root) {
+        List<Integer> nodes = new ArrayList<>();
+
+        if (root == null)
+            return nodes;
+
+        List<TreeNode> list = new ArrayList<>();
+        list.add(0, root); //将节点放到集合顶部
+
+        while (!list.isEmpty()) {
+
+            // 取出并删除集合顶部元素
+            TreeNode node = list.remove(0);
+            nodes.add(node.val);
+
+            if (node.right != null) {
+                // 将右节点放到集合顶部
+                list.add(0, node.right);
+            }
+
+            // 根据后进先出的原理,将左子树节点放在后面入栈
+            if (node.left != null) {
+                // 将左节点放到集合顶部
+                list.add(0, node.left);
+            }
+        }
+        return nodes;
     }
 }
