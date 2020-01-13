@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Stack;
 
 /**
- * 145. 二叉树的后序遍历  深度优先遍历dfs
+ * 145. 二叉树的后序遍历
  * <p>
  * 给定一个二叉树，返回它的 后序 遍历。
  * <p>
@@ -34,9 +34,13 @@ public class PostorderTraversal {
         //List<Integer> list = postorderTraversal(root);
         //List<Integer> list = postorderTraversal2(root);
         //List<Integer> list = postorderTraversal3(root);
-        List<Integer> list = postorderTraversal4(root);
-        for (Integer num : list) {
-            System.out.println(num);
+        // List<Integer> list = postorderTraversal4(root);
+//        for (Integer num : list) {
+//            System.out.print(num + " ");
+//        }
+        Stack<Integer> stack = postorderTraversal5(root);
+        while (!stack.isEmpty()) {
+            System.out.print(stack.pop() + " ");
         }
     }
 
@@ -101,20 +105,59 @@ public class PostorderTraversal {
         }
 
         stack.push(root);
+        System.out.println(String.format("将根节点%d入栈", root.val));
 
         while (!stack.isEmpty()) {
             root = stack.pop();
-            //和前序比那里不一样, 先将左节点入栈
-            if (root.left != null)
-                stack.push(root.left);
-            //再将右节点入栈
-            if (root.right != null)
-                stack.push(root.right);
-
-            //逆序添加节点值
+            // 将节点值加到列表顶部
             list.add(0, root.val);
+            System.out.println(String.format("将节点%d加入到集合顶部", root.val));
+
+            //和前序比那里不一样, 先将左节点入栈
+            if (root.left != null) {
+                stack.push(root.left);
+                System.out.println(String.format("将左节点%d入栈", root.left.val));
+            }
+
+            //再将右节点入栈
+            if (root.right != null) {
+                stack.push(root.right);
+                System.out.println(String.format("将右节点%d入栈", root.right.val));
+            }
         }
         return list;
+    }
+
+    private static Stack<Integer> postorderTraversal5(TreeNode root) {
+        Stack<Integer> result = new Stack<Integer>();
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+
+        if (root == null) {
+            return result;
+        }
+
+        stack.push(root);
+        System.out.println(String.format("将根节点%d入栈", root.val));
+
+        while (!stack.isEmpty()) {
+            root = stack.pop();
+            // 将节点值加到列表顶部
+            result.push(root.val);
+            System.out.println(String.format("将节点%d加入到栈中", root.val));
+
+            //和前序比那里不一样, 先将左节点入栈
+            if (root.left != null) {
+                stack.push(root.left);
+                System.out.println(String.format("将左节点%d入栈", root.left.val));
+            }
+
+            //再将右节点入栈
+            if (root.right != null) {
+                stack.push(root.right);
+                System.out.println(String.format("将右节点%d入栈", root.right.val));
+            }
+        }
+        return result;
     }
 
     /**
