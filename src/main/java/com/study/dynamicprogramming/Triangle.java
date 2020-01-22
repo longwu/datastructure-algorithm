@@ -39,14 +39,25 @@ public class Triangle {
         triangle.add(Arrays.asList(6, 5, 7));
         triangle.add(Arrays.asList(4, 1, 8, 3));
 
-        //System.out.println(minimumTotal(triangle));
-        System.out.println(minimumTotal2(triangle));
+        System.out.println(minimumTotal(triangle));
+        //System.out.println(minimumTotal2(triangle));
     }
 
     /**
      * 动态规划法
      * <p>
      * 从后往前推, 修改每个点的值为其最小路径和, 一层层往上,最终顶点的最短路径 = 顶点值 + 第二层最短路径的那个点的值
+     *
+     * 2
+     * 3 4
+     * 6 5 7
+     * 4 1 8 3
+     * 最终三角形被改成了
+     * 11
+     * 9 10
+     * 7 6 10
+     * 4 1 8 3
+     *
      * <p>
      * 时间复杂度为O(m*n)
      * <p>
@@ -56,6 +67,8 @@ public class Triangle {
      * @return
      */
     public static int minimumTotal(List<List<Integer>> triangle) {
+
+        print(triangle);
 
         if (triangle.size() == 0)
             return 0;
@@ -71,11 +84,15 @@ public class Triangle {
         }
 
         // 最终结果
+        print(triangle);
         return triangle.get(0).get(0);
     }
 
 
     public static int minimumTotal2(List<List<Integer>> triangle) {
+
+        print(triangle);
+
         if (triangle.size() == 0) {
             return 0;
         }
@@ -83,12 +100,21 @@ public class Triangle {
         // 遍历从倒数第2行开始 直到 最顶层元素
         for (int i = triangle.size() - 2; i >= 0; i--) {
             for (int j = 0; j < triangle.get(i).size(); j++) {
-                int minPath = Math.min(triangle.get(i+1).get(j), triangle.get(i+1).get(j+1));
+                int minPath = Math.min(triangle.get(i + 1).get(j), triangle.get(i + 1).get(j + 1));
                 int pathSum = triangle.get(i).get(j) + minPath;
                 triangle.get(i).set(j, pathSum);
             }
         }
-
+        print(triangle);
         return triangle.get(0).get(0);
+    }
+
+    private static void print(List<List<Integer>> triangle) {
+        for (int i = 0; i < triangle.size(); i++) {
+            for (int j = 0; j < triangle.get(i).size(); j++) {
+                System.out.print(triangle.get(i).get(j) + " ");
+            }
+            System.out.println();
+        }
     }
 }
