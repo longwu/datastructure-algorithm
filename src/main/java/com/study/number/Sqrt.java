@@ -41,17 +41,17 @@ public class Sqrt {
         //System.out.println(String.format("%d的平方根为: %d", x, mySqrt2(x)));
         //System.out.println(String.format("%d的平方根为: %d", x, mySqrtForcely(x)));
 
-        System.out.println(String.format("%d的平方根为: %d", x, mySqrt_2(x)));
+        System.out.println(String.format("%d的平方根为: %d", x, mySqrt4(x)));
         x = 2;
-        System.out.println(String.format("%d的平方根为: %d", x, mySqrt_2(x)));
-        x = 3;
-        System.out.println(String.format("%d的平方根为: %d", x, mySqrt_2(x)));
-        x = 4;
-        System.out.println(String.format("%d的平方根为: %d", x, mySqrt_2(x)));
-        x = 5;
-        System.out.println(String.format("%d的平方根为: %d", x, mySqrt_2(x)));
-        x = 9;
-        System.out.println(String.format("%d的平方根为: %d", x, mySqrt_2(x)));
+        System.out.println(String.format("%d的平方根为: %d", x, mySqrt4(x)));
+//        x = 3;
+//        System.out.println(String.format("%d的平方根为: %d", x, mySqrt4(x)));
+//        x = 4;
+//        System.out.println(String.format("%d的平方根为: %d", x, mySqrt4(x)));
+//        x = 5;
+//        System.out.println(String.format("%d的平方根为: %d", x, mySqrt4(x)));
+//        x = 9;
+//        System.out.println(String.format("%d的平方根为: %d", x, mySqrt4(x)));
     }
 
     /**
@@ -110,19 +110,19 @@ public class Sqrt {
     }
 
 
-    private static int mySqrt_2(int x){
+    private static int mySqrt_2(int x) {
         long left = 0;// 处理左边界x=0的情况
-        long right = x/2 +1; //处理右边界x=1的情况
+        long right = x / 2 + 1; //处理右边界x=1的情况
 
-        while(left < right){
-            long mid = (left + right + 1) /2; //往右取中位数
+        while (left < right) {
+            long mid = (left + right + 1) / 2; //往右取中位数
             long square = mid * mid;
-            if(square > x){
-                right = mid -1;
-            }else
+            if (square > x) {
+                right = mid - 1;
+            } else
                 left = mid;
         }
-        return (int)left;
+        return (int) left;
     }
 
 
@@ -136,7 +136,7 @@ public class Sqrt {
 
         while (left < right) {
             // 这里中位数 左边范围值+右边范围值+1, 往右取中位数, 往左取中位数可能会因为少取 导致获取不到结果(出现死循环)
-            long mid = (left + right +1) / 2;
+            long mid = (left + right + 1) / 2;
             long square = mid * mid;
             // 如果中位数的平方大于该数, 就将最大范围缩小,改为中间值-1
             if (square > x)
@@ -147,5 +147,46 @@ public class Sqrt {
         }
         // 返回一个相等或者最接近的值
         return (int) left;
+    }
+
+    private static int mySqrt4(int x) {
+        if (x == 0 || x == 1)
+            return x;
+
+        long left = 1;
+        long right = x;
+        long result = 0;
+
+        while (left <= right) {
+            long mid = (left + right) / 2;
+            long square = mid * mid;
+            if (square == x) {
+                return (int) mid;
+            }
+            // 大于x, 缩小右界, 从左半部分查找
+            if (square > x) {
+                right = mid - 1;
+            } else {
+                // 否则增大左界, 从右半部分查找
+                left = mid + 1;
+                result = mid;
+            }
+        }
+        return (int) result;
+    }
+
+    /**
+     * 牛顿迭代法
+     * 时间复杂度O(logN)
+     *
+     * @param x
+     * @return
+     */
+    private static int mySqrt5(int x) {
+        long r = x;
+        while (r * r > x) {
+            r = (r + x / r) / 2;
+        }
+        return (int)r;
     }
 }
