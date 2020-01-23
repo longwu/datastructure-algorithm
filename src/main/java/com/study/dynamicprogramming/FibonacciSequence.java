@@ -15,18 +15,25 @@ public class FibonacciSequence {
 
     public static void main(String[] args) {
         int n = 1;
+        int[] cache = new int[n];
         //System.out.println(String.format("第%d个数为: %d", n, fibByRecursion(n));
+        System.out.println(String.format("第%d个数为: %d", n, fibByRecursion2(n, cache)));
         //System.out.println(String.format("第%d个数为: %d", n, fibByLoop(n)));
-        System.out.println(String.format("第%d个数为: %d", n, fibByDP(n)));
+        //System.out.println(String.format("第%d个数为: %d", n, fibByDP(n)));
 
         n = 5;
+        cache = new int[n];
         //System.out.println(String.format("第%d个数为: %d", n, fibByRecursion(n));
+        System.out.println(String.format("第%d个数为: %d", n, fibByRecursion2(n, cache)));
         //System.out.println(String.format("第%d个数为: %d", n, fibByLoop(n)));
-        System.out.println(String.format("第%d个数为: %d", n, fibByDP(n)));
+        //System.out.println(String.format("第%d个数为: %d", n, fibByDP(n)));
+
         n = 6;
+        cache = new int[n];
         //System.out.println(String.format("第%d个数为: %d", n, fibByRecursion(n));
+        System.out.println(String.format("第%d个数为: %d", n, fibByRecursion2(n, cache)));
         //System.out.println(String.format("第%d个数为: %d", n, fibByLoop(n)));
-        System.out.println(String.format("第%d个数为: %d", n, fibByDP(n)));
+        //System.out.println(String.format("第%d个数为: %d", n, fibByDP(n)));
     }
 
     /**
@@ -53,6 +60,33 @@ public class FibonacciSequence {
         int result = fibByRecursion(n - 1) + fibByRecursion(n - 2); //第n个数为前两个数之后 比如 5 = 3 +２
         System.out.println(String.format("往外递归计算开始: 第%d个数为%d", n, result));
         return result;
+    }
+
+    /**
+     * 由于递归过程中计算了大量元素, 我们可以使用一个数组cache来对其进行优化
+     *
+     * @param n
+     * @return
+     */
+    private static int fibByRecursion2(int n, int[] cache) {
+        if (n == 0)
+            return 0;
+
+        // 斐波拉契的第1和第2个数为1
+        // 临界条件 n = 1 和 n=2
+        if (n == 1 || n == 2) {
+            System.out.println(String.format("往内递归结束:第%d个数", n));
+            return 1;
+        }
+
+        // 如果缓存中不存在,则将计算结果加入到缓存,如果存在,则直接使用缓存
+        if (cache[n - 1] == 0) {
+            System.out.println(String.format("往内递归,第%d个数", n));
+            cache[n - 1] = fibByRecursion(n - 1) + fibByRecursion(n - 2); //第n个数为前两个数之后 比如 5 = 3 +２
+        }
+
+        System.out.println(String.format("往外递归计算开始: 第%d个数为%d", n, cache[n-1]));
+        return cache[n - 1];
     }
 
     /**
@@ -85,6 +119,7 @@ public class FibonacciSequence {
     }
 
     /**
+     * 动态规划(递归+记忆化(使用数组来存变量))
      * 使用斐波拉契来计算动态规划, 使用一个数组来存储整个斐波拉契数列, 这样的做法可以节省大量中间变量的创建, 而且时间复杂度和循环一样
      * <p>
      * 时间复杂度为O(n), 空间复杂度为O(n)

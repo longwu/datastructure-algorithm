@@ -30,7 +30,8 @@ public class GenerateParentheses {
      * @param args
      */
     public static void main(String[] args) {
-        List<String> resultList = generateParenthesis(3);
+        //List<String> resultList = generateParenthesis(3);
+        List<String> resultList = generateParenthesis2(3);
 
         for (String result : resultList) {
             System.out.println(result);
@@ -44,6 +45,36 @@ public class GenerateParentheses {
         gen3(0, 0, n, "", resultList);
 
         return resultList;
+    }
+
+    /**
+     * 闭合数
+     * 思路
+     *
+     * 为了枚举某些内容，我们通常希望将其表示为更容易计算的不相交子集的总和。
+     *
+     * 考虑有效括号序列 S 的 闭包数：至少存在 index >= 0，使得 S[0], S[1], ..., S[2*index+1]是有效的。 显然，每个括号序列都有一个唯一的闭包号。 我们可以尝试单独列举它们。
+     *
+     * 算法
+     *
+     * 对于每个闭合数 c，我们知道起始和结束括号必定位于索引 0 和 2*c + 1。然后两者间的 2*c 个元素一定是有效序列，其余元素一定是有效序列。
+     *
+     * https://leetcode-cn.com/problems/generate-parentheses/solution/gua-hao-sheng-cheng-by-leetcode/
+     *
+     * @param n
+     * @return
+     */
+    private static List<String> generateParenthesis2(int n) {
+        List<String> ans = new ArrayList();
+        if (n == 0) {
+            ans.add("");
+        } else {
+            for (int c = 0; c < n; ++c)
+                for (String left: generateParenthesis2(c))
+                    for (String right: generateParenthesis2(n-1-c))
+                        ans.add("(" + left + ")" + right);
+        }
+        return ans;
     }
 
 

@@ -2,7 +2,7 @@ package com.study.number;
 
 /**
  * 计算N的阶层
- *
+ * <p>
  * https://time.geekbang.org/course/detail/130-42710
  */
 public class FactorialN {
@@ -24,10 +24,15 @@ public class FactorialN {
      */
     private static int factorialN(int n) {
         // 递归结束条件是n==1
-        if (n == 1)
+        if (n == 1) {
+            System.out.println("递归往内结束: n == 1");
             return 1;
+        }
         // 由于factorialN调用自己, 所以每次进来n都比上一次少1
-        return n * factorialN(n - 1); // 通过 n * (n -1) * (n - 2) * .... * 1
+        System.out.println("递归往内开始, n == " + n);
+        int result = n * factorialN(n - 1); // 通过 n * (n -1) * (n - 2) * .... * 1
+        System.out.println(String.format("递归往外开始,n = %d, 计算结果: result = %d", n,   result));
+        return result;
     }
 
     /**

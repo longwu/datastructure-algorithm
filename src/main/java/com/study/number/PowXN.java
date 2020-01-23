@@ -26,6 +26,13 @@ package com.study.number;
  */
 public class PowXN {
 
+    /**
+     * 解法: 一种是暴力解法, 利用循环或者递归的方式 将x乘以自身n次.  时间复杂度O(n)
+     *       另一种是用递归+分治的解法, 将递归的次数减少到logN次.
+     * 注意: 需要考虑n为负数和奇偶数的情况.
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         double result = myPow(2.1000, 10);
         System.out.println(result);
@@ -40,11 +47,12 @@ public class PowXN {
 //        result = myPowRecursion(2.1000, 10);
 //        System.out.println(result);
 
-//        result = myPowRecursion(2, 10);
-//        System.out.println(result);
-
-        result = myPowRecursion2(2, 10);
+        //result = myPowRecursion(2, 10);
+        result = myPowRecursion(2.1000, 10);
         System.out.println(result);
+
+//        result = myPowRecursion2(2, 10);
+//        System.out.println(result);
     }
 
     /**
@@ -143,6 +151,8 @@ public class PowXN {
             N = -N;
         }
         return fastPow(x, N);
+        //return fastPow2(x, N);
+        //return fastPowByLoop(x, N);
     }
 
     public static double fastPow(double x, long n) {
@@ -155,6 +165,7 @@ public class PowXN {
         // 使用递归, 将循环乘以x的次数减少到logn次 (类似于二分查找)
         double half = fastPow(x, n / 2);//每次递归的n都是上一次的1/2
         double beforeHalf = half;
+        // 每一次执行会将上一递归的half结果拿来相乘,这样每次的half都是上一次的half的平方或者平方乘以x
         // 需要考虑n为偶数和奇数的情况
         if (n % 2 == 0) {
             half = half * half;
@@ -166,9 +177,46 @@ public class PowXN {
         return half;
     }
 
+//    /**
+//     * 迭代实现分治的算法有问题, 需要修改
+//     * @param x
+//     * @param n
+//     * @return
+//     */
+////    public static double fastPowByLoop(double x, long n) {
+//        double result = x;
+//        while (n >= 2) {
+//            if (n % 2 == 0) {
+//                result = result * result;
+//            } else {
+//                result = result * result * x;
+//            }
+//            // n = 1的时候 n /2 没有任何意义
+//            n = n / 2;
+//        }
+//        return result;
+//    }
+
+
+    public static double fastPow2(double x, long n) {
+        if (n == 0) {
+            return 1.0;
+        }
+
+        double half = fastPow2(x, n / 2);
+
+        if (n % 2 == 0) {
+            half = half * half;
+        } else {
+            half = half * half * x;
+        }
+        return half;
+    }
+
 
     /**
      * 暴利法(递归) 利用递归的方式将 x乘以自己n次, 效果和迭代一样. 时间复杂度O(n)
+     *
      * @param x
      * @param n
      * @return
@@ -183,13 +231,13 @@ public class PowXN {
         return slowPow(x, N);
     }
 
-    public static double slowPow(double x, long n){
-        if(n == 0){
+    public static double slowPow(double x, long n) {
+        if (n == 0) {
             return 1.0;
         }
 
         // 从外往内 找终止条件
-        double result = slowPow(x , n-1);
+        double result = slowPow(x, n - 1);
         // 从内往外递归 真正开始计算
         result *= x;
 

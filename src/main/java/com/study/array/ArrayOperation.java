@@ -19,12 +19,12 @@ public class ArrayOperation {
     }
 
 
-    private static int[] work (int[] a ) {
+    private static int[] work(int[] a) {
         int p = 0, n = a.length;
         int[] array = new int[n];
-        for (int i=0; i<n; i++){
-            if (a[i]%2 == 0) //如果是偶数
-                while (p>0 && array[p-1]%2!=0)
+        for (int i = 0; i < n; i++) {
+            if (a[i] % 2 == 0) //如果是偶数
+                while (p > 0 && array[p - 1] % 2 != 0)
                     array[p--] = 0; //删除前面的奇数
             array[p++] = a[i];
         }

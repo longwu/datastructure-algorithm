@@ -14,6 +14,7 @@ import java.util.PriorityQueue;
  * int k = 3;
  * int[] arr = [4,5,8,2];
  * KthLargest kthLargest = new KthLargest(3, arr);
+ * 加入的元素必须必数组中最小的元素大,否则无法加入
  * kthLargest.add(3);   // returns 4
  * kthLargest.add(5);   // returns 5
  * kthLargest.add(10);  // returns 5
@@ -21,8 +22,8 @@ import java.util.PriorityQueue;
  * kthLargest.add(4);   // returns 8
  * 说明:
  * 你可以假设 nums 的长度≥ k-1 且k ≥ 1。
- *
- *
+ * <p>
+ * <p>
  * https://leetcode-cn.com/problems/kth-largest-element-in-a-stream/comments/
  */
 public class KthLargest {
@@ -42,15 +43,15 @@ public class KthLargest {
     }
 
     /**
-     * 往队列中添加新的元素
+     * 往队列中添加新的元素, 只有新元素比堆中最小元素还小才能加入并移除最小元素
      *
      * @param element
-     * @return
+     * @return 最小元素
      */
     public int add(int element) {
         //如果队列中的元素没有满, 则往里添加
         if (queue.size() < k) {
-            queue.offer(element);
+            queue.offer(element);// 将元素加到末尾
         } else {
             // 如果队列中的元素满了, 则判断队列最小的元素(顶端的元素)是否比新元素小
             // 如果最小的元素比该元素小, 那将顶端最小的元素移除, 将新元素插入
@@ -59,7 +60,22 @@ public class KthLargest {
                 queue.offer(element);//插入新元素
             }
         }
-        return queue.peek(); //返回最小的元素
+        return queue.peek(); //返回顶部最小的元素
+    }
+
+
+    public int add2(int element){
+        if(queue.size() < 3){
+            queue.offer(element);
+        }
+        else{
+            // 只有当添加元素大于堆中最小元素才可以加入
+             if(queue.peek() < element){
+                 queue.poll(); //移除最小元素
+                 queue.offer(element); //加入新元素
+             }
+        }
+        return queue.peek();// 返回
     }
 
     /**
@@ -69,14 +85,14 @@ public class KthLargest {
      */
     public static void main(String[] args) {
         int k = 3;
-        int[] arr = {8, 5, 4, 2};
+        int[] arr = {4, 5, 8, 2};
         KthLargest kthLargest = new KthLargest(k, arr);
         // 每次加入新元素都返回第k大的元素
-        System.out.println(kthLargest.add(8)); // 第k大的元素为5
-        System.out.println(kthLargest.add(6)); // 第k大的元素为6
-        System.out.println(kthLargest.add(4)); // 第k大的元素为6
-        System.out.println(kthLargest.add(10)); // 第k大的元素为8
-        System.out.println(kthLargest.add(9)); // 第k大的元素为8
+        System.out.println(kthLargest.add(3)); // 第3大的元素为4  堆中元素为 4 5 8
+        System.out.println(kthLargest.add(5)); // 第3大的元素为5  堆中元素为 5 8 5
+        System.out.println(kthLargest.add(10)); // 第3大的元素为5  堆中元素为 5 8 5
+        System.out.println(kthLargest.add(9)); // 第3大的元素为8  堆中元素为 8 10 9
+        System.out.println(kthLargest.add(4)); // 第3大的元素为8  堆中元素为 8 10 9
     }
 }
 

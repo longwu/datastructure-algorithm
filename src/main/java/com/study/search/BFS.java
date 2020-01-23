@@ -9,9 +9,12 @@ import java.util.*;
  * BFS 广度优先搜索
  * 按层级一层一层进行搜索
  *
+ * 常见的解法有: 循环 + 队列
+ *
  * https://leetcode-cn.com/problems/binary-tree-level-order-traversal/
  */
 public class BFS {
+
 
     public static void main(String[] args) {
         int[] arr = {0, 1, 2, 3, 4, 5, 6, 7};

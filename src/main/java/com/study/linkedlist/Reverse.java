@@ -33,10 +33,11 @@ public class Reverse {
         Printer.printLinkedList(node1);
         System.out.println();
         //Printer.printLinkedList(reverseList(node1));
-        //Printer.printLinkedList(reverseList2(node1));
+        //Printer.printLinkedList(reverseListByRecursion(node1));
+        Printer.printLinkedList(reverseListByRecursion2(node1));
         //Printer.printLinkedList(reverseList3(node1));
         //Printer.printLinkedList(reverseList4(node1));
-        Printer.printLinkedList(reverstListByStack(node1));
+        //Printer.printLinkedList(reverstListByStack(node1));
     }
 
     /**
@@ -67,12 +68,12 @@ public class Reverse {
     }
 
 
-    private static ListNode reverseList4(ListNode head){
+    private static ListNode reverseList4(ListNode head) {
         ListNode prev = null;
 
         ListNode cur = head;
 
-        while(cur != null){
+        while (cur != null) {
             ListNode next = cur.next;
 
             cur.next = prev;
@@ -104,22 +105,39 @@ public class Reverse {
      * @param head
      * @return
      */
-    private static ListNode reverseList2(ListNode head) {
-        if (head == null || head.next == null)
+    private static ListNode reverseListByRecursion(ListNode head) {
+        if (head == null || head.next == null) {
+            System.out.print("递归往内终止, head = ");
+            Printer.printLinkedList(head);
             return head;
+        }
+
+        System.out.print("递归往内");
+        Printer.printLinkedList(head);
         // 首先进入递归,由于head不为空,且head.next不为空,所以直到最后一个head为5的时候,才满足条件,结束递归,返回prev为5->null,head.next为5->null,head为4->5->null
-        ListNode prev = reverseList2(head.next);
+        ListNode prev = reverseListByRecursion(head.next);
+        System.out.print("递归往外");
+        Printer.printLinkedList(head);
         // 使得head.next.head.next成为一个闭环
         // 赋值前4->5->null
         // 赋值head后 4->5->4->5->4->.....成为一个闭环
         // 由于4->5->4成为一个闭环, 这样prev也由5->null变成了5->4->5一个闭环
-        head.next.next = head;
+        head.next.next = head; //修改head的同时, prev也跟着变化
         // 将4->5->4闭环剪断 变成4->null
         // 这样prev也变成了 5->4->null
-        head.next = null;
+        head.next = null; //修改head的同时, prev也跟着变化
         return prev;
     }
 
+    private static ListNode reverseListByRecursion2(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode prev = reverseListByRecursion2(head.next);
+        head.next.next = head;
+        head.next = null;
+        return prev;
+    }
 
     /**
      * 借用stack后进先出的原理,对链表进行反转
@@ -155,13 +173,14 @@ public class Reverse {
 
     /**
      * 利用栈的先进后出原理, 实现链表的反转
+     *
      * @param head
      * @return
      */
-    private static ListNode reverstListByStack(ListNode head){
+    private static ListNode reverstListByStack(ListNode head) {
         // 先将链表每个节点压入栈中, 放入顺序为 1 2 3 4 5
         Stack<ListNode> stack = new Stack<ListNode>();
-        while(head !=null){
+        while (head != null) {
             stack.push(new ListNode(head.val));// 将节点压栈的时候需要放入没有后继的节点
             head = head.next;
         }

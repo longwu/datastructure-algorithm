@@ -34,9 +34,9 @@ public class ClimbingStairs3Steps {
     }
 
     /**
-     * 使用迭代的解法
+     * 使用迭代的解法, 只用到了3个变量
      * <p>
-     * 时间复杂度为O(n)
+     * 时间复杂度为O(n),空间复杂度为O(1)
      *
      * @param n
      * @return
@@ -98,6 +98,8 @@ public class ClimbingStairs3Steps {
 
     /**
      * 使用递归的解法
+     *
+     * 时间复杂度 O(3^n)
      *
      * @param n
      * @return

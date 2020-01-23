@@ -2,29 +2,32 @@ package com.study.sort;
 
 /**
  * 快速排序算法
- *
+ * <p>
  * 最简单的理解: 确保数组里面每一个元素当做基准值后,前后的元素都比它小或者大. 即完成排序.
- *
- *
+ * <p>
+ * <p>
  * 通过一轮的排序将序列分割成独立的两部分，其中一部分序列的关键字（这里主要用值来表示）均比另一部分关键字小。
  * 继续对长度较短的序列进行同样的分割，最后到达整体有序。在排序过程中，由于已经分开的两部分的元素不需要进行比较，故减少了比较次数，降低了排序时间。
- *
+ * <p>
  * 快速排序在进行交换时，只是根据比较基数值判断是否交换，且不是相邻元素来交换，在交换过程中可能改变相同元素的顺序，因此是一种不稳定的排序算法。
- *
+ * <p>
  * 时间复杂度介于O(nlogn) 和O(n^2) 之间
- *
+ * https://www.cnblogs.com/yueansixing/articles/9125634.html
+ * <p>
  * https://www.cnblogs.com/foreverking/articles/2234225.html
  */
 public class QuickSort {
 
     public static void main(String[] args) {
-        int[] a = {12, 20, 5, 16, 15, 1, 30, 45};
-       // int[] a = {12, 20, 9, 5, 16};
+        //int[] a = {12, 20, 5, 16, 15, 1, 30, 45};
+        int[] a = {21, 32, 43, 98, 54, 45, 23, 4, 66, 86};
+        // int[] a = {12, 20, 9, 5, 16};
         //int[] a = {12, 1};
+        print(a);
         int start = 0;
         int end = a.length - 1;
-        //sort(a, start, end);
-        sort2(a, start, end);
+        sort(a, start, end);
+        //sort2(a, start, end);
         for (int i = 0; i < a.length; i++) {
             System.out.printf("%s ", a[i]);
         }
@@ -51,12 +54,12 @@ public class QuickSort {
         int end = high;
         // 选取第一个元素作为基准值
         int key = a[low];
-
+        System.out.println("基准值为: "+ key);
         // 循环里 start往后挪, end往前挪
         while (end > start) {
             // 从后往前比较
             // 如果没有比基准值小的，比较下一个，直到有比基准值小的交换位置，将此时start和end上的元素进行交换；然后又从前往后比较，
-            while (end > start && a[end] >= key){
+            while (end > start && a[end] >= key) {
                 end--;
             }
             // 把小于基准值的放到基准值左边
@@ -64,10 +67,12 @@ public class QuickSort {
                 int temp = a[end];
                 a[end] = a[start];
                 a[start] = temp;
+                System.out.println(String.format("从后往前: 将%d和%d进行对调", a[end], a[start]));
+                print(a);
             }
             // 从前往后比较
             // 如果没有比基准值大的，交换的为start和end索引上的元素，比较下一个，直到有比基准值大的交换位置,之后继续循环,又从后往前比较
-            while (end > start && a[start] <= key){
+            while (end > start && a[start] <= key) {
                 start++;
             }
             // 把大于基准值的放到基准值右边
@@ -75,65 +80,78 @@ public class QuickSort {
                 int temp = a[start];
                 a[start] = a[end];
                 a[end] = temp;
+                System.out.println(String.format("从前往后: 将%d和%d进行对调", a[start], a[end]));
+                print(a);
             }
         }
-        // 当循环结束后，基准值的位置已经确定了。左边的值都比基准值小，右边的值都比基准值大，但是两边的顺序还有可能是不一样的，进行下面的递归调用
+        // 当循环结束后，基准值的位置已经确定了。左边的值都比基准值小，右边的值都比基准值大，但是两边的顺序还有可能是不一样的.
 
-        //左边序列. 第一个索引位置到基准值索引-1
+        // 于是将start和end左右两边划分成两个区间, 分别进行递归排序, 等左右两个区间都完成排序后,那么整个数组就变成有序了
+        // 将左边序列进行排序
         if (start > low) {
             sort(a, low, start - 1);
+            System.out.println("start: " + start);
         }
 
-        //右边序列. 从基准值索引+1到最后一个
+        // 将右边序列进行排序
         if (end < high) {
             sort(a, end + 1, high);
+            System.out.println("end: " + end);
         }
     }
 
-    private static void sort2(int[] arr, int low , int high){
+    private static void sort2(int[] arr, int low, int high) {
         int start = low;
         int end = high;
 
         // 取第0个元素为基准值
-        int key = arr[start];
+        int key = arr[low];
 
-        while(start < end){
+        while (start < end) {
 
             // 后面的比基准值大的
-            while(start < end && arr[end] >= key){
-                end --; //往前挪
+            while (start < end && arr[end] >= key) {
+                end--; //往前挪
             }
 
             // 直到遇上比基准值小的, 前后替换
-            if(arr[end] < key){
+            if (arr[end] < key) {
                 int tmp = arr[end];
-                arr[end] =  arr[start];
+                arr[end] = arr[start];
                 arr[start] = tmp;
+                System.out.println("后面比基准值小");
+                print(arr);
             }
 
             // 前面比基准值小的
-            while(start < end && arr[start] <= key){
-                start ++; //往后挪
+            while (start < end && arr[start] <= key) {
+                start++; //往后挪
             }
 
-            if(arr[start] > key){
+            if (arr[start] > key) {
                 int tmp = arr[start];
                 arr[start] = arr[end];
                 arr[end] = tmp;
+                System.out.println("前面比基准值大");
+                print(arr);
             }
         }
 
-        // 循环结束后, 基准值前面的都比它小, 后面的都比它大. 但顺序还不是有序的
-
-        // 左边, 第一个索引位置到基准值-1
-        if(start > low){
+        if (start > low) {
             System.out.println("low" + low);
             sort2(arr, low, start - 1);
         }
-        // 右边, 基准索引+1到最后一个
-        if(end < high){
+
+        if (end < high) {
             System.out.println("high" + high);
-            sort2(arr, end+1 , high);
+            sort2(arr, end + 1, high);
         }
+    }
+
+    private static void print(int[] num) {
+        for (int i = 0; i < num.length; i++) {
+            System.out.print(num[i] + " ");
+        }
+        System.out.println();
     }
 }

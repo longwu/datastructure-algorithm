@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 计算最长回文串的字符个数
- *
+ * 计算最长回文串的字符串以及字符个数
+ * <p>
  * 回文串是一个正读和反读都一样的字符串。对一个左边的字符 i 右边一定会有一个对称 i。比如 'abcba'， 'aa'，'bb' 这几个回文串。其中第一个有点特殊，中间的 c 是唯一的。
  * 如果让你来造一个回文串你会怎么造？ 首先让它左右两边绝对对称，如果可能的话再加上一个唯一的中心。
  * <p>
@@ -29,6 +29,8 @@ public class LongestPalindrome {
         LongestPalindrome lp = new LongestPalindrome();
         //System.out.println(lp.longestPalindrome(s));
         System.out.println(lp.count(s));
+        System.out.println("最长回文字符串为: " + lp.getLongestPalindrome(s));
+
     }
 
     public int longestPalindrome(String s) {
@@ -71,5 +73,42 @@ public class LongestPalindrome {
             }
         }
         return count;
+    }
+
+    /**
+     * 获取最长会问字符串, 没有经过排序处理, 只是得到有效的字符
+     *
+     * @param s
+     * @return
+     */
+    public String getLongestPalindrome(String s) {
+        StringBuilder result = new StringBuilder();
+        // 记录每个char出现的次数
+        Map<Character, Integer> kv = new HashMap<>();
+        for (char c : s.toCharArray()) {
+            if (!kv.containsKey(c))
+                kv.put(c, 1);
+            else
+                kv.put(c, kv.get(c) + 1);
+        }
+
+        // 计算回文数总个数
+        int count = 0;
+        for (Map.Entry<Character, Integer> entry : kv.entrySet()) {
+            // 统计元素出现的总个数, 必须是出现个数>=2以上的才满足, 而且取其最大偶数次数, 比如2次的count=2, 3次的count=2,5次的count=4
+            int curCount = entry.getValue() / 2 * 2;
+            count += curCount;
+            if (curCount >= 2) {
+                for (int i = 0; i < curCount; i++) {
+                    result.append(entry.getKey());
+                }
+            }
+            // 只有之前出现的总个数为偶数, 才允许将出现一次的元素加到总数
+            if (count % 2 == 0 && entry.getValue() % 2 == 1) {
+                result.insert(count / 2, entry.getKey());
+                count++;
+            }
+        }
+        return result.toString();
     }
 }

@@ -38,8 +38,8 @@ import java.util.Map;
 public class NRepeatedElementInSizeTwoNArray {
     public static void main(String[] args) {
         //int[] a = {1, 2, 3, 3};
-        //int[] a = {2, 1, 2, 5, 3, 2};
-        int[] a = {5, 1, 5, 2, 5, 3, 5, 4};
+        int[] a = {2, 1, 2, 5, 3, 2};
+        //int[] a = {5, 1, 5, 2, 5, 3, 5, 4};
         //int[] a = {9, 5, 3, 3};
         //int[] a = {2, 1, 1, 1, 2, 5, 3, 2};
         //int[] a = {2, 2, 4, 4, 2, 5, 3, 2};
@@ -58,16 +58,22 @@ public class NRepeatedElementInSizeTwoNArray {
         HashMap<Integer, Integer> map = new HashMap<Integer, Integer>(A.length);
 
         for (int i = 0; i < A.length; i++) {
+            // 如果map中的key已经包含了这个元素
             if (map.containsKey(A[i])) {
+                // 如果这个元素的个数已经达到数组的一半 直接返回
                 if (map.get(A[i]) == A.length / 2) {
                     return A[i];
                 } else {
+                    // 否则元素个数+1
                     map.put(A[i], map.get(A[i]) + 1);
                 }
             } else {
+                // 该元素不存在map中, 将元素作为key 放入map中
                 map.put(A[i], 1);
             }
         }
+
+        // 如果上面没有返回个数等于数组一半的元素, 说明这个元素是数组的最后一个
         for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
             if (entry.getValue() == A.length / 2) {
                 return entry.getKey();

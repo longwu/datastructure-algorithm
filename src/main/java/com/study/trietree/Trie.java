@@ -1,10 +1,12 @@
 package com.study.trietree;
 
 /**
+ * 字典树 也叫 trie树
+ * <p>
  * 基本性质
- * 根节点不包含字符，除根节点外的每一个子节点都包含一个字符
- * 从根节点到某一节点。路径上经过的字符连接起来，就是该节点对应的字符串
- * 每个节点的所有子节点包含的字符都不相同
+ * 1.根节点不包含字符，除根节点外的每一个子节点都包含一个字符
+ * 2.从根节点到某一节点。路径上经过的字符连接起来，就是该节点对应的字符串
+ * 3.每个节点的所有子节点包含的字符都不相同
  * <p>
  * 应用场景
  * 典型应用是用于统计，排序和保存大量的字符串(不仅限于字符串)，经常被搜索引擎系统用于文本词频统计。
@@ -13,14 +15,16 @@ package com.study.trietree;
  * 利用字符串的公共前缀来减少查询时间，最大限度的减少无谓的字符串比较，查询效率比哈希树高。
  * <p>
  * https://www.cnblogs.com/xujian2014/p/5614724.html
+ * <p>
+ * https://leetcode-cn.com/problems/implement-trie-prefix-tree/
  */
 public class Trie {
     public static void main(String[] args) {
         TrieNode root = new TrieNode();
-//        String[] strs = {"banana", "band", "bee", "absolute", "acm",};
-//        String[] prefix = {"ba", "b", "band", "abc",};
-        String[] strs = {"北京大学", "北京科技大学", "南京北京路", "南京大学", "南京金陵十二拆",};
-        String[] prefix = {"北", "北京", "北京大学", "南京", "上海浦东新区",};
+        String[] strs = {"banana", "band", "bee", "absolute", "acm",};
+        String[] prefix = {"ba", "b", "band", "abc",};
+//        String[] strs = {"北京大学", "北京科技大学", "南京北京路", "南京大学", "南京金陵十二拆",};
+//        String[] prefix = {"北", "北京", "北京大学", "南京", "上海浦东新区",};
         for (String str : strs) {
             insert(str, root);
         }
@@ -47,14 +51,12 @@ public class Trie {
         TrieNode node = root;
         char[] letters = str.toCharArray();//将目标单词转换为char数组
         for (int i = 0, len = str.length(); i < len; i++) {
-            //计算每个char的位置
+            //计算每个char的位置(哈希值), 这样在当前层级查找该元素或节点的的时间复杂度为O(1)
             int pos = letters[i] - 'a';
-            if (node.son[pos] == null)  //如果当前节点的儿子节点中没有该字符，则构建一个TrieNode并复值该字符
-            {
+            if (node.son[pos] == null) {  //如果当前节点的儿子节点中没有该字符，则构建一个TrieNode并复值该字符
                 node.son[pos] = new TrieNode();
                 node.son[pos].val = letters[i];
-            } else   //如果已经存在，则将由根至该儿子节点组成的字符串模式出现的次数+1
-            {
+            } else {  //如果已经存在，则将由根至该儿子节点组成的字符串模式出现的次数+1
                 node.son[pos].num++;
             }
             node = node.son[pos];

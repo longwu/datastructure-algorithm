@@ -5,7 +5,12 @@ package com.study.dynamicprogramming;
  * <p>
  * 问题: 有n层台阶, 每次可以走1层或2层 求有多少种走法
  * <p>
- * 和斐波拉契数列是相同的解法 f(n) = f(n-1) + f(n-2)
+ *
+ * 每层楼梯的走法为前两层走法之和
+ *
+ * 和斐波拉契数列是相同的解法
+ * f(n) = f(n-1) + f(n-2)
+ * f(0) = f(1) = 1
  */
 public class ClimbingStairs2Steps {
 
@@ -34,7 +39,7 @@ public class ClimbingStairs2Steps {
     }
 
     /**
-     * 使用迭代的方式, 时间复杂都为O(n), 但依旧创建了大量重复变量
+     * 使用迭代的方式, 时间复杂都为O(n), 只用了3个变量 空间复杂度为O(1)
      * @param n
      * @return
      */
@@ -58,7 +63,7 @@ public class ClimbingStairs2Steps {
     /**
      * 使用动态规划的方式, 数组来存储每个元素,节省了大量临时变量的创建
      *
-     * 时间复杂度为O(n)
+     * 时间复杂度为O(n),空间复杂度为O(n)
      *
      * @param n
      * @return
@@ -80,5 +85,4 @@ public class ClimbingStairs2Steps {
         // 返回第n个元素, 数组是从0开始的
         return arr[n - 1];
     }
-
 }

@@ -36,18 +36,21 @@ public class ValidAnagram {
         String s2 = "tac";
         ValidAnagram va = new ValidAnagram();
         //System.out.printf("%s==%s: %s", s1, s2, va.isAnagram(s1, s2));
-        System.out.printf("%s==%s: %s", s1, s2, va.isAnagram2(s1, s2));
+        //System.out.printf("%s==%s: %s", s1, s2, va.isAnagram2(s1, s2));
+        System.out.printf("%s==%s: %s", s1, s2, va.isAnagram3(s1, s2));
         System.out.println();
 
         s1 = "aaab";
         s2 = "bbaa";
         //System.out.printf("%s==%s: %s", s1, s2, va.isAnagram(s1, s2));
-        System.out.printf("%s==%s: %s", s1, s2, va.isAnagram2(s1, s2));
+        //System.out.printf("%s==%s: %s", s1, s2, va.isAnagram2(s1, s2));
+        System.out.printf("%s==%s: %s", s1, s2, va.isAnagram3(s1, s2));
         System.out.println();
 
         s1 = "anagram";
         s2 = "nagaram";
-        System.out.printf("%s==%s: %s", s1, s2, va.isAnagram2(s1, s2));
+        //System.out.printf("%s==%s: %s", s1, s2, va.isAnagram2(s1, s2));
+        System.out.printf("%s==%s: %s", s1, s2, va.isAnagram3(s1, s2));
         System.out.println();
     }
 
@@ -126,8 +129,33 @@ public class ValidAnagram {
         return true;
     }
 
-//
-//    public boolean isAnagram2(String s, String t) {
-//
-//    }
+    /**
+     * 将字符串的每个字符转成hash值作为key放到一个数组中进行计数, 一个字符串进行计数,另一个字符串进行减数.
+     * 最终如果这个数组里面所有key的值都为0, 就说明两个字符串里的字符相同   时间复杂度为O(n)
+     *
+     * @param s
+     * @param t
+     * @return
+     */
+    public boolean isAnagram3(String s, String t) {
+        if (s.length() != t.length()) {
+            return false;
+        }
+        // 由于字符串中所有字符都为26个小写字母, 且他们对应的hashcode在97-123之间, 比如a为97,b为98...
+        // 将字符串s中的每个字母 减去'a' 最终得到的数字在0-26之间
+        int[] counter = new int[26];
+        for (int i = 0; i < s.length(); i++) {
+            // charAt()方法返回每个字符的hash值
+            counter[s.charAt(i) - 'a']++; // 将字符串s中的每个char 减去'a', 得到的数字作为key,然后value+1
+            counter[t.charAt(i) - 'a']--; // 将字符串t中的每个char 减去'a', 得到的数字作为key,然后value-1;
+        }
+
+        // 如果字符串s和t的每个char都相同, 那么上面的循环结束后,counter里面每个元素的value都为0
+        for (int count : counter) {
+            if (count != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
