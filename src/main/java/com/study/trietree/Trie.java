@@ -13,6 +13,9 @@ package com.study.trietree;
  * <p>
  * 优点
  * 利用字符串的公共前缀来减少查询时间，最大限度的减少无谓的字符串比较，查询效率比哈希树高。
+ *
+ * 遍历算法: bfs深度优先遍历 先根再子节点
+ *
  * <p>
  * https://www.cnblogs.com/xujian2014/p/5614724.html
  * <p>
@@ -28,11 +31,25 @@ public class Trie {
         for (String str : strs) {
             insert(str, root);
         }
-        //System.out.println(tree.has("abc"));
-        System.out.println(has("北京", root));
-        preTraverse(root);
+
+        System.out.println("------打印字典树中所有单词--------");
+        printAllWords(root , "#");
+        System.out.println("--------------------------------");
+
+        // 是否包含这个单词
+        System.out.println("------判断是否有ba这个单词--------");
+        System.out.println(containsWord("ba", root));
+        //System.out.println(containsWord("北京", root));
+        System.out.println("--------------------------------");
+
+        // 打印包含该前缀的单词
+        System.out.println("-------打印所有包含ba前缀的单词----");
+        System.out.println(hasPrefix("ba", root));
+        System.out.println("--------------------------------");
+
+        //preTraverse(root);
+        preTraverse2(root);
         System.out.println();
-        //tree.printAllWords();
         for (String pre : prefix) {
             int num = countPrefix(pre, root);
             System.out.println(pre + " 数量:" + num);
@@ -112,7 +129,7 @@ public class Trie {
     }
 
     /**
-     * 遍历经过此节点的单词.
+     * 打印经过此节点的所有单词.
      *
      * @param root
      * @param prefix
@@ -135,7 +152,7 @@ public class Trie {
      * @param str
      * @return
      */
-    public static boolean has(String str, TrieNode root) {
+    public static boolean containsWord(String str, TrieNode root) {
         if (str == null || str.length() == 0) {
             return false;
         }
@@ -154,18 +171,61 @@ public class Trie {
     }
 
     /**
-     * 前序遍历字典树.
+     * 打印字典树里面所有字符char
+     *
+     * 前序遍历字典树. bfs深度优先遍历
+     *
      * <p>
-     * 根 - 左 - 右
+     * 根 - 所有子节点
      *
      * @param root
      */
     public static void preTraverse(TrieNode root) {
-        if (root != null) {
-            System.out.print(root.val + "-");
-            for (TrieNode child : root.son) {
-                preTraverse(child);
+        if (root == null) {
+            return;
+        }
+        System.out.print(root.val + ":" + root.num + " ");
+        for (TrieNode child : root.son) {
+            preTraverse(child);
+        }
+    }
+
+    /**
+     * 打印字典树里面所有字符char
+     *
+     * @param root
+     */
+    public static void preTraverse2(TrieNode root) {
+        if (root == null) {
+            return;
+        }
+        for (TrieNode child : root.son) {
+            if (child != null) {
+                System.out.print(child.val + ":" + child.num + " ");
+                if (child.isEnd)
+                    System.out.println();
             }
+            preTraverse2(child);
+        }
+    }
+
+    /**
+     * 打印字典树里所有的单词
+     * 将递归走的每个char进行拼接,直到单词尾部,然后输出这个单词
+     *
+     * @param root 根节点
+     * @param prefix 前缀
+     */
+    private static void printAllWords(TrieNode root, String prefix) {
+        if (root != null && root.isEnd) {
+            System.out.println(prefix);
+            return;
+        }
+        if (root == null)
+            return;
+        for (TrieNode child : root.son) {
+            if (child != null)
+                printAllWords(child, prefix + child.val);
         }
     }
 }
