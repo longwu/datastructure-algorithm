@@ -31,15 +31,17 @@ public class MaximumDepth {
 
     /**
      * 可以通过深度优先进行递归 或者 层级遍历
+     *
      * @param args
      */
     public static void main(String[] args) {
-        int[] arr = {0, 1, 2, 3, 4, 5, 6, 7};
-        List<TreeNode> treeNodes = TreeUtils.buildTree(arr);
-        TreeNode root = treeNodes.get(0);
+        //Integer[] arr = {0, 1, 2, 3, 4, 5, 6, 7};
+        Integer[] arr = {5, 1, 4, null, null, 3, 6};
+        TreeNode root = TreeUtils.buildTree(arr);
+        TreeUtils.show(root);
 
         //System.out.println(maxDepthByRecursion(root, "", root.val));
-        System.out.println(maxDepthByLoop(root));
+        //System.out.println(maxDepthByLoop(root));
         System.out.println(maxDepthByRecursion2(root));
     }
 
@@ -75,22 +77,29 @@ public class MaximumDepth {
         return result;
     }
 
-
-    private static int maxDepthByRecursion2(TreeNode root){
-        if(root == null)
+    /**
+     * 深度优先遍历, 计算每层左右节点的层数,取最大值
+     *
+     * 时间复杂度为O(n)
+     *
+     * @param root
+     * @return
+     */
+    private static int maxDepthByRecursion2(TreeNode root) {
+        if (root == null)
             return 0;
 
         int left = maxDepthByRecursion2(root.left);
         int right = maxDepthByRecursion2(root.right);
 
-        return Math.max(left,right) + 1;
+        // 从最底层往根节点回溯的过程中, 计算每层的层数, 取左右两边最大的层数并+1(每层的层数)
+        return Math.max(left, right) + 1;// 最底层为0+1=1, 倒数第2层为0+1+1=2
     }
 
 
     /**
      * 使用广度优先的方式找出最大深度  遍历+队列
-     * <p>
-     * 需要将左右子树的最大深度进行对比, 求最大的
+     * 时间复杂度为O(n)
      *
      * @param root
      * @return

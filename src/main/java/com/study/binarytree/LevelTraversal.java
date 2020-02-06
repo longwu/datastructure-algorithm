@@ -20,9 +20,8 @@ import java.util.*;
  */
 public class LevelTraversal {
     public static void main(String[] args) {
-        int[] arr = {1, 2, 3, 4, 5, 6, 7};
-        List<TreeNode> treeNodes = TreeUtils.buildTree(arr);
-        TreeNode root = treeNodes.get(0);
+        Integer[] arr = {1, 2, 3, 4, 5, 6, 7};
+        TreeNode root = TreeUtils.buildTree(arr);
 
         //List<List<Integer>> allNodes = levelOrder(root);
         List<List<Integer>> allNodes = levelOrder2(root);

@@ -1,5 +1,6 @@
 package com.study.binarytree.binarysearchtree;
 
+import com.study.binarytree.TreeNode;
 import com.study.utils.TreeUtils;
 
 import java.util.List;
@@ -37,15 +38,15 @@ public class LowestCommonAncestor {
 
         // 由于二叉搜索树也是二叉树, 所以既可以使用二叉搜索树的方法也可以使用二叉树的方法求最近公共祖先
         int[] arr = {5, 3, 7, 1, 4, 6, 8};
-        List<SearchTreeNode> treeNodes = TreeUtils.buildSearchTree(arr);
+        List<TreeNode> treeNodes = TreeUtils.buildTreeAndList(arr);
 
-        SearchTreeNode root = treeNodes.get(0);
+        TreeNode root = treeNodes.get(0);
 
-        SearchTreeNode p = treeNodes.get(5);
-        SearchTreeNode q = treeNodes.get(6);
+        TreeNode p = treeNodes.get(5);
+        TreeNode q = treeNodes.get(6);
 
-        //SearchTreeNode lca = getlca(root, p, q);
-        SearchTreeNode lca = getlca2(root, p, q);
+        //TreeNode lca = getlca(root, p, q);
+        TreeNode lca = getlca2(root, p, q);
         if (lca != null)
             System.out.println(lca.val);
 
@@ -58,7 +59,7 @@ public class LowestCommonAncestor {
      * @param q
      * @return
      */
-    private static SearchTreeNode getlca(SearchTreeNode root, SearchTreeNode p, SearchTreeNode q) {
+    private static TreeNode getlca(TreeNode root, TreeNode p, TreeNode q) {
 
         if (root == null)
             return null;
@@ -67,10 +68,10 @@ public class LowestCommonAncestor {
 
         // 递归根左子树, 查找p或q节点, 一旦找到立刻退出, 进行根右子树递归
         // 因为根左子树找到1个节点, 那么只要根右子树存在另一个节点, 那最近公共祖先就是根节点, 否则就是左子树找到的节点本身(另一个节点肯定在这个节点下面)
-        SearchTreeNode left = getlca(root.left, p, q);
+        TreeNode left = getlca(root.left, p, q);
 
         // 递归右子树, 查看右边是否也存在目标节点
-        SearchTreeNode right = getlca(root.right, p, q);
+        TreeNode right = getlca(root.right, p, q);
 
         // 如果左右都存在, 直接返回当前节点
         if (left != null && right != null)
@@ -92,7 +93,7 @@ public class LowestCommonAncestor {
      * @param q
      * @return
      */
-    private static SearchTreeNode getlca2(SearchTreeNode root, SearchTreeNode p, SearchTreeNode q) {
+    private static TreeNode getlca2(TreeNode root, TreeNode p, TreeNode q) {
         // 如果 p和q的值 都小于 root, 直接从树的左边去找
         if (p.val < root.val && root.val > q.val)
             return getlca2(root.left, p, q);

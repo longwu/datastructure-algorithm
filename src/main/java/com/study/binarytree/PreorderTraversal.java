@@ -28,9 +28,8 @@ import java.util.Stack;
  */
 public class PreorderTraversal {
     public static void main(String[] args) {
-        int[] arr = {0, 1, 2, 3, 4, 5, 6, 7};
-        List<TreeNode> treeNodes = TreeUtils.buildTree(arr);
-        TreeNode root = treeNodes.get(0);
+        Integer[] arr = {0, 1, 2, 3, 4, 5, 6, 7};
+        TreeNode root = TreeUtils.buildTree(arr);
 
         //List<Integer> list = preorderTraversal(root);
         //List<Integer> list = preorderTraversalByLoop(root);

@@ -18,9 +18,9 @@ import java.util.Queue;
  */
 public class NodesInALevel {
     public static void main(String[] args) {
-        int[] arr = {0, 1, 2, 3, 4, 5, 6, 7};
-        List<TreeNode> treeNodes = TreeUtils.buildTree(arr);
-        TreeNode root = treeNodes.get(0);
+        Integer[] arr = {0, 1, 2, 3, 4, 5, 6, 7};
+
+        TreeNode root = TreeUtils.buildTree(arr);
 
         int k = 2;
 //        System.out.printf("第%d层节点数:%d\r\n", k, k_nodes(root, k));

@@ -28,10 +28,9 @@ import java.util.Stack;
 public class InorderTraversal {
 
     public static void main(String[] args) {
-        int[] arr = {0, 1, 2, 3, 4, 5, 6, 7};
+        Integer[] arr = {0, 1, 2, 3, 4, 5, 6, 7};
 
-        List<TreeNode> treeNodes = TreeUtils.buildTree(arr);
-        TreeNode root = treeNodes.get(0);
+        TreeNode root = TreeUtils.buildTree(arr);
 
         //List<Integer> list = inorderTraversal(root);
         //List<Integer> list = inorderTraversal2(root);

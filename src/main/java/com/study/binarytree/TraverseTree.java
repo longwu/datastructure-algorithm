@@ -11,11 +11,10 @@ import java.util.Stack;
  * <p>
  * 其中每种遍历 又有多种遍历方法 比如递归, 迭代
  */
-public class ReverseTree {
+public class TraverseTree {
     public static void main(String[] args) {
-        int[] arr = {0, 1, 2, 3, 4, 5, 6, 7};
-        List<TreeNode> treeNodes = TreeUtils.buildTree(arr);
-        TreeNode root = treeNodes.get(0);
+        Integer[] arr = {0, 1, 2, 3, 4, 5, 6, 7};
+        TreeNode root = TreeUtils.buildTree(arr);
 
         //preOrderReverse(root); // 0 1 3 7 4 2 5 6
         //preOrderReverse2(root); // 0 1 3 7 4 2 5 6

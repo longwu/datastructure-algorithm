@@ -38,8 +38,7 @@ public class LowestCommonAncestor {
 
     public static void main(String[] args) {
         int[] arr = {0, 1, 2, 3, 4, 5, 6, 7};
-        List<TreeNode> treeNodes = TreeUtils.buildTree(arr);
-
+        List<TreeNode> treeNodes = TreeUtils.buildTreeAndList(arr);
         //TreeNode p = treeNodes.get(4);
         //TreeNode q = treeNodes.get(5);
 
