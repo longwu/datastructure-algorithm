@@ -3,7 +3,7 @@ package com.study.binarytree;
 import com.study.utils.TreeUtils;
 
 /**
- * 平衡二叉树
+ * 验证平衡二叉树
  *
  * 给定一个二叉树，判断它是否是高度平衡的二叉树。
  * <p>
@@ -45,7 +45,8 @@ public class BalancedBinaryTree {
         TreeNode root = TreeUtils.buildTree(nodes);
         TreeUtils.show(root);
 
-        System.out.println(isBalanced(root));
+        //System.out.println(isBalanced(root));
+        System.out.println(isBalanced2(root));
     }
 
     /**
@@ -114,6 +115,11 @@ public class BalancedBinaryTree {
         return depth(root) != -1;
     }
 
+    /**
+     * 后续遍历
+     * @param root
+     * @return
+     */
     private static int depth(TreeNode root) {
         if (root == null)
             return 0;
