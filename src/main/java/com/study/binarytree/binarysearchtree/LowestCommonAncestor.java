@@ -6,7 +6,7 @@ import com.study.utils.TreeUtils;
 import java.util.List;
 
 /**
- * 二叉搜索树的最近公共祖先
+ * 二叉搜索树的最近公共祖先 lowest common ancestor
  * <p>
  * 给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。
  * <p>
@@ -39,8 +39,9 @@ public class LowestCommonAncestor {
         // 由于二叉搜索树也是二叉树, 所以既可以使用二叉搜索树的方法也可以使用二叉树的方法求最近公共祖先
         int[] arr = {5, 3, 7, 1, 4, 6, 8};
         List<TreeNode> treeNodes = TreeUtils.buildTreeAndList(arr);
-
         TreeNode root = treeNodes.get(0);
+
+        TreeUtils.show(root);
 
         TreeNode p = treeNodes.get(5);
         TreeNode q = treeNodes.get(6);
@@ -49,8 +50,6 @@ public class LowestCommonAncestor {
         TreeNode lca = getlca2(root, p, q);
         if (lca != null)
             System.out.println(lca.val);
-
-
     }
 
     /**

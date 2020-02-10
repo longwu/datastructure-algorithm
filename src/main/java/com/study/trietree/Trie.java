@@ -13,7 +13,7 @@ package com.study.trietree;
  * <p>
  * 优点
  * 利用字符串的公共前缀来减少查询时间，最大限度的减少无谓的字符串比较，查询效率比哈希树高。
- *
+ * <p>
  * 遍历算法: bfs深度优先遍历 先根再子节点
  *
  * <p>
@@ -33,7 +33,7 @@ public class Trie {
         }
 
         System.out.println("------打印字典树中所有单词--------");
-        printAllWords(root , "#");
+        printAllWords(root, "#");
         System.out.println("--------------------------------");
 
         // 是否包含这个单词
@@ -82,7 +82,7 @@ public class Trie {
     }
 
     /**
-     * 计算单词前缀的数量
+     * 计算拥有该前缀的单词
      *
      * @param prefix
      * @return
@@ -105,7 +105,7 @@ public class Trie {
     }
 
     /**
-     * 打印指定前缀的单词
+     * 找出并打印出拥有指定前缀的所有单词
      *
      * @param prefix
      * @return
@@ -172,7 +172,7 @@ public class Trie {
 
     /**
      * 打印字典树里面所有字符char
-     *
+     * <p>
      * 前序遍历字典树. bfs深度优先遍历
      *
      * <p>
@@ -213,7 +213,7 @@ public class Trie {
      * 打印字典树里所有的单词
      * 将递归走的每个char进行拼接,直到单词尾部,然后输出这个单词
      *
-     * @param root 根节点
+     * @param root   根节点
      * @param prefix 前缀
      */
     private static void printAllWords(TrieNode root, String prefix) {

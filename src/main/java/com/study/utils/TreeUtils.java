@@ -75,7 +75,7 @@ public final class TreeUtils {
 
 
     // 用于获得树的层数
-    public static int getTreeDepth(TreeNode root) {
+    private static int getTreeDepth(TreeNode root) {
         return root == null ? 0 : (1 + Math.max(getTreeDepth(root.left), getTreeDepth(root.right)));
     }
 

@@ -53,6 +53,8 @@ public class LongestCommonSubsequence {
      *                   i=0或者j=0              LCS(i,j)=0     //如果两个字符中有有一个为空, 那LCS=0
      *                   i>0且j>0 且Xi=Yj        LCS(i,j)=LCS(i-1,j-1) + 1  // 如果两个字符相等, 那么LCS为其相邻左斜方值+1
      *                   i>0且j>0 且Xi!=Yj       LCS(i,j)=MAX{(LCS(i-1,j),LCS(i,j-1)} //如果连个字符不相等, 那么LCS为其相邻的左和上方值中最大的一个
+     *   就这样不断的将二维数组上各个位置上的值填满.
+     *   最后取数组右下角最后一个值为lcs
      *
      * @param text1
      * @param text2

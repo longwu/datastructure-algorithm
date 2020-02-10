@@ -21,9 +21,10 @@ package com.study.dynamicprogramming;
 public class MaximumProductSubarray {
 
     public static void main(String[] args) {
-        int[] nums = {2, 3, -2, 4};
+        //int[] nums = {2, 3, -2, 4};
         //int[] nums = {-2, 0, -1};
         //int[] nums = {0, 2};
+        int[] nums = {2, -5, -2, -3};
         System.out.println(maxProduct(nums));
         System.out.println(maxProduct2(nums));
     }

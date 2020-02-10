@@ -53,6 +53,9 @@ public class ValidateBinarySearchTree {
         //Integer[] arr = {1, 1};
 
         Integer[] arr = {5, 1, 6, null, null, 3, 7};
+
+        //Integer[] arr = {5, 1, 9, null, null, 7, 10, null, null, null, null, 8, 3};
+
         //Integer[] arr = {3, 9, 20, null, null, 15, 7};
 
         TreeNode root = TreeUtils.buildTree(arr);
@@ -75,8 +78,8 @@ public class ValidateBinarySearchTree {
         //System.out.println(isValidBST_InOrder_2(root));
 
         // 递归的方式判断是否所有子树 都满足 左子树<节点<右子树
-        System.out.println(isValidBST(root, null, null));
-        //System.out.println(isValidBST_2(root, null, null));
+        System.out.println(isValidBST(root));
+        //System.out.println(isValidBST_2(root));
 
         //System.out.println(isValidBST2(root));
     }
@@ -122,45 +125,57 @@ public class ValidateBinarySearchTree {
     }
 
     /**
-     * 验证是否为二叉搜索树, 可以判断左边所有与节点值是否小于根节点, 右边所有节点值 大于 根节点.
+     * 验证是否为二叉搜索树,  需要判断左边所有与节点值是否小于根节点, 右边所有节点值 大于 根节点.
      * 以及每棵子树 都是 左子树 < 节点 < 右子树
      * <p>
-     * 深度优先搜索: 使用递归的方式遍历左右子树, 判断是否每个节点 都满足  左子树 < 节点 < 右子树
+     * 使用深度优先搜索: 需要把最小值min和最大值max传入, 让左子树所有节点与根节点值min作比较, 让右子树所有节点与根节点值max作比较.
+     * 对于根节点左边所有子树, 最大值为根节点max; 对于根节点右边所有子树,最小值为根节点min;
+     *
      * <p>
      * 节点的左子树只包含小于当前节点的数。
      * 节点的右子树只包含大于当前节点的数。
      * 所有左子树和右子树自身必须也是二叉搜索树。
      *
+     * 时间复杂度 : O(N)。每个结点访问一次。
+     * 空间复杂度 : O(N)。我们跟进了整棵树。
+     *
      * @param root
      * @return
      */
-    private static boolean isValidBST(TreeNode root, Integer min, Integer max) {
+    private static boolean isValidBST(TreeNode root){
+        return helper(root,null,null);
+    }
+
+    private static boolean helper(TreeNode root, Integer min, Integer max) {
         if (root == null) //如果root为空 说明当前节点已经递归到最底层了 或者树本身就是空树
             return true;
-        if (min != null && root.val < min) //如果root小于最小值, 不是二叉搜索树
+        //如果root小于最小值, 不是二叉搜索树
+        if (min != null && root.val < min) {
+            System.out.println(String.format("不满足的节点: node: %d, min: %d", root.val, min));
             return false;
-        if (max != null && root.val > max) //如果root大于最大值, 也不是二叉搜索树
-            return false;
+        }
 
-        System.out.print(root.val + " ");
+        //如果root大于最大值, 也不是二叉搜索树
+        if (max != null && root.val > max) {
+            System.out.println(String.format("不满足的节点: node: %d, max: %d", root.val, max));
+            return false;
+        }
+
+        //System.out.print(root.val + " ");
 
         // 是否左子树的所有节点肯定都比根节点小 右子树的所有节点都比根大
-        boolean left = isValidBST(root.left, min, root.val);
-        boolean right = isValidBST(root.right, root.val, max);
-
-        if (!left) {
-            System.out.println(String.format("不满足的左子树节点: node: %d, min: %d", root ==null || root.left == null || root.left.val == null ? "空节点" : root.left.val, min));
-        }
-
-        if(!right){
-            System.out.println(String.format("不满足的右子树节点: node: %d, max: %d", root ==null || root.right == null || root.right.val == null ? "空节点" : root.left.val, max));
-        }
+        boolean left = helper(root.left, min, root.val);
+        boolean right = helper(root.right, root.val, max);
 
         return left && right; //如果左边和右边都满足条件, 则说明该数为二叉搜索树
         //return isValidBST(root.left, min, root.val) && isValidBST(root.right, root.val, max);
     }
 
-    private static boolean isValidBST_2(TreeNode root, Integer min, Integer max) {
+    private static boolean isValidBST_2(TreeNode root){
+        return helper2(root,null,null);
+    }
+
+    private static boolean helper2(TreeNode root, Integer min, Integer max) {
         if (root == null)
             return true;
         if (min != null && root.val < min) //跟节点不能小于最小值
@@ -168,8 +183,33 @@ public class ValidateBinarySearchTree {
         if (max != null && root.val > max) //跟节点也不能大于最大值
             return false;
 
-        return isValidBST_2(root.left, min, root.val) && isValidBST_2(root.right, root.val, max);
+        return helper2(root.left, min, root.val) && helper2(root.right, root.val, max);
     }
+
+    /* 不对的做法, 这只判断了每个子树 是否满足 左子节点 < 节点 < 右子节点, 没有需要判断 左边子树所有节点 < 根节点 < 右边子树所有节点 */
+//    /**
+//     * 验证是否为二叉搜索树,  需要判断左边所有与节点值是否小于根节点, 右边所有节点值 大于 根节点.
+//     * 不传入根节点值, 但是需要判断值左右节点值是否为空
+//     *
+//     * @param root
+//     * @return
+//     */
+//    private static boolean isValidBST2(TreeNode root) {
+//        if (root == null)
+//            return true;
+//
+//        if (root.left != null && root.left.val != null && root.val < root.left.val) {
+//            System.out.println(String.format("不满足的左节点: node: %d, root: %d", root.left.val, root.val));
+//            return false;
+//        }
+//
+//        if (root.right != null && root.right.val != null && root.val > root.right.val) {
+//            System.out.println(String.format("不满足右的节点: node: %d, root: %d", root.right.val, root.val));
+//            return false;
+//        }
+//
+//        return isValidBST2(root.left) && isValidBST2(root.right);
+//    }
 
     /**
      * 使用中序遍历 获取二叉树每个节点

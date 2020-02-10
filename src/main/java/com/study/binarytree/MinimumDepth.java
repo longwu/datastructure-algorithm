@@ -34,13 +34,15 @@ public class MinimumDepth {
     public static void main(String[] args) {
         Integer[] arr = {0, 1, 2, 3, 4, 5, 6, 7};
         TreeNode root = TreeUtils.buildTree(arr);
-
+        TreeUtils.show(root);
         //System.out.println(minDepthByRecursion(root));
         System.out.println(minDepthByLoop(root));
     }
 
     /**
-     * 使用分治的方法 从左右节点进行递归
+     * 使用分治的方法 从左右节点进行递归,
+     * 注意: 当root节点左右孩子都为空时,返回1
+     *
      * 时间复杂度为O(n)
      *
      * @param root
@@ -53,13 +55,13 @@ public class MinimumDepth {
         int left = minDepthByRecursion(root.left);
         int right = minDepthByRecursion(root.right);
 
-        // 如果左边层级为0, 那么返回右边层级+1
+        // 如果左边子节点为空的时候, 那么返回右边不为空的孩子深度+1
         if (left == 0)
             return right + 1;
-            // 如果右边层级为0, 返回左边层级+1
+            // 如果右边子节点为空的时候, 那么返回左边不为空的孩子深度+1
         else if (right == 0)
             return left + 1;
-        else //如果左右层级都不为0, 返回左右层数最小值+1
+        else //如果左右子节点都不为空, 返回左右深度最小的那个+1
             return Math.min(left, right) + 1;
     }
 

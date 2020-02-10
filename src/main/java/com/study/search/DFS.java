@@ -16,15 +16,13 @@ import java.util.List;
 public class DFS {
 
     /**
-     * 深度优先遍历 和 二叉树的前序遍历(根 左 右)是一样的
+     * 深度优先遍历
      *
      * @param args
      */
     public static void main(String[] args) {
-        int[] arr = {0, 1, 2, 3, 4, 5, 6, 7};
-        List<TreeNode> treeNodes = TreeUtils.buildTree(arr);
-        TreeNode root = treeNodes.get(0);
-
+        Integer[] arr = {0, 1, 2, 3, 4, 5, 6, 7};
+        TreeNode root = TreeUtils.buildTree(arr);
         List<TreeNode> nodes = search(root);
         for (TreeNode node : nodes) {
             System.out.print(node.val + " ");
