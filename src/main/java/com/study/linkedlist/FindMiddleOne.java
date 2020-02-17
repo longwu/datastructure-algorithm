@@ -145,8 +145,10 @@ public class FindMiddleOne {
 
             // 链表长度为奇数的情况下,两个指针会走在同一个节点上,则该节点就是中间节点
             // 链表长度为偶数的情况下,头指针所在的节点为中间点
-            if (newHead == newTail || newHead.next == newTail)
+            if (newHead == newTail || newHead.next == newTail) {
                 middle = newHead.val;
+                break;
+            }
 
             newHead = newHead.next;// 头节点往后走
             newTail = newTail.prev;// 尾节点往前走
