@@ -79,12 +79,15 @@ public class ClimbingStairs3Steps {
         if (n == 3)
             return 4;
 
-        // 之后的每层走法数为前面3层的走法之和
+        // 定义状态
         int[] arr = new int[n];
+
+        // 初始状态
         arr[0] = 1;
         arr[1] = 2;
         arr[2] = 4;
 
+        // 状态推导
         // 从第4个层开始计算
         for (int i = 3; i < n; i++) {
             // 将前3个元素相加得到第4个元素
@@ -92,6 +95,7 @@ public class ClimbingStairs3Steps {
             arr[i] = arr[i - 1] + arr[i - 2] + arr[i - 3];
         }
 
+        // 得出结果
         // 返回第n个元素, 因为数组是从第0个元素开始的
         return arr[n - 1];
     }

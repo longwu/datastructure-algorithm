@@ -68,7 +68,7 @@ public class BestTimeToBuyAndSellStockII {
     public static int maxProfit(int[] prices) {
         int profit = 0;
         for (int i = 0; i < prices.length; i++) {
-            // 前一个数小于后一个就买, 因为先买再卖能赚
+            // 只要下一个股票比当前股票贵,我就买当前的,然后卖下一个,获取下一个和当前之间的利润
             if (prices.length > i + 1 && prices[i] < prices[i + 1]) {
                 profit += prices[i + 1] - prices[i];
             }

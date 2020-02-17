@@ -14,27 +14,75 @@ package com.study.dynamicprogramming;
 public class FibonacciSequence {
 
     public static void main(String[] args) {
-        int n = 1;
-        int[] cache = new int[n];
-        //System.out.println(String.format("第%d个数为: %d", n, fibByRecursion(n));
-        System.out.println(String.format("第%d个数为: %d", n, fibByRecursion2(n, cache)));
-        //System.out.println(String.format("第%d个数为: %d", n, fibByLoop(n)));
-        //System.out.println(String.format("第%d个数为: %d", n, fibByDP(n)));
+//        int n = 1;
+//        int[] cache = new int[n];
+//        //System.out.println(String.format("第%d个数为: %d", n, fibByRecursion(n));
+//        System.out.println(String.format("第%d个数为: %d", n, fibByRecursion2(n, cache)));
+//        //System.out.println(String.format("第%d个数为: %d", n, fibByLoop(n)));
+//        //System.out.println(String.format("第%d个数为: %d", n, fibByDP(n)));
+//
+//        n = 5;
+//        cache = new int[n];
+//        //System.out.println(String.format("第%d个数为: %d", n, fibByRecursion(n));
+//        System.out.println(String.format("第%d个数为: %d", n, fibByRecursion2(n, cache)));
+//        //System.out.println(String.format("第%d个数为: %d", n, fibByLoop(n)));
+//        //System.out.println(String.format("第%d个数为: %d", n, fibByDP(n)));
+//
+//        n = 6;
+//        cache = new int[n];
+//        //System.out.println(String.format("第%d个数为: %d", n, fibByRecursion(n));
+//        System.out.println(String.format("第%d个数为: %d", n, fibByRecursion2(n, cache)));
+//        //System.out.println(String.format("第%d个数为: %d", n, fibByLoop(n)));
+//        //System.out.println(String.format("第%d个数为: %d", n, fibByDP(n)));
+
+
+        // 计算双递归的时间复杂度问题  时间复杂度为O(2^n)
+        int n = 2;
+        fibByRecursion_count(n);
+        System.out.println(String.format("n: %d, 计算次数: %d",n, count));
+        count = 0;
 
         n = 5;
-        cache = new int[n];
-        //System.out.println(String.format("第%d个数为: %d", n, fibByRecursion(n));
-        System.out.println(String.format("第%d个数为: %d", n, fibByRecursion2(n, cache)));
-        //System.out.println(String.format("第%d个数为: %d", n, fibByLoop(n)));
-        //System.out.println(String.format("第%d个数为: %d", n, fibByDP(n)));
+        fibByRecursion_count(n);
+        System.out.println(String.format("n: %d, 计算次数: %d",n, count));
+        count = 0;
 
-        n = 6;
-        cache = new int[n];
-        //System.out.println(String.format("第%d个数为: %d", n, fibByRecursion(n));
-        System.out.println(String.format("第%d个数为: %d", n, fibByRecursion2(n, cache)));
-        //System.out.println(String.format("第%d个数为: %d", n, fibByLoop(n)));
-        //System.out.println(String.format("第%d个数为: %d", n, fibByDP(n)));
+        n = 10;
+        fibByRecursion_count(n);
+        System.out.println(String.format("n: %d, 计算次数: %d",n, count));
+        count = 0;
+
+        n = 15;
+        fibByRecursion_count(n);
+        System.out.println(String.format("n: %d, 计算次数: %d",n, count));
+        count = 0;
+
+        n = 20;
+        fibByRecursion_count(n);
+        System.out.println(String.format("n: %d, 计算次数: %d",n, count));
+        count = 0;
+
+        n = 30;
+        fibByRecursion_count(n);
+        System.out.println(String.format("n: %d, 计算次数: %d",n, count));
+        count = 0;
+
+        n = 40;
+        fibByRecursion_count(n);
+        System.out.println(String.format("n: %d, 计算次数: %d",n, count));
+        count = 0;
+
+        // 由于递归的执行次数是指数级上涨, 当n为50的时候, 机器就算不出来了
+//        n = 50;
+//        fibByRecursion_count(n);
+//        System.out.println(String.format("n: %d, 计算次数: %d",n, count));
+//        count = 0;
     }
+
+    /**
+     * 计算递归的执行次数
+     */
+    private static int count = 0;
 
     /**
      * 求第n个数的值, 使用分治的方法 使用两个递归分别求出n-1和n-2两数的值,然后进行相加得到第n个数的值
@@ -50,6 +98,8 @@ public class FibonacciSequence {
         if (n == 0)
             return 0;
 
+        count++;
+
         // 斐波拉契的第1和第2个数为1
         // 临界条件 n = 1 和 n=2
         if (n == 1 || n == 2) {
@@ -61,6 +111,21 @@ public class FibonacciSequence {
         System.out.println(String.format("往外递归计算开始: 第%d个数为%d", n, result));
         return result;
     }
+
+    private static int fibByRecursion_count(int n) {
+        count++;
+
+        if (n == 0)
+            return 0;
+
+        // 斐波拉契的第1和第2个数为1
+        // 临界条件 n = 1 和 n=2
+        if (n == 1 || n == 2) {
+            return 1;
+        }
+        return fibByRecursion_count(n - 1) + fibByRecursion_count(n - 2); //第n个数为前两个数之后 比如 5 = 3 +２;
+    }
+
 
     /**
      * 由于递归过程中计算了大量元素, 我们可以使用一个数组cache来对其进行优化

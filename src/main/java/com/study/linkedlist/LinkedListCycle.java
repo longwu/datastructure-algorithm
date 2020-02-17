@@ -1,7 +1,5 @@
 package com.study.linkedlist;
 
-import com.study.utils.Printer;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,11 +20,11 @@ import java.util.Set;
  */
 public class LinkedListCycle {
     public static void main(String[] args) {
-        ListNode node1 = new ListNode(1);
-        ListNode node2 = new ListNode(2);
-        ListNode node3 = new ListNode(3);
-        ListNode node4 = new ListNode(4);
-        ListNode node5 = new ListNode(5);
+        LinkedNode node1 = new LinkedNode(1);
+        LinkedNode node2 = new LinkedNode(2);
+        LinkedNode node3 = new LinkedNode(3);
+        LinkedNode node4 = new LinkedNode(4);
+        LinkedNode node5 = new LinkedNode(5);
 
         node1.next = node2;
         node2.next = node3;
@@ -48,10 +46,10 @@ public class LinkedListCycle {
      * @param head
      * @return
      */
-    private static boolean hasCycle(ListNode head) {
-        ListNode fast = head;
-        ListNode slow = head;
-        while (fast != null && slow != null && fast.next != null) {
+    private static boolean hasCycle(LinkedNode head) {
+        LinkedNode fast = head;
+        LinkedNode slow = head;
+        while (fast != null && slow != null && fast.next != null) {// 因为快指针需要走两步,如果fast.next为null,那走第二步就报空指针了
             // 注意因为起始位置都一样,都是head,所以需要让两个指针都先跑起来,之后再相遇
             slow = slow.next;
             fast = fast.next.next;
@@ -73,8 +71,8 @@ public class LinkedListCycle {
      * @param head
      * @return
      */
-    private static boolean hasCycle2(ListNode head) {
-        Set<ListNode> set = new HashSet<ListNode>();
+    private static boolean hasCycle2(LinkedNode head) {
+        Set<LinkedNode> set = new HashSet<LinkedNode>();
 
         while (head != null) {
             if (set.contains(head)) {
@@ -92,7 +90,7 @@ public class LinkedListCycle {
      * @param head
      * @return
      */
-    private static boolean hasCycle3(ListNode head) {
+    private static boolean hasCycle3(LinkedNode head) {
         long start = System.currentTimeMillis();
         while (head != null) {
             head = head.next;

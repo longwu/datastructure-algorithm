@@ -40,9 +40,9 @@ public class MaximumDepth {
         TreeNode root = TreeUtils.buildTree(arr);
         TreeUtils.show(root);
 
-        //System.out.println(maxDepthByRecursion(root, "", root.val));
+        System.out.println(maxDepthByRecursion(root, "根", root.val));
         //System.out.println(maxDepthByLoop(root));
-        System.out.println(maxDepthByRecursion2(root));
+        //System.out.println(maxDepthByRecursion2(root));
     }
 
     /**
@@ -93,6 +93,7 @@ public class MaximumDepth {
         int right = maxDepthByRecursion2(root.right);
 
         // 从最底层往根节点回溯的过程中, 计算每层的层数, 取左右两边最大的层数并+1(每层的层数)
+        // 每次回溯到上一层 都会将当前层左右节点的最大层数+1 带给上一层
         return Math.max(left, right) + 1;// 最底层为0+1=1, 倒数第2层为0+1+1=2
     }
 

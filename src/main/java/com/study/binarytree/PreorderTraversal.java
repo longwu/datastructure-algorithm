@@ -30,11 +30,12 @@ public class PreorderTraversal {
     public static void main(String[] args) {
         Integer[] arr = {0, 1, 2, 3, 4, 5, 6, 7};
         TreeNode root = TreeUtils.buildTree(arr);
+        TreeUtils.show(root);
 
         //List<Integer> list = preorderTraversal(root);
-        //List<Integer> list = preorderTraversalByLoop(root);
+        List<Integer> list = preorderTraversalByLoop(root);
         // List<Integer> list = preorderTraversalByLoop2(root);
-        List<Integer> list = preorderTraversalByLoopWithList(root);
+        //List<Integer> list = preorderTraversalByLoopWithList(root);
         for (Integer num : list) {
             System.out.print(num + " ");
         }

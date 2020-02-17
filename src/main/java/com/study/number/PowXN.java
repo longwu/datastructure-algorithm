@@ -28,13 +28,13 @@ public class PowXN {
 
     /**
      * 解法: 一种是暴力解法, 利用循环或者递归的方式 将x乘以自身n次.  时间复杂度O(n)
-     *       另一种是用递归+分治的解法, 将递归的次数减少到logN次.
+     * 另一种是用递归+分治的解法, 将递归的次数减少到logN次.
      * 注意: 需要考虑n为负数和奇偶数的情况.
      *
      * @param args
      */
     public static void main(String[] args) {
-        double result = myPow(2.1000, 10);
+        double result = myPow(2.0, 10);
         System.out.println(result);
 //
 //        double result = myPow2(2.1000, 3);
@@ -48,7 +48,10 @@ public class PowXN {
 //        System.out.println(result);
 
         //result = myPowRecursion(2, 10);
-        result = myPowRecursion(2.1000, 10);
+        result = myPowRecursion(2.0, 10);
+        System.out.println(result);
+
+        result = fastPow3(2.0, 10);
         System.out.println(result);
 
 //        result = myPowRecursion2(2, 10);
@@ -167,7 +170,8 @@ public class PowXN {
         double beforeHalf = half;
         // 每一次执行会将上一递归的half结果拿来相乘,这样每次的half都是上一次的half的平方或者平方乘以x
         // 需要考虑n为偶数和奇数的情况
-        if (n % 2 == 0) {
+        //if (n % 2 == 0) {
+        if ((n & 1) == 0) {
             half = half * half;
             System.out.println(String.format("往外递归 n = %d, half = %s * %s = %s", n, beforeHalf, beforeHalf, half));
         } else {
@@ -203,14 +207,55 @@ public class PowXN {
             return 1.0;
         }
 
-        double half = fastPow2(x, n / 2);
+        long N = n;
+        if (n < 0) {
+            x = 1 / x;
+            N = -N;
+        }
 
-        if (n % 2 == 0) {
+        double half = fastPow2(x, N / 2);
+
+        //if (N % 2 == 0) {
+        if ((N & 1) == 0) {
             half = half * half;
         } else {
             half = half * half * x;
         }
         return half;
+    }
+
+
+    /**
+     * 使用迭代的方法 每次进行n/2次求解, 时间复杂度为O(logN)
+     *
+     * @param x
+     * @param n
+     * @return
+     */
+    public static double fastPow3(double x, long n) {
+        if (n == 0) {
+            return 1.0;
+        }
+
+        // 处理n为负数的情况
+        long N = n;
+        if (n < 0) {
+            x = 1 / x; // x为倒数
+            N = -N;
+        }
+
+        double result = 1;
+
+        // x^10 = x^2 * x^2 * x^2 * x^2 * x^2;
+        while (N > 0) {
+            if ((N & 1) == 1) {
+                result *= x;
+            }
+            result *= x * x;
+            N >>= 1; // 相当于N = N / 2;
+        }
+
+        return result;
     }
 
 

@@ -39,15 +39,17 @@ public class Triangle {
         triangle.add(Arrays.asList(6, 5, 7));
         triangle.add(Arrays.asList(4, 1, 8, 3));
 
-        System.out.println(minimumTotal(triangle));
+        //System.out.println(minimumTotal(triangle));
         //System.out.println(minimumTotal2(triangle));
+
+        System.out.println("最小路径和为: " + minimumTotal_dfs(triangle));
     }
 
     /**
      * 动态规划法
      * <p>
      * 从后往前推, 修改每个点的值为其最小路径和, 一层层往上,最终顶点的最短路径 = 顶点值 + 第二层最短路径的那个点的值
-     *
+     * <p>
      * 2
      * 3 4
      * 6 5 7
@@ -86,6 +88,56 @@ public class Triangle {
         // 最终结果
         print(triangle);
         return triangle.get(0).get(0);
+    }
+
+    private static int minSum = Integer.MAX_VALUE;
+
+    public static int minimumTotal_dfs(List<List<Integer>> triangle) {
+        if (triangle.size() == 0 || triangle.get(0).size() == 0) {
+            return 0;
+        }
+
+        dfs(triangle, 0, 0, 0, "");
+        return minSum;
+    }
+
+    /**
+     * 使用深度优先进行暴力求解, 得出所有不同的路径和, 然后取其中最小的
+     * 类似二叉树的先序遍历
+     *
+     * 时间复杂度为O(2^N)
+     *
+     * @param triangle
+     * @param i
+     * @param j
+     * @param sum
+     * @return
+     */
+    private static void dfs(List<List<Integer>> triangle, int i, int j, int sum, String path) {
+        // terminator 终止条件
+        if (i == triangle.size() - 1) {
+            // 递归到达最后一行结束, 返回路径和
+            sum += triangle.get(i).get(j);
+            System.out.println(sum); // 输出所有路径之和
+            minSum = Math.min(sum, minSum);
+
+            path += triangle.get(i).get(j);
+            System.out.println(path); // 输出所有路径
+
+            return;
+        }
+
+        // 将每层路径之和相加
+        sum += triangle.get(i).get(j);
+        path += triangle.get(i).get(j) + "->";
+
+        // 每个元素往下有两种方式可走, 一个是i+1,j 一个是i+1,j+1
+        // 往每层正下方遍历
+        dfs(triangle, i + 1, j, sum, path);
+        //System.out.println();
+        // 往每层正下方+1遍历
+        dfs(triangle, i + 1, j + 1, sum, path);
+        //System.out.println();
     }
 
 

@@ -32,17 +32,22 @@ import java.util.Queue;
 public class MinimumDepth {
 
     public static void main(String[] args) {
-        Integer[] arr = {0, 1, 2, 3, 4, 5, 6, 7};
+        //Integer[] arr = {0, 1, 2, 3, 4, 5, 6, 7};
+        //Integer[] arr = {5, 1, 4, null, null, 3};
+        Integer[] arr = {5, 1};
         TreeNode root = TreeUtils.buildTree(arr);
         TreeUtils.show(root);
         //System.out.println(minDepthByRecursion(root));
-        System.out.println(minDepthByLoop(root));
+        System.out.println(minDepthByRecursion2(root));
+        //System.out.println(minDepthByLoop(root));
     }
 
     /**
      * 使用分治的方法 从左右节点进行递归,
      * 注意: 当root节点左右孩子都为空时,返回1
-     *
+     * <p>
+     * 如果是单边为空或者都为空的节点, 返回另一边+1 这样能够记录所有分支的高度, 最后通过min(跟的左分支,根的右分支) 得到深度最小的
+     * <p>
      * 时间复杂度为O(n)
      *
      * @param root
@@ -55,6 +60,7 @@ public class MinimumDepth {
         int left = minDepthByRecursion(root.left);
         int right = minDepthByRecursion(root.right);
 
+        // 如果是单边为空或者都为空的节点, 返回另一边+1 这样能够记录所有分支的高度, 最后通过min(跟的左分支,根的右分支) 得到深度最小的
         // 如果左边子节点为空的时候, 那么返回右边不为空的孩子深度+1
         if (left == 0)
             return right + 1;
@@ -66,9 +72,25 @@ public class MinimumDepth {
     }
 
 
+    private static int minDepthByRecursion2(TreeNode root) {
+        if (root == null)
+            return 0;
+
+        int left = minDepthByRecursion2(root.left);
+        int right = minDepthByRecursion2(root.right);
+
+        // 记录所有分支的深度, 最后在根节点上取左右最短的一条
+        if (left == 0)
+            return right + 1;
+        else if (right == 0)
+            return left + 1;
+        else
+            return Math.min(left, right) + 1;
+    }
+
     /**
      * 使用层级遍历的方式: 循环+队列 一层一层遍历并记录层数, 当遇到第一个左右子节点为空的节点, 那这个节点就是最小深度的叶子节点, 返回的层数为最小层数(最小深度).
-     *
+     * <p>
      * 时间复杂度为O(n), 空间复杂度为O(n)
      *
      * @param root

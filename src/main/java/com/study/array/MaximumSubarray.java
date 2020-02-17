@@ -55,6 +55,21 @@ public class MaximumSubarray {
         return max;
     }
 
+    private static int maxSubArray_2(int[] nums){
+        int max = nums[0];
+        int currentSum = nums[0];
+
+        for(int i =1; i < nums.length; i++){
+            if(currentSum > 0)
+                currentSum += nums[i];
+            else
+                currentSum = nums[i];
+
+            max = Math.max(max,currentSum);
+        }
+        return max;
+    }
+
     /**
      * 使用贪心算法
      *

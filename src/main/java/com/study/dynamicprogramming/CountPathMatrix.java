@@ -39,9 +39,11 @@ public class CountPathMatrix {
      * @return
      */
     private static int uniquePaths(int m, int n) {
+        // 状态定义
         // 创建一个宽为m,长为n
         int[][] matrix = new int[m][n];
 
+        // 初始状态
         // 先将横坐标为0 和 纵坐标为0的所有表格都填上, 走法都是一种.
         // 横坐标为0的只能从左往右横着走. 纵坐标为0的只能从上往下竖着走
         for (int i = 0; i < m; i++) {
@@ -51,12 +53,15 @@ public class CountPathMatrix {
             matrix[0][j] = 1;
         }
 
+        // 状态推导
         // 从横纵坐标不为0的格子开始推倒
         for (int i = 1; i < m; i++) {
             for (int j = 1; j < n; j++) {
                 matrix[i][j] = matrix[i - 1][j] + matrix[i][j - 1];
             }
         }
+
+        // 得出结果
         //返回走后一个格子的走法数量, 由于数组是从0开始,所以实际最大索引为长度-1
         return matrix[m - 1][n - 1];
     }
@@ -93,13 +98,16 @@ public class CountPathMatrix {
     }
 
     private static int uniquePaths2_2(int m, int n) {
+        // 定义状态
         int[] pre = new int[n];
         int[] cur = new int[n];
 
+        // 初始状态
         //将第1列和第2列用1进行填充
         Arrays.fill(pre, 1);
         Arrays.fill(cur, 1);
 
+        // 状态推导
         for (int i = 1; i < m; i++) {
             for (int j = 1; j < n; j++) {
                 // 某一个格子的走法等于下方和右方走法之和
@@ -107,6 +115,8 @@ public class CountPathMatrix {
             }
             pre = cur;
         }
+
+        // 得出结果
         // 返回最后一列最后一行的元素 走法数
         return pre[n - 1];
     }

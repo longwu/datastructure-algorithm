@@ -54,12 +54,9 @@ public class LevelTraversal {
         Queue<TreeNode> queue = new LinkedList<TreeNode>();
         queue.add(root);
 
-        // 当前所在的层次
-        int level = 0;
-
         while (!queue.isEmpty()) {
             // 往节点结合中添加当前层级的空节点集合
-            levels.add(new ArrayList<Integer>());
+            List<Integer> currentLevelNodes =  new ArrayList<>();
             // 获取当前层次的节点个数
             int level_length = queue.size();
             // 遍历当前层的节点个数
@@ -67,7 +64,7 @@ public class LevelTraversal {
                 TreeNode node = queue.remove();//取出并移除队列的第一个节点 根据先进先出原则, 取出的顺序为 根 左 右(根据添加时候的顺序一致)
 
                 // 往节点集合中添加当前层级的节点
-                levels.get(level).add(node.val);
+                currentLevelNodes.add(node.val);
 
                 // 往当前层队列中添加当前层的子节点,用于下一次迭代处理
                 if (node.left != null)
@@ -75,8 +72,7 @@ public class LevelTraversal {
                 if (node.right != null)
                     queue.add(node.right);
             }
-            // 层级+1,进入到下一个层级
-            level++;
+            levels.add(currentLevelNodes);
         }
         return levels;
     }
@@ -93,13 +89,12 @@ public class LevelTraversal {
         if (root == null)
             return nodes;
 
-        int level = 0;
         Queue<TreeNode> queue = new LinkedList<TreeNode>();
         queue.add(root);
 
         // 遍历队列中的节点,当前层里的所有节点
         while (queue.size() > 0) {
-            nodes.add(new ArrayList<Integer>());
+            List<Integer> currentLevelNodes =  new ArrayList<>();
 
             // 当前层节点数
             int nodeCount = queue.size();
@@ -108,16 +103,14 @@ public class LevelTraversal {
             for (int i = 0; i < nodeCount; i++) {
                 // 添加当前层节点值
                 TreeNode node = queue.remove();
-                nodes.get(level).add(node.val);
+                currentLevelNodes.add(node.val);
 
                 if (node.left != null)
                     queue.add(node.left);
                 if (node.right != null)
                     queue.add(node.right);
             }
-
-            // 接着循环下一层
-            level++;
+            nodes.add(currentLevelNodes);
         }
         return nodes;
     }
@@ -152,5 +145,40 @@ public class LevelTraversal {
         }
         search(root.left, level + 1, nodeList);
         search(root.right, level + 1, nodeList);
+    }
+
+    private static List<List<Integer>> levelOrder3(TreeNode root) {
+        List<List<Integer>> nodes = new ArrayList<List<Integer>>();
+
+        if (root == null)
+            return nodes;
+
+        int level = 0;
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.add(root);
+
+        // 遍历队列中的节点,当前层里的所有节点
+        while (queue.size() > 0) {
+            nodes.add(new ArrayList<Integer>());
+
+            // 当前层节点数
+            int nodeCount = queue.size();
+
+            // 遍历当前层所有的节点, 往节点结合中添加当前层所有节点值, 往队列中添加当前所有节点的子节点
+            for (int i = 0; i < nodeCount; i++) {
+                // 添加当前层节点值
+                TreeNode node = queue.remove();
+                nodes.get(level).add(node.val);
+
+                if (node.left != null)
+                    queue.add(node.left);
+                if (node.right != null)
+                    queue.add(node.right);
+            }
+
+            // 接着循环下一层
+            level++;
+        }
+        return nodes;
     }
 }

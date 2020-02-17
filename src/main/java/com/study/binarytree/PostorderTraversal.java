@@ -30,6 +30,8 @@ public class PostorderTraversal {
         Integer[] arr = {0, 1, 2, 3, 4, 5, 6, 7};
         TreeNode root = TreeUtils.buildTree(arr);
 
+        TreeUtils.show(root);
+
         //List<Integer> list = postorderTraversal(root);
         //List<Integer> list = postorderTraversal2(root);
         //List<Integer> list = postorderTraversal3(root);
@@ -37,7 +39,8 @@ public class PostorderTraversal {
 //        for (Integer num : list) {
 //            System.out.print(num + " ");
 //        }
-        Stack<Integer> stack = postorderTraversal5(root);
+        //Stack<Integer> stack = postorderTraversal5(root);
+        Stack<Integer> stack = postorderTraversal5_2(root);
         while (!stack.isEmpty()) {
             System.out.print(stack.pop() + " ");
         }
@@ -127,6 +130,14 @@ public class PostorderTraversal {
         return list;
     }
 
+    /**
+     * 通过迭代法+栈 实现后序遍历二叉树
+     * 遍历出来的每个二叉树节点再使用栈来存储,最后遍历输出
+     * 根节点最先进结果栈,最后出结果栈
+     *
+     * @param root
+     * @return
+     */
     private static Stack<Integer> postorderTraversal5(TreeNode root) {
         Stack<Integer> result = new Stack<Integer>();
         Stack<TreeNode> stack = new Stack<TreeNode>();
@@ -140,7 +151,7 @@ public class PostorderTraversal {
 
         while (!stack.isEmpty()) {
             root = stack.pop();
-            // 将节点值加到列表顶部
+            // 因为根节点是最后输出的,所以将根节点首先放入结果栈中(先进后出)
             result.push(root.val);
             System.out.println(String.format("将节点%d加入到栈中", root.val));
 
@@ -157,6 +168,31 @@ public class PostorderTraversal {
             }
         }
         return result;
+    }
+
+
+    private static Stack<Integer> postorderTraversal5_2(TreeNode root) {
+        Stack<Integer> output = new Stack<>();
+        Stack<TreeNode> input = new Stack<>();
+
+        if (root == null) {
+            return output;
+        }
+
+        input.push(root);
+
+        while (!input.isEmpty()) {
+            TreeNode node = input.pop();
+            output.push(node.val);
+
+            if (node.left != null)
+                input.push(node.left);
+
+            if (node.right != null)
+                input.push(node.right);
+        }
+
+        return output;
     }
 
     /**

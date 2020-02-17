@@ -41,11 +41,11 @@ import java.util.Set;
  */
 public class LinkedListCycleTwo {
     public static void main(String[] args) {
-        ListNode node1 = new ListNode(1);
-        ListNode node2 = new ListNode(2);
-        ListNode node3 = new ListNode(3);
-        ListNode node4 = new ListNode(4);
-        ListNode node5 = new ListNode(5);
+        LinkedNode node1 = new LinkedNode(1);
+        LinkedNode node2 = new LinkedNode(2);
+        LinkedNode node3 = new LinkedNode(3);
+        LinkedNode node4 = new LinkedNode(4);
+        LinkedNode node5 = new LinkedNode(5);
 
         node1.next = node2;
         node2.next = node3;
@@ -53,7 +53,7 @@ public class LinkedListCycleTwo {
         node4.next = node5;
         // 节点5之后又回到了节点3
         node5.next = node3;
-        ListNode cycyleBegins = detectCycle(node1);
+        LinkedNode cycyleBegins = detectCycle(node1);
         //ListNode cycyleBegins = detectCycle2(node1);
         //ListNode cycyleBegins = detectCycle3(node1);
         System.out.println(cycyleBegins.val);
@@ -83,12 +83,12 @@ public class LinkedListCycleTwo {
      * @param head
      * @return
      */
-    private static ListNode detectCycle(ListNode head) {
+    private static LinkedNode detectCycle(LinkedNode head) {
         if (head == null || head.next == null) return null;
 
-        ListNode slow = head;
-        ListNode fast = head;
-        ListNode start = head;
+        LinkedNode slow = head;
+        LinkedNode fast = head;
+        LinkedNode start = head;
         boolean isCycle = false;
 
         // 使用快慢节点,找出是否为有还链表
@@ -122,11 +122,11 @@ public class LinkedListCycleTwo {
      * @param head
      * @return
      */
-    private static ListNode detectCycle2(ListNode head) {
-        ListNode fast = head;
-        ListNode slow = head;
+    private static LinkedNode detectCycle2(LinkedNode head) {
+        LinkedNode fast = head;
+        LinkedNode slow = head;
 
-        ListNode start = head;
+        LinkedNode start = head;
         while (fast != null && slow != null && fast.next != null) {
             fast = fast.next.next;
             slow = slow.next;
@@ -150,8 +150,8 @@ public class LinkedListCycleTwo {
      * <p>
      * 存储前判断是否已存在该节点,存在则返回该节点.
      */
-    private static ListNode detectCycle3(ListNode head) {
-        Set<ListNode> set = new HashSet<ListNode>();
+    private static LinkedNode detectCycle3(LinkedNode head) {
+        Set<LinkedNode> set = new HashSet<LinkedNode>();
 
         while (head != null) {
             if (set.contains(head)) {

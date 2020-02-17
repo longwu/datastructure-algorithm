@@ -87,16 +87,20 @@ public class LowestCommonAncestor {
     /**
      * 使用二叉搜索树  左子树所有节点 < 父节点 < 右子树所有节点 的原理
      *
+     * 将节点和根节点比较, 从左子树找 或者 右子树找, 不需要全树遍历, 类似二叉查找
+     *
+     * 时间复杂度为O(logN)
+     *
      * @param root
      * @param p
      * @param q
      * @return
      */
     private static TreeNode getlca2(TreeNode root, TreeNode p, TreeNode q) {
-        // 如果 p和q的值 都小于 root, 直接从树的左边去找
+        // 如果 p和q的值 都小于 root根节点, 说明两个节点都在左子树, 直接从树的左边去找
         if (p.val < root.val && root.val > q.val)
             return getlca2(root.left, p, q);
-        // 如果 p和q的值都大于 root, 直接从树的右边去找
+        // 如果 p和q的值都大于 root, 说明量两个节点都在右子树, 往树的右边去找
         if (p.val > root.val && q.val > root.val)
             return getlca2(root.right, p, q);
         // 如果  p.val <  root.val < q.val 或 p.val > root.val > q.val 则直接返回root节点

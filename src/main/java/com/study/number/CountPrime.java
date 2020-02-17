@@ -52,6 +52,7 @@ public class CountPrime {
 //                return false;
 //            }
 //        }
+        // 如果一个数如果只能被 1 和它本身整除, 那就是质数
         for (int i = 2; i < num; i++) {
             if (num % i == 0) {
                 return false;
