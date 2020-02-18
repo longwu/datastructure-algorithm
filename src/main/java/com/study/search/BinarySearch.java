@@ -26,14 +26,15 @@ public class BinarySearch {
      * @return
      */
     private static int search(int[] arr, int key) {
-        int low, high, mid;
         //第1个元素索引
-        low = 0;
+        int low = 0;
+
         //最后一个元素索引
-        high = arr.length - 1;
+        int high = arr.length - 1;
         while (low <= high) {
             // 先从中间开始查找
-            mid = (low + high) / 2;
+            //int mid = (low + high) / 2; // low + high 可能会大于 Integer.MAX_VALUE
+            int mid = (high - low) >> 1 + low;
             // 如果小于中间的,就把范围改成最左边到中间-1
             if (key < arr[mid]) {
                 high = mid - 1;
@@ -51,7 +52,7 @@ public class BinarySearch {
 
 
     /**
-     * 折半查找,每次查找都基于中间值来对比 来缩小查找范围, 时间复杂度为O1
+     * 折半查找,每次查找都基于中间值来对比 来缩小查找范围, 时间复杂度为O(logN)
      *
      * @param arr
      * @param element
@@ -62,7 +63,8 @@ public class BinarySearch {
 
         // 循环条件是最低位索引小于等于最高位索引
         while (low <= high) {
-            int mid = (low + high) / 2;
+            //mid = (low + high) / 2; // low + high 可能会大于 Integer.MAX_VALUE
+            int mid = (high - low) >> 1 + low;
             // 如果元素大于中间值, 则下次从右边查找
             if (arr[mid] < element) {
                 // 将最小索引改为中间+!
