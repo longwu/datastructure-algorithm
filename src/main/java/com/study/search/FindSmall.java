@@ -13,6 +13,9 @@ package com.study.search;
  * <p>
  * 问题三: 给定任意一个序列，找出其中的一个谷/峰，谷的定义为两边的数均大于某个数。
  * <p>
+ *
+ * https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/
+ *
  * https://segmentfault.com/q/1010000000181714
  * <p>
  * https://blog.csdn.net/weixin_34018169/article/details/89698260?utm_source=distribute.pc_relevant.none-task
@@ -90,7 +93,11 @@ public class FindSmall {
         int left = 0, right = arr.length - 1;
 
         if (arr.length == 1)
-            return arr[0];
+            return arr[left];
+
+        // 改进, leetcode上面还需要处理数组没有旋转的情况
+        if(arr[left] <= arr[right])
+            return arr[left];
 
         // 找到目标为前面一个大于后面
         while (left <= right) {
@@ -125,8 +132,14 @@ public class FindSmall {
         // 如果只有一个元素，直接返回
         if (nums.length == 1)
             return nums[0];
+
         int result = nums[0];
         int low = 0, high = nums.length - 1;
+
+        // 改进, leetcode上面还需要处理数组没有旋转的情况
+        if(nums[low] <= nums[high])
+            return nums[low];
+
         int mid;
         // 确保 low 下标对应的值在左边的递增子数组，high 对应的值在右边递增子数组
         while (nums[low] >= nums[high]) {
