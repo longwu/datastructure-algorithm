@@ -1,4 +1,4 @@
-package com.study.search;
+package com.study.tree.binarytree;
 
 import com.study.binarytree.TreeNode;
 import com.study.utils.TreeUtils;
