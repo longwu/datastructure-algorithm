@@ -1,4 +1,4 @@
-package com.study.ntree;
+package com.study.tree.ntree;
 
 import java.util.List;
 
