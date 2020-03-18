@@ -18,20 +18,22 @@ public class SelectSort {
 
         int[] a = {12, 23, 9, 24, 15, 3, 18};
 
-        selectSort(a);
+        //selectSort(a);
+        selectSort2(a);
         print(a);
 
         System.out.println();
 
-        selectSortDesc(a);
+        //selectSortDesc(a);
+        selectSortDesc2(a);
         print(a);
     }
 
     /**
      * 选择排序, 从每次遍历未排序的元素中找出值最小的元素索引
-     *
+     * <p>
      * 每一次循环能找出一个当前最小的索引,然后将最小索引上的元素放在当前遍历的索引上
-     *
+     * <p>
      * 跟冒泡排序类似,只是它不会做元素的两两替换,而是找最大或最小索引,找到后再替换
      */
     private static void selectSort(int[] a) {
@@ -54,9 +56,27 @@ public class SelectSort {
         }
     }
 
+    private static void selectSort2(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            // 每一轮循环找出一个最小值索引
+            int min = i;
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[j] < arr[min]) {
+                    min = j;
+                }
+            }
+
+            // 最小索引不再是当前元素的索引, 那就需要将最小元素和当前元素位置替换一下
+            if (min != i) {
+                int tmp = arr[min];
+                arr[min] = arr[i];
+                arr[i] = tmp;
+            }
+        }
+    }
+
     /**
      * 从大到小排序
-     *
      */
     private static void selectSortDesc(int[] a) {
         for (int i = 0; i < a.length - 1; i++) {
@@ -72,6 +92,24 @@ public class SelectSort {
                 int tmp = a[max];
                 a[max] = a[i];
                 a[i] = tmp;
+            }
+        }
+    }
+
+
+    private static void selectSortDesc2(int[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {// 这里用arr.length 或者arr.length -1都行, 因为排完前面的, 最后一个肯定是最小的
+            int maxIndex = i;
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[j] > arr[maxIndex]) {
+                    maxIndex = j;
+                }
+            }
+
+            if (i != maxIndex) {
+                int tmp = arr[maxIndex];
+                arr[maxIndex] = arr[i];
+                arr[i] = tmp;
             }
         }
     }

@@ -14,8 +14,7 @@ public class BinarySearch {
         int[] arr = {1, 2, 3, 4, 5, 6, 7, 8};
         //int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 
-        //System.out.println(search(arr, 1));
-        System.out.println(search2(arr, 3));
+        System.out.println(search(arr, 1));
     }
 
     /**
@@ -34,7 +33,7 @@ public class BinarySearch {
         while (low <= high) {
             // 先从中间开始查找
             //int mid = (low + high) / 2; // low + high 可能会大于 Integer.MAX_VALUE
-            int mid = (high - low) >> 1 + low;
+            int mid = ((high - low) >> 1) + low;
             // 如果小于中间的,就把范围改成最左边到中间-1
             if (key < arr[mid]) {
                 high = mid - 1;
@@ -47,36 +46,6 @@ public class BinarySearch {
             }
         }
         //没找到返回-1
-        return -1;
-    }
-
-
-    /**
-     * 折半查找,每次查找都基于中间值来对比 来缩小查找范围, 时间复杂度为O(logN)
-     *
-     * @param arr
-     * @param element
-     * @return
-     */
-    private static int search2(int[] arr, int element) {
-        int low = 0, high = arr.length - 1;
-
-        // 循环条件是最低位索引小于等于最高位索引
-        while (low <= high) {
-            //mid = (low + high) / 2; // low + high 可能会大于 Integer.MAX_VALUE
-            int mid = (high - low) >> 1 + low;
-            // 如果元素大于中间值, 则下次从右边查找
-            if (arr[mid] < element) {
-                // 将最小索引改为中间+!
-                low = mid + 1;
-            } else if (arr[mid] > element) {
-                // 将最大索引改为中间-1
-                high = mid - 1;
-            } else {
-                return mid;
-            }
-        }
-
         return -1;
     }
 }

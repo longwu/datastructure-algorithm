@@ -1,6 +1,6 @@
 package com.study.tree.binarytree;
 
-import com.study.binarytree.TreeNode;
+import com.study.tree.binarytree.TreeNode;
 import com.study.utils.TreeUtils;
 
 import java.util.*;

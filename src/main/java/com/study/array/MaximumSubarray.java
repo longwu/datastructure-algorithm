@@ -19,10 +19,11 @@ package com.study.array;
 public class MaximumSubarray {
 
     public static void main(String[] args) {
-        int[] nums = {-2, 1};
-        //int[] nums = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+        //int[] nums = {-2, 1};
+        int[] nums = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
         //int result = maxSubArray(nums);
-        int result = maxSubArray_greedy(nums);
+        //int result = maxSubArray_greedy(nums);
+        int result = maxSubArray_greedy_2(nums);
         //int result = maxSubArray2(nums);
         System.out.println(result);
     }
@@ -96,6 +97,18 @@ public class MaximumSubarray {
         }
         return max;
     }
+
+    private static int maxSubArray_greedy_2(int[] nums) {
+        int max = nums[0];
+        int currentSum = nums[0];
+        for(int i =1; i <nums.length; i ++){
+            currentSum += nums[i]; // 记录当前所有数之和
+            currentSum = Math.max(currentSum, nums[i]); //如果当前数之和下一个元素中最大的一个作为当前数之和
+            max = Math.max(currentSum, max); // 取最大值和当前数之和中最大的一个作为最大值
+        }
+        return max;
+    }
+
 
     /**
      * 暴力解法, 计算出每个元素的连续最大和, 从中取最大的那个

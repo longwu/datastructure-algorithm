@@ -48,9 +48,10 @@ public class LongestPalindrome {
         System.out.println("--------------------");
 
         //System.out.println(longestPalindrome(s));
-        System.out.println(longestPalindrome_2(s));
+        //System.out.println(longestPalindrome_2(s));
         //System.out.println(longestPalindrome2(s));
         //System.out.println(longestPalindrome3(s));
+        System.out.println(longestPalindrome_3(s));
 
     }
 
@@ -117,6 +118,27 @@ public class LongestPalindrome {
 
         return length;
     }
+
+    public static int longestPalindrome_3(String s) {
+        char[] chars = new char[128];
+
+        for (int i = 0; i < s.length(); i++) {
+            chars[s.charAt(i)]++;
+        }
+
+        int length = 0;
+        // 记录可以做成回文数的字符个数
+        for (int c : chars) {
+            length += c / 2 * 2; // 如果是偶数得到本身, 如果是奇数则-1, 如果是0得到0
+
+            if (length % 2 == 0 && c % 2 == 1) { //如果当前总数为偶数,而且c本身的个数为奇数, 可以使用这个c
+                length++;
+            }
+        }
+
+        return length;
+    }
+
 
     /**
      * 贪心算法, 使用hashmap来存储每个字符

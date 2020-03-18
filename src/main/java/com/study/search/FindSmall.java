@@ -8,13 +8,13 @@ package com.study.search;
  * 比如有序数组为 [2, 3, 6, 7, 8, 10, 12, 15], 将后面的10,12,15截取后放到数组的最前面,变成[10, 12, 15, 2, 3, 6, 7, 8]
  * <p>
  * 问题一:  请写一个算法, 找出最小值
+ * https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/
  * <p>
  * 问题二:  给定一个数，查找其在序列中是否存在（返回其位置），请问如何实现？
+ * https://leetcode-cn.com/problems/search-in-rotated-sorted-array/
  * <p>
  * 问题三: 给定任意一个序列，找出其中的一个谷/峰，谷的定义为两边的数均大于某个数。
  * <p>
- *
- * https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/
  *
  * https://segmentfault.com/q/1010000000181714
  * <p>

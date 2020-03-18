@@ -54,7 +54,7 @@ public class KthLargest {
             queue.offer(element);// 将元素加到末尾
         } else {
             // 如果队列中的元素满了, 则判断队列最小的元素(顶端的元素)是否比新元素小
-            // 如果最小的元素比该元素小, 那将顶端最小的元素移除, 将新元素插入
+            // 如果要放入的元素大于顶部元素,则移除顶部元素,放入新元素
             if (queue.peek() < element) {
                 queue.poll(); //移除顶端最小元素
                 queue.offer(element);//插入新元素
@@ -81,18 +81,20 @@ public class KthLargest {
     /**
      * PriorityQueue 优先队列会将里面的元素进行从小到大排序, 每次插入一个新元素后,都会将最小的元素放到最上面
      * <p>
-     * 优先队列的作用是能保证每次取出的元素都是队列中权值最小的
+     * 优先队列的作用是能保证每次取出的元素都是队列中最小的
+     *
+     * 只有大于队列顶部最小的元素才能放入, 同时移除最小的元素. 这样确保新来元素后,队列顶部的元素始终是第k小的
      */
     public static void main(String[] args) {
         int k = 3;
         int[] arr = {4, 5, 8, 2};
-        KthLargest kthLargest = new KthLargest(k, arr);
+        KthLargest kthLargest = new KthLargest(k, arr); //会自动移除第三大的2
         // 每次加入新元素都返回第k大的元素
-        System.out.println(kthLargest.add(3)); // 第3大的元素为4  堆中元素为 4 5 8
-        System.out.println(kthLargest.add(5)); // 第3大的元素为5  堆中元素为 5 8 5
-        System.out.println(kthLargest.add(10)); // 第3大的元素为5  堆中元素为 5 8 5
-        System.out.println(kthLargest.add(9)); // 第3大的元素为8  堆中元素为 8 10 9
-        System.out.println(kthLargest.add(4)); // 第3大的元素为8  堆中元素为 8 10 9
+        System.out.println(kthLargest.add(3)); // 3放入失败 第3大的元素为4  堆中元素为 4 5 8
+        System.out.println(kthLargest.add(5)); // 5放入尾部 4被移除  第3大的元素为5  堆中元素为 5 8 5
+        System.out.println(kthLargest.add(10)); // 10放入尾部 5移除 第3大的元素为5  堆中元素为 5 8 10
+        System.out.println(kthLargest.add(9)); //  9放入尾部 5移除 第3大的元素为8  堆中元素为 8 10 9
+        System.out.println(kthLargest.add(4)); // 4放入失败 第3大的元素为8  堆中元素为 8 10 9
     }
 }
 

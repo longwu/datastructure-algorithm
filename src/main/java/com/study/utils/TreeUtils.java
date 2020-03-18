@@ -1,7 +1,7 @@
 package com.study.utils;
 
-import com.study.binarytree.TreeNode;
-import com.study.binarytree.TreeNode2;
+import com.study.tree.binarytree.TreeNode;
+import com.study.tree.binarytree.TreeNode2;
 
 import java.util.ArrayList;
 import java.util.List;

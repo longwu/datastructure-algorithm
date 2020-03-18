@@ -8,7 +8,8 @@ public class LongestNumberInString {
         String input = "abcd123cc45678977ed125ss6789";
 
         //String longestNum = getLongestNumber(input);
-        String longestNum = getLongestNumber2(input);
+        //String longestNum = getLongestNumber2(input);
+        String longestNum = getLongestNumber3(input);
         System.out.printf("最长连续数字为%s,长度为%d", longestNum, longestNum.length());
     }
 
@@ -63,6 +64,26 @@ public class LongestNumberInString {
                 curNum = "";//清空当前记录的数字
             }
         }
+        return longestNum;
+    }
+
+
+    private static String getLongestNumber3(String input) {
+        String longestNum = "";
+        String currentNum = "";
+
+        for(int i =0; i < input.length(); i++){
+            // 位于0-9之间
+            if(input.charAt(i) >= '0' && input.charAt(i) <= '9'){
+                currentNum += input.charAt(i);
+            }else{
+                if(currentNum.length() > longestNum.length()){
+                    longestNum = currentNum;
+                }
+                currentNum = "";
+            }
+        }
+
         return longestNum;
     }
 }

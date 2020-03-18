@@ -17,6 +17,8 @@ public class ToUpperCase {
      *
      * 利用ascii大小写字母对应的差值进行转换
      *
+     * 小于字母是 97 - 122   大写字母是 65 - 90  比大些字母多了32
+     *
      * @param str
      * @return
      */

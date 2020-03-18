@@ -18,16 +18,22 @@ package com.study.sort;
  */
 public class QuickSort {
 
+    /**
+     * 快速排序算法有很多: 挖坑法, 左右指针法, 前后指针法
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         //int[] a = {12, 20, 5, 16, 15, 1, 30, 45};
-        int[] a = {21, 32, 43, 98, 54, 45, 23, 4, 66, 86};
+        //int[] a = {21, 32, 43, 98, 54, 45, 23, 4, 66, 86};
+        int[] a = {72, 6, 57, 88, 60, 42, 83, 73, 48, 85};
         // int[] a = {12, 20, 9, 5, 16};
         //int[] a = {12, 1};
         print(a);
         int start = 0;
         int end = a.length - 1;
-        sort(a, start, end);
-        //sort2(a, start, end);
+        //sort(a, start, end);
+        sort2(a, start, end);
         for (int i = 0; i < a.length; i++) {
             System.out.printf("%s ", a[i]);
         }
@@ -45,7 +51,7 @@ public class QuickSort {
      * <p>
      * 反复循环,直到start和end重叠, 退出循环.
      * <p>
-     * 此时,左边的值都比基准值小，右边的值都比基准值大，但是两边的顺序还有可能是不一样的.
+     * 此时, start左边的值都小于或等于基准值，右边的都大于或等于基准值，但是两边的顺序还有可能是不一样的.
      * <p>
      * 所以还需要进行递归调整一下, 递归分别从基准值左右两边进行调整
      */
@@ -54,7 +60,7 @@ public class QuickSort {
         int end = high;
         // 选取第一个元素作为基准值
         int key = a[low];
-        System.out.println("基准值为: "+ key);
+        System.out.println("基准值为: " + key);
         // 循环里 start往后挪, end往前挪
         while (end > start) {
             // 从后往前比较
@@ -84,18 +90,19 @@ public class QuickSort {
                 print(a);
             }
         }
-        // 当循环结束后，基准值的位置已经确定了。左边的值都比基准值小，右边的值都比基准值大，但是两边的顺序还有可能是不一样的.
+        // 当循环结束后，基准值的位置已经确定了。start左边的值都小于或等于基准值，end右边的值都大于或等于基准值，但是两边的顺序还有可能是不一样的.
 
-        // 于是将start和end左右两边划分成两个区间, 分别进行递归排序, 等左右两个区间都完成排序后,那么整个数组就变成有序了
+        // 于是将start和end左右两边划分成两个区间, 不停的进行二分分区, 最后等左右两个区间都完成排序后,那么整个数组就变成有序了
+        // 不管是左边还是右边区间, 都取第0个作为基准值
         // 将左边序列进行排序
         if (start > low) {
-            sort(a, low, start - 1);
+            sort(a, low, start - 1); // 取左边数组第0个做基准值, 最小索引不变, 然后最大范围不断缩小
             System.out.println("start: " + start);
         }
 
         // 将右边序列进行排序
         if (end < high) {
-            sort(a, end + 1, high);
+            sort(a, end + 1, high); // 取右边数组第0个作基准值,  最大索引不变, 最小范围不断加大
             System.out.println("end: " + end);
         }
     }
@@ -104,46 +111,38 @@ public class QuickSort {
         int start = low;
         int end = high;
 
-        // 取第0个元素为基准值
         int key = arr[low];
 
         while (start < end) {
-
-            // 后面的比基准值大的
-            while (start < end && arr[end] >= key) {
-                end--; //往前挪
+            // end从后往前和基准值做比较, 小于基准值就和start进行交换
+            while (end > start && arr[end] >= key) {
+                end--;
             }
 
-            // 直到遇上比基准值小的, 前后替换
+            //如果后面存在元素小于基准值, 将将start和end位置上的元素互换
             if (arr[end] < key) {
                 int tmp = arr[end];
                 arr[end] = arr[start];
                 arr[start] = tmp;
-                System.out.println("后面比基准值小");
-                print(arr);
             }
 
-            // 前面比基准值小的
-            while (start < end && arr[start] <= key) {
-                start++; //往后挪
+            while (end > start && arr[start] <= key) {
+                start++;
             }
 
+            //如果前面有元素大于基准值, 就将start和end位置上的元素互换
             if (arr[start] > key) {
                 int tmp = arr[start];
                 arr[start] = arr[end];
                 arr[end] = tmp;
-                System.out.println("前面比基准值大");
-                print(arr);
             }
         }
 
         if (start > low) {
-            System.out.println("low" + low);
             sort2(arr, low, start - 1);
         }
 
         if (end < high) {
-            System.out.println("high" + high);
             sort2(arr, end + 1, high);
         }
     }

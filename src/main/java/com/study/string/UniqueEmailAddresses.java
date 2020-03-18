@@ -39,7 +39,7 @@ public class UniqueEmailAddresses {
      *
      * 这里使用了hashset,它的add()的时间复杂度为O(1), 并且不会存在相同的元素
      *
-     * 时间复杂度O(1)
+     * 时间复杂度O(n)
      * @param emails
      * @return
      */

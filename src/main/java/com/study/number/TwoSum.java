@@ -76,10 +76,12 @@ public class TwoSum {
             int complement = target - nums[i]; //将目标元素减去当前元素求得差值元素
             // 查看hashmap里面是否存在这个差值元素,
             //if (map.containsKey(complement) && map.get(complement) != i) { //并且这个差值元素不能是nums[i]本身, 实际来说map是不会存在nums[i]的, 因为往map里面添加nums[i]是在最后面
+            // map是否包含7这个值, map.get(complement)就是7的索引
             if (map.containsKey(complement)){  //所以只判断是否包含该元素和上面代码是一样的
                 return new int[]{i, map.get(complement)};
             }
-            map.put(nums[i], i);
+            // 每次都将差值和索引存入, 以后如果数组存在差值这个元素, 那就直接取出value索引就找到了
+            map.put(nums[i], i);// map 可以为值, value为索引
         }
         return new int[0];
     }

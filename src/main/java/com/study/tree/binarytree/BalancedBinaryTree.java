@@ -126,17 +126,17 @@ public class BalancedBinaryTree {
 
         // 左子树出现不满足条件的
         int left = depth(root.left);
-        if (left == -1)
+        if (left == -1) // 得到-1 说明不满足条件
             return -1;
 
         // 右子树出现不满足条件的
         int right = depth(root.right);
-        if (right == -1)
+        if (right == -1) // 得到-1 说明不满足条件
             return -1;
 
-        // 检查是否满足条件
+        // 检查是否满足条件, 左右子树高度差绝对值不超过1
         if (Math.abs(left - right) > 1)
-            return -1;
+            return -1; //不满足条件就返回-1
 
         // 返回当前左右子树的最大高都
         return Math.max(left, right) + 1;

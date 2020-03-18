@@ -34,9 +34,6 @@ package com.study.string;
  */
 public class ReverseWordsInAString {
 
-    /**
-     * @param args
-     */
     public static void main(String[] args) {
         //String s = "the sky is blue";
         String s = "hello world!";

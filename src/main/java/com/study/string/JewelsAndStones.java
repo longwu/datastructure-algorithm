@@ -30,20 +30,20 @@ public class JewelsAndStones {
 
     public static void main(String[] args) {
 
-        //String j = "aA", s = "aAAbbbb";
+        String j = "aA", s = "aAAbbbb";
         //String j = "z", s = "ZZ";
         //System.out.println(numJewelsInStones(j,s));
 
-        String j = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", s = "";
-        for (int i = 0; i < SIZE; i++) {
-            if (i == SIZE - 2) {
-                s += 'Y';
-            } else if (i == SIZE - 1) {
-                s += 'Z';
-            } else {
-                s += i;
-            }
-        }
+//        String j = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", s = "";
+//        for (int i = 0; i < SIZE; i++) {
+//            if (i == SIZE - 2) {
+//                s += 'Y';
+//            } else if (i == SIZE - 1) {
+//                s += 'Z';
+//            } else {
+//                s += i;
+//            }
+//        }
 
         long start = System.currentTimeMillis();
 
