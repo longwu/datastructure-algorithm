@@ -3,6 +3,8 @@ package com.study.utils;
 import com.study.linkedlist.DoubleLinkedNode;
 import com.study.linkedlist.LinkedNode;
 
+import java.util.List;
+
 public final class LinkedListUtils {
 
     public static void printLinkedList(LinkedNode head) {
@@ -41,6 +43,16 @@ public final class LinkedListUtils {
         }
 
         System.out.println();
+    }
+
+    public static LinkedNode buildList(List<Integer> list){
+        LinkedNode result = new LinkedNode(-1);
+        LinkedNode temp = result;
+        for(Integer l :list){
+            temp.next = new LinkedNode(l);
+            temp = temp.next;
+        }
+        return result.next;
     }
 
 }
