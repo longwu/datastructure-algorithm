@@ -1,5 +1,7 @@
 package com.study.sort;
 
+import com.study.utils.ArrayUtils;
+
 /**
  * 选择排序
  * <p>
@@ -19,14 +21,16 @@ public class SelectSort {
         int[] a = {12, 23, 9, 24, 15, 3, 18};
 
         //selectSort(a);
-        selectSort2(a);
-        print(a);
+        //selectSort2(a);
+        //print(a);
 
         System.out.println();
 
         //selectSortDesc(a);
-        selectSortDesc2(a);
-        print(a);
+        //selectSortDesc2(a);
+        //selectSortASC(a);
+        selectSortDesc3(a);
+        //print(a);
     }
 
     /**
@@ -114,13 +118,46 @@ public class SelectSort {
         }
     }
 
-    private static void print(int[] arr) {
-        for (int i = 0; i < arr.length; i++) {
-            if (i == arr.length - 1) {
-                System.out.print(arr[i]);
-            } else {
-                System.out.print(arr[i] + ",");
+    private static void selectSortDesc3(int[] arr) {
+        for(int i = 0; i < arr.length - 1; i ++){
+            int max = i; // 倒序和正序不同的是,每次找最大值,将最大值排在前面
+            for(int j = i +1; j < arr.length; j ++){
+                if(arr[max] < arr[j]){
+                    max = j; // 将后面最大值和前面最大值进行替换
+                }
             }
+
+            if(max != i){ // 如果最大值发生了改变, 则前后替换一下
+                int temp = arr[i];
+                arr[i] = arr[max];
+                arr[max] = temp;
+            }
+            ArrayUtils.print(arr);
+            System.out.println();
         }
     }
+
+    /**
+     * 从小往大排列
+     */
+    private static void selectSortASC(int[] arr) {
+        // 最外层遍历数组每一个元素，将每个元素和内层的每一个元素进行比较，找出最大或者最小值进行替换位置
+        for (int i = 0; i < arr.length - 1; i++) { //  arr.length -1 是因为最后一个元素就不需要处理了(前面n-1个都排好序,整个数组就排好序了)
+            int minIndex = i; // 设置最小值索引,初始为i
+            for (int j = i + 1; j < arr.length; j++) { // 因为要将i和后面的每个元素做比较,所以j是要遍历i之后的每一个元素,包括数组的最大值
+                if(arr[minIndex] > arr[j]){ // 后面的元素比当前最小的还小,替换当前最小值索引
+                    minIndex = j;
+                }
+            }
+            // 找到当前位置最小的后, 如果元素不是默认值,将最小元素和当前元素进行位置交换
+            if(minIndex != i){
+                int temp = arr[i];
+                arr[i] = arr[minIndex];
+                arr[minIndex] = temp;
+            }
+            ArrayUtils.print(arr);
+            System.out.println();
+        }
+    }
+
 }
