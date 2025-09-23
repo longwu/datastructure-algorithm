@@ -41,12 +41,12 @@ public class BalancedBinaryTree {
 
     public static void main(String[] args) {
         //Integer[] nodes = {3, 9, 20, null, null, 15, 7};
-        Integer[] nodes = {1, 2, 2, 3, 3, null, null, 4, 4};
+        Integer[] nodes = {1, 2, 3, 4, null, 6, 7, 8, 9};
         TreeNode root = TreeUtils.buildTree(nodes);
         TreeUtils.show(root);
 
-        //System.out.println(isBalanced(root));
-        System.out.println(isBalanced2(root));
+        System.out.println(isBalanced(root));
+        //System.out.println(isBalanced2(root));
     }
 
     /**
@@ -79,8 +79,7 @@ public class BalancedBinaryTree {
         if (Math.abs(left - right) > 1)
             return false;
 
-        // 再进行左右子树遍历
-        // 如果当前树为平衡树, 那么继续判断递归当前树的左右子树是否为平衡二叉树
+        // 光最大高度满足不行, 还必须每个子树都是平衡二叉树才行. 有可能存在左子树有1和4的高度,右子树都是3的高度,这样最大高度差也是1
         return isBalanced(root.left) && isBalanced(root.right);
     }
 
