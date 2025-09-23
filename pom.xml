@@ -15,6 +15,11 @@
             <artifactId>guava</artifactId>
             <version>28.1-jre</version> <!-- 使用最新版本或适合你项目的版本 -->
         </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>2.0.50</version>
+        </dependency>
     </dependencies>
 
     <build>

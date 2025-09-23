@@ -1,5 +1,6 @@
 package com.study.tree.binarytree;
 
+import com.google.common.collect.Queues;
 import com.study.utils.TreeUtils;
 
 import java.util.*;
@@ -20,7 +21,7 @@ import java.util.*;
  */
 public class LevelTraversal {
     public static void main(String[] args) {
-        Integer[] arr = {1, 2, 3, 4, 5, 6, 7};
+        Integer[] arr = {1, 2, 3, null, null, 6, 7,8,9};
         TreeNode root = TreeUtils.buildTree(arr);
 
         //List<List<Integer>> allNodes = levelOrder(root);
@@ -56,7 +57,7 @@ public class LevelTraversal {
 
         while (!queue.isEmpty()) {
             // 往节点结合中添加当前层级的空节点集合
-            List<Integer> currentLevelNodes =  new ArrayList<>();
+            List<Integer> currentLevelNodes = new ArrayList<>();
             // 获取当前层次的节点个数
             int level_length = queue.size();
             // 遍历当前层的节点个数
@@ -78,41 +79,44 @@ public class LevelTraversal {
     }
 
     /**
-     * 使用 queue
+     * 利用queue的先进先出，有序性，将每层节点放入队列中，并从队列中取出有序放入集合数组，取出后再将左右子节点放入队列中
      *
      * @param root
      * @return
      */
     private static List<List<Integer>> levelOrder2(TreeNode root) {
-        List<List<Integer>> nodes = new ArrayList<List<Integer>>();
+        List<List<Integer>> allNodes = new ArrayList<>();
 
-        if (root == null)
-            return nodes;
-
-        Queue<TreeNode> queue = new LinkedList<TreeNode>();
-        queue.add(root);
-
-        // 遍历队列中的节点,当前层里的所有节点
-        while (queue.size() > 0) {
-            List<Integer> currentLevelNodes =  new ArrayList<>();
-
-            // 当前层节点数
-            int nodeCount = queue.size();
-
-            // 遍历当前层所有的节点, 往节点结合中添加当前层所有节点值, 往队列中添加当前所有节点的子节点
-            for (int i = 0; i < nodeCount; i++) {
-                // 添加当前层节点值
-                TreeNode node = queue.remove();
-                currentLevelNodes.add(node.val);
-
-                if (node.left != null)
-                    queue.add(node.left);
-                if (node.right != null)
-                    queue.add(node.right);
-            }
-            nodes.add(currentLevelNodes);
+        Queue<TreeNode> queue = new LinkedList();
+        if (root == null) {
+            return new ArrayList<>();
         }
-        return nodes;
+        // 将每层节点放入队列中
+        queue.offer(root);
+
+        while (!queue.isEmpty()) {
+            List<Integer> currentLevelList = new ArrayList<>();
+            // 遍历已经放入队列中的节点，
+            // 1.将节点弹出放入结果集合中
+            // 2.拿到节点的子节点并放入队列中，等待循环下一次处理
+            int levelNodeCounts = queue.size(); // 因为队列个数一直在变化，所以需要存一个变量
+            for (int i = 0; i < levelNodeCounts; i++) {
+                TreeNode node = queue.poll(); // 弹出节点
+                //TreeNode node = queue.remove(); // 弹出节点
+                currentLevelList.add(node.val);// 将本层节点一一放入结果中
+
+                // 将子节点放入队列中，新加入的子节点，会进入到队列的尾部，便于下一轮循环处理
+                if (node.left != null) {
+                    queue.offer(node.left);
+                }
+                if (node.right != null) {
+                    queue.offer(node.right);
+                }
+            }
+            // 将本层节点全部放入结果中
+            allNodes.add(currentLevelList);
+        }
+        return allNodes;
     }
 
     /**
