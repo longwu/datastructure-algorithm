@@ -43,8 +43,7 @@ public class LowestCommonAncestor {
 
         TreeUtils.show(root);
 
-        TreeNode p = treeNodes.get(5);
-        TreeNode q = treeNodes.get(6);
+        int p = 1, q = 4;
 
         //TreeNode lca = getlca(root, p, q);
         TreeNode lca = getlca2(root, p, q);
@@ -96,14 +95,19 @@ public class LowestCommonAncestor {
      * @param q
      * @return
      */
-    private static TreeNode getlca2(TreeNode root, TreeNode p, TreeNode q) {
+    private static TreeNode getlca2(TreeNode root, int p, int q) {
         // 如果 p和q的值 都小于 root根节点, 说明两个节点都在左子树, 直接从树的左边去找
-        if (p.val < root.val && root.val > q.val)
+        if (p < root.val && root.val > q) {
+            System.out.println(String.format("左子树%s中找", root.val));
             return getlca2(root.left, p, q);
+        }
         // 如果 p和q的值都大于 root, 说明量两个节点都在右子树, 往树的右边去找
-        if (p.val > root.val && q.val > root.val)
+        if (p > root.val && q > root.val) {
+            System.out.println(String.format("右子树%s中找", root.val));
             return getlca2(root.right, p, q);
+        }
         // 如果  p.val <  root.val < q.val 或 p.val > root.val > q.val 则直接返回root节点
+        System.out.println("目标节点为" + root.val);
         return root;
     }
 }
