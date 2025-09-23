@@ -35,14 +35,16 @@ public class MaximumDepth {
      * @param args
      */
     public static void main(String[] args) {
-        //Integer[] arr = {0, 1, 2, 3, 4, 5, 6, 7};
-        Integer[] arr = {5, 1, 4, null, null, 3, 6};
+        Integer[] arr = {0, 1, 2, 3, 4, 5, 6, 7};
+        //Integer[] arr = {5, 1, 4, null, null, 3, 6};
         TreeNode root = TreeUtils.buildTree(arr);
         TreeUtils.show(root);
 
         //System.out.println(maxDepthByRecursion(root, "根", root.val));
         //System.out.println(maxDepthByLoop(root));
-        System.out.println(maxDepthByRecursion(root, "根", root.val));
+        //System.out.println(maxDepthByRecursion(root, "根", root.val));
+
+        System.out.println(maxDepthByRecursion(root));
     }
 
     /**
@@ -61,7 +63,7 @@ public class MaximumDepth {
             return 0;
         }
 
-        System.out.println(String.format("%s从%d节点到叶子节点递归", position, val));
+        //System.out.println(String.format("%s从%d节点到叶子节点递归", position, val));
 
         int left = maxDepthByRecursion(root.left, "左边", root.val);
         // 左边递归到了叶子节点, 开始往根节点走
@@ -71,7 +73,7 @@ public class MaximumDepth {
         // 右边递归到了叶子节点, 开始往根节点走
         System.out.println(String.format("右边从叶子节点往根节点开始, 当前节点为: %d right = %d", root.val, right));
 
-        int result = Math.max(left, right) + 1;
+        int result = Math.max(left, right) + 1; // 1是因为每一层算1
         System.out.println(String.format("result = %d, left = %d, right = %d", result, left, right));
 
         return result;
@@ -79,17 +81,19 @@ public class MaximumDepth {
 
     /**
      * 深度优先遍历, 计算每层左右节点的层数,取最大值
-     *
+     * <p>
      * 时间复杂度为O(n)
      *
      * @param root
      * @return
      */
     private static int maxDepthByRecursion2(TreeNode root) {
+        // 当某个分支到达了叶子节点, 开始回溯
         if (root == null)
             return 0;
 
         int left = maxDepthByRecursion2(root.left);
+        // 左边到了叶子节点开始回溯
         int right = maxDepthByRecursion2(root.right);
 
         // 从最底层往根节点回溯的过程中, 计算每层的层数, 取左右两边最大的层数并+1(每层的层数)
@@ -128,5 +132,17 @@ public class MaximumDepth {
         }
         // 返回最大层级数, 即最深层级
         return level;
+    }
+
+    private static int maxDepthByRecursion(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int left = maxDepthByRecursion(root.left);
+
+        int right = maxDepthByRecursion(root.right);
+
+        return Math.max(left, right) + 1; // 左边子树和右边子树的最大高度 + 1 = 当前层级高度
     }
 }

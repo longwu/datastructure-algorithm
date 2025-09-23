@@ -33,14 +33,14 @@ public class MinimumDepth {
 
     public static void main(String[] args) {
         //Integer[] arr = {0, 1, 2, 3, 4, 5, 6, 7};
-        Integer[] arr = {5, 1, 4, null, null, 3};
+        Integer[] arr = {5, 1, 4, null, null, 3, null, null, null, null, null, 8};
         //Integer[] arr = {5, 1};
         TreeNode root = TreeUtils.buildTree(arr);
         TreeUtils.show(root);
         //System.out.println(minDepthByRecursion(root));
         //System.out.println(minDepthByRecursion2(root));
-        System.out.println(minDepthByRecursion3(root));
-        //System.out.println(minDepthByLoop(root));
+        //System.out.println(minDepthByRecursion5(root));
+        System.out.println(minDepthByLevelReverse(root));
     }
 
     /**
@@ -141,5 +141,64 @@ public class MinimumDepth {
             }
         }
         return level;
+    }
+
+
+    /**
+     * 深度优先遍历, 最小深度
+     *
+     * @param root
+     * @return
+     */
+    private static int minDepthByRecursion5(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int left = minDepthByRecursion5(root.left);
+
+        int right = minDepthByRecursion5(root.right);
+        // 每次都取最小深度, 比如左边为3, 右边为0, 取右边0
+        return Math.min(left, right) + 1;
+    }
+
+    /**
+     * 使用层级遍历,第一个左右子节点为空的叶子节点, 则为最小深度
+     *
+     * @param root
+     * @return
+     */
+    private static int minDepthByLevelReverse(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+
+        int minLevel = 0;
+
+        while (!queue.isEmpty()) {
+            minLevel++;
+            int rowCount = queue.size();
+
+            // 遍历当前层里的每一个节点
+            for (int i = 0; i < rowCount; i++) {
+                TreeNode node = queue.remove();
+
+                if (node.left == null && node.right == null) {
+                    // 找到第一个叶子节点 则为最小层高度
+                    return minLevel;
+                }
+
+                if (node.left != null) {
+                    queue.offer(node.left);
+                }
+                if (node.right != null) {
+                    queue.offer(node.right);
+                }
+            }
+        }
+        return minLevel;
     }
 }
