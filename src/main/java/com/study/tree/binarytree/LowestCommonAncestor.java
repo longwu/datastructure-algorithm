@@ -39,6 +39,7 @@ public class LowestCommonAncestor {
     public static void main(String[] args) {
         int[] arr = {0, 1, 2, 3, 4, 5, 6, 7};
         List<TreeNode> treeNodes = TreeUtils.buildTreeAndList(arr);
+        TreeUtils.show(treeNodes.get(0));
         //TreeNode p = treeNodes.get(4);
         //TreeNode q = treeNodes.get(5);
 
@@ -48,8 +49,8 @@ public class LowestCommonAncestor {
 //        TreeNode p = treeNodes.get(3);
 //        TreeNode q = treeNodes.get(4);
 
-        TreeNode p = treeNodes.get(1);
-        TreeNode q = treeNodes.get(7);
+        TreeNode p = treeNodes.get(7);
+        TreeNode q = treeNodes.get(4);
         TreeNode root = treeNodes.get(0);
 
         TreeNode lca = getlca(root, p, q);
@@ -85,21 +86,19 @@ public class LowestCommonAncestor {
         }
 
         if (root == p || root == q) {
-            if (root == p)
-                System.out.println("递归往内中止, root == p ==" + root.val);
-            if (root == q)
-                System.out.println("递归往内中止, root == q ==" + root.val);
+            if (root == p) System.out.println("递归往内中止, root == p ==" + root.val);
+            if (root == q) System.out.println("递归往内中止, root == q ==" + root.val);
             return root;
         }
 
         // 遍历左子树看有没有目标节点, 有返回目标节点, 没有返回null
         TreeNode left = getlca(root.left, p, q); // 如果找到目标节点, 无需下遍历, 直接从当前节点的右子树进行遍历
-        System.out.println("递归往外开始, 左边目标节点left = " + (left == null ? "null" : left.val));
+        System.out.println(String.format("递归往外开始, 当前节点为[%s],左边目标节点left =%s ", root.val, (left == null ? "null" : left.val)));
         // 遍历右子树有看没有目标节点, 有返回目标节点, 没有返回null
         TreeNode right = getlca(root.right, p, q);
-        System.out.println("递归往外开始, 右边目标节点right = " + (right == null ? "null" : right.val));
+        System.out.println(String.format("递归往外开始, 当前节点为[%s],右边目标节点right =%s ", root.val, (right == null ? "null" : right.val)));
 
-        // 如果左右子树都有目标节点, 说明公共祖先就是它本身
+        // 如果左右子树都有目标节点, 说明该节点就是公共祖先
         if (left != null && right != null) {
             System.out.println("左右子树都有目标节点,公共祖先为" + root.val);
             return root;
@@ -108,13 +107,45 @@ public class LowestCommonAncestor {
         // 如果目标节点都在左子树,返回左子树匹配的节点
         // 如果目标节点都在右子树,返回右子树匹配的节点
         //return left != null ? left : right;
-
         if (left != null) {
-            System.out.println("公共祖先在左子树, left = " + left.val);
+            System.out.println("左边找到了一个相匹配的节点, left = " + left.val);
             return left;
         }
         if (right != null) {
-            System.out.println("公共祖先在右子树, right = " + right.val);
+            System.out.println("右边找到了一个相匹配的节点, right = " + right.val);
+            return right;
+        }
+
+        return null;
+    }
+
+
+    private static TreeNode getLCA2(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null) {
+            return null;
+        }
+
+        if (root == p || root == q) {
+            return root; // 找到了至少一个相同节点
+        }
+        // 往左边找
+        TreeNode left = getLCA2(root.left, p, q);
+        // 往右边找
+        TreeNode right = getLCA2(root.right, p, q);
+
+        // 如果左右两边都找到了,那么当前节点就是公共祖先
+        if (left != null && right != null) {
+            System.out.println(String.format("左右两边都有相同节点, left=%s,right=%s, 公共祖先为%s", left.val, right.val, root.val));
+            return root;
+        }
+        // 只有左边找到了,那么第一个左边找到的为公共祖先
+        if (left != null) {
+            System.out.println(String.format("左边找到了匹配节点, left=%s", left.val));
+            return left;
+        }
+        // 只有右边找到了,那么第一个右边找到的为公共祖先
+        if (right != null) {
+            System.out.println(String.format("右边找到了匹配节点, right=%s", right.val));
             return right;
         }
 
