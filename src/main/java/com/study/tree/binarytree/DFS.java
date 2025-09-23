@@ -21,7 +21,7 @@ public class DFS {
      * @param args
      */
     public static void main(String[] args) {
-        Integer[] arr = {0, 1, 2, 3, 4, 5, 6, 7};
+        Integer[] arr = {0, 1, 2, 3, 4, 5, 6};
         TreeNode root = TreeUtils.buildTree(arr);
         List<TreeNode> nodes = search(root);
         for (TreeNode node : nodes) {
@@ -59,7 +59,7 @@ public class DFS {
 
         // 先从左边从外往内递归 直到最深处, 当node为null的时候结束递归开始从内往外
         if (node.left != null) {
-            // 1 3 7 5
+            // 0 1 3 4
             System.out.println("递归左边: " + node.left.val);
             dfs(node.left, nodeList);
         }
@@ -67,7 +67,7 @@ public class DFS {
         // 再从右边一直往内部
         // 左边从外往内直到node==null后终止往内, 开始由内往外, 再往外的过程中不断再由外往内递归右子树
         if (node.right != null) {
-            // 4 2 6
+            // 2 5 6
             System.out.println("递归右边: " + node.right.val);
             dfs(node.right, nodeList);
         }

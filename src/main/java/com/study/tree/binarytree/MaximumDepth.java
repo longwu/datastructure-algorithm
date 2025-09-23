@@ -42,7 +42,7 @@ public class MaximumDepth {
 
         //System.out.println(maxDepthByRecursion(root, "根", root.val));
         //System.out.println(maxDepthByLoop(root));
-        System.out.println(maxDepthByRecursion2(root));
+        System.out.println(maxDepthByRecursion(root, "根", root.val));
     }
 
     /**

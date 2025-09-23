@@ -3,6 +3,7 @@ package com.study.tree.binarytree;
 import com.study.utils.TreeUtils;
 
 import java.util.List;
+import java.util.Stack;
 
 
 /**
@@ -23,7 +24,7 @@ public class HasPathSum {
         Integer[] arr = {1, 2, 3, 4, 5, 6};
         TreeNode root = TreeUtils.buildTree(arr);
         TreeUtils.show(root);
-        boolean has = hasSumPath2(root, 10);
+        boolean has = hasPathSumByStack2(root, 10);
         System.out.println(has);
     }
 
@@ -55,6 +56,7 @@ public class HasPathSum {
 
     /**
      * 通过减法计算是否存在满足的路径
+     *
      * @param root
      * @param sum
      * @return
@@ -71,5 +73,88 @@ public class HasPathSum {
         }
 
         return hasSumPath2(root.left, sum - root.val) || hasSumPath2(root.right, sum - root.val);
+    }
+
+    /**
+     * 使用双栈结构, 一个栈用于dfs遍历,一个栈用于叠加距离
+     *
+     * @param root
+     * @param sum
+     * @return
+     */
+    public static boolean hasPathSumByStack(TreeNode root, int sum) {
+        //空节点找不到路径
+        if (root == null)
+            return false;
+        //栈辅助深度优先遍历
+        Stack<TreeNode> s1 = new Stack<TreeNode>();
+        //跟随s1记录到相应节点为止的路径和
+        Stack<Integer> s2 = new Stack<Integer>();
+        s1.push(root);
+        s2.push(root.val);
+        while (!s1.isEmpty()) {
+            //弹出相应节点
+            TreeNode temp = s1.pop();
+            System.out.println("弹出节点:" + temp.val);
+            //弹出到该点为止的当前路径和
+            int cur_sum = s2.pop();
+            //叶子节点且当前路径和等于sum
+            if (temp.left == null && temp.right == null && cur_sum == sum) {
+                System.out.println("找到目标节点为" + temp.val);
+                return true;
+            }
+
+            // 先右再左节点入栈  也是DFS的做法, 根->左->右
+            //右节点及路径和入栈
+            if (temp.right != null) {
+                s1.push(temp.right);
+                s2.push(cur_sum + temp.right.val);
+            }
+
+            //左节点及路径和入栈
+            if (temp.left != null) {
+                s1.push(temp.left);
+                s2.push(cur_sum + temp.left.val);
+            }
+        }
+        return false;
+    }
+
+    public static boolean hasPathSumByStack2(TreeNode root, int sum) {
+        if (root == null) {
+            return false;
+        }
+
+        Stack<TreeNode> stackNode = new Stack<>();
+        Stack<Integer> stackValue = new Stack<>();
+
+        stackNode.push(root);
+        stackValue.push(root.val);
+        while (!stackNode.isEmpty()) {
+            // 深度优先遍历, 根 左 右
+
+            // 弹出节点
+            TreeNode node = stackNode.pop();
+            Integer currentPathSum = stackValue.pop();
+            System.out.println(String.format("当前节点为%s,路径和为%s", node.val, currentPathSum));
+            // 当前节点的值 + 之前节点的路径值 等于 总路径
+            // 目标节点必须是叶子节点
+            if (node.left == null && node.right == null && node.val + currentPathSum == sum) {
+                System.out.println("找到了目标叶子节点" + node.val);
+                return true;
+            }
+
+            // 把每个节点和的左右子节点之和记录下来
+            if (node.right != null) {
+                stackNode.push(node.right);
+                stackValue.push(node.right.val + currentPathSum); // 放入下一个节点的值 + 之前路径和
+            }
+
+            if (node.left != null) {
+                stackNode.push(node.left);
+                stackValue.push(node.left.val + currentPathSum);
+            }
+        }
+        return false;
     }
 }
