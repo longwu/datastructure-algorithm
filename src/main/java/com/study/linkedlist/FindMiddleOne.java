@@ -1,5 +1,6 @@
 package com.study.linkedlist;
 
+import com.study.utils.DoubleLinkedListUtils;
 import com.study.utils.LinkedListUtils;
 
 /**
@@ -48,7 +49,7 @@ public class FindMiddleOne {
             i++;
         }
 
-        LinkedListUtils.printLinkedList(head2);
+        DoubleLinkedListUtils.printLinkedList(head2);
         // 找出双向链表中间的元素
         System.out.println(findMiddle(head2));
 

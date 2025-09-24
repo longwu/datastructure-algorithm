@@ -1,5 +1,6 @@
 package com.study.linkedlist;
 
+import com.study.utils.DoubleLinkedListUtils;
 import com.study.utils.LinkedListUtils;
 
 /**
@@ -51,7 +52,7 @@ public class DoubleLinkedList {
 
         System.out.println("---------------------");
         DoubleLinkedNode head4 = deleteNode(node1, 3);
-        LinkedListUtils.printLinkedList(head4);
+        DoubleLinkedListUtils.printLinkedList(head4);
 
 //        System.out.println();
 //        head4 = deleteNode(head4, 0);
